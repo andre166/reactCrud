@@ -12,7 +12,6 @@ export default function Estatisticas(){
     function RenderPizzaChart() {
 
         let arrM = linguagens;
-
         let ka = []
 
         arrM.map((info) => (
@@ -23,16 +22,17 @@ export default function Estatisticas(){
 
         return (
 
-        <div id="barChart" style={{ width: '100%', height: 300 }}>
+        <div style={{ width: 100, height: 300 }}>
 
-            <ResponsiveContainer>
-                <PieChart>
+                <PieChart width={600} height={300}>
                     <Pie dataKey="value" isAnimationActive={false} data={ka} cx={'50%'} cy={110} outerRadius={70} fill="#8884d8" label />     
+                    {/* <Pie dataKey="value" isAnimationActive={false} data={ka}   fill="#8884d8" label />      */}
                     <Tooltip />
-                    <Legend wrapperStyle={{ top: 240, right: 20, backgroundColor: '#f5f5f5' }}/>
+                    {/* <Legend/> */}
                 </PieChart>
-            </ResponsiveContainer>
+
         </div>
+   
   
         )
 
@@ -52,58 +52,45 @@ export default function Estatisticas(){
 
         
         return ( 
-            <div style={{ width: '100%', height: 300} }>
 
-            <div className="text-center">Total de Pessoas cadastradas por gênero</div>
+            <div style={{ width: 300, height: 300} }>
 
-            <ResponsiveContainer>
-            <BarChart
+                <BarChart width={600} height={300} data={data} >
+
+                <CartesianGrid strokeDasharray="3 3" fill="white"/>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Legend/>
+                <Tooltip/>
             
-                width={500}
-                height={350}
-                data={data}
+                <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
+                    {
+                        data.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={'pink'} />
+                        ))
+                    }
+                </Bar>
 
-            margin={{
-              top: 20, right: 30, left: 20, bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" fill="white"/>
-            <XAxis dataKey="name" />
-            <YAxis />
-            {/* <Legend  wrapperStyle={{ top: 240, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, margin: 20}} */}
-            />
-            <Tooltip/>
-           
-            <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
+                <Bar dataKey="Masculino" stackId="b" fill="Blue" barSize={30}  label={{ position: 'top' } }>
+                    {
+                        data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={'blue'}/>
+                        ))
+                    }
+                </Bar>
+
+                <Bar dataKey="Total"  stackId="c" fill="gray" barSize={30} label={{ position: 'top' }}>
                 {
                     data.map((entry, index) => (
-
-                        <Cell key={`cell-${index}`} fill={'pink'} />
-               
-                    ))
-                    
-                }
-            </Bar>
-
-            <Bar dataKey="Masculino" stackId="b" fill="Blue" barSize={30}  label={{ position: 'top' } }>
-                {
-                    data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={'blue'}/>
+                        <Cell key={`cell-${index}`} fill={'gray'}/>
                     ))
                 }
-            </Bar>
+                </Bar>
 
-            <Bar dataKey="Total"  stackId="c" fill="gray" barSize={30} label={{ position: 'top' }}>
-            {
-                data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={'gray'}/>
-                ))
-            }
-            </Bar>
-
-          </BarChart>
-          </ResponsiveContainer>
+            </BarChart>
+     
           </div>
+     
 
         )
     
@@ -176,31 +163,29 @@ export default function Estatisticas(){
 
         <div className="container-fluid bg-white">
 
-          
-
             <div class="jumbotron py-4 text-center">
                 <h1 class="display-4  contato-h1">Estatisticas</h1>
-            </div>
+            </div> 
 
-      
-
-            
-
-            <div className="row">
-
-                <div className="col-sm-6">
+                <div className="card card-body">
+                    <div>
 
                     <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
-                </div>
-                
-                <div className="col-sm-6 ">
-                    <RenderPizzaChart lingua={linguagens}/>
-                </div>
+                    </div>
 
-            </div>
+                    <div>
+                    <RenderPizzaChart/>
 
+                    </div>
+                </div>
+            </div> 
 
             
+        );
+        
+          
+    }
+/*             
             <div className="row mt-4">
 
                 <div className="col-sm-5">
@@ -237,14 +222,5 @@ export default function Estatisticas(){
 
                     </div>
                 </div>  
-
-            </div>    
-
-        </div>  
-        
-    );
-    
-}
-
-
-           
+                </div>
+                 */
