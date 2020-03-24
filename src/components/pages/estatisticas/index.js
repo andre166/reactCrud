@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
 export default function Estatisticas(){
 
     const [totalFeminino, setTotalFeminino] = useState([])
@@ -23,11 +23,18 @@ export default function Estatisticas(){
         ))
 
         return (
-            <PieChart width={400} height={400}>
-                    <Pie dataKey="value" isAnimationActive={false} data={ka} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />     
-                <Tooltip />
-            </PieChart>
+
+        <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer>
+                <PieChart>
+                    <Pie dataKey="value" isAnimationActive={false} data={ka} outerRadius={80} fill="#8884d8" label />     
+                    <Tooltip />
+                </PieChart>
+            </ResponsiveContainer>
+        </div>
+  
         )
+
 
     }
 
@@ -44,6 +51,8 @@ export default function Estatisticas(){
 
         
         return ( 
+            <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer>
             <BarChart
             
                 width={500}
@@ -58,6 +67,7 @@ export default function Estatisticas(){
             <XAxis dataKey="name" />
             <YAxis />
             <Legend/>
+            <Tooltip/>
            
             <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
                 {
@@ -87,7 +97,9 @@ export default function Estatisticas(){
             </Bar>
 
           </BarChart>
-    
+          </ResponsiveContainer>
+          </div>
+
         )
     
     };
@@ -157,10 +169,10 @@ export default function Estatisticas(){
         
     return(
 
-        <div className="container">
+        <div className="container-fluid">
 
 
-            <div className="card card-body mt-4">
+            <div className="card-body mt-4">
 
                 <div class="jumbotron py-4">
                     <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
@@ -168,29 +180,32 @@ export default function Estatisticas(){
 
                 <div className="card card-body">
 
-                    <div className="row d-flex justify-content-center">
+                    <div className="row d-flex justify-content-center col-sm-6">
 
+                        <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
                     </div>
                       
-    
-                        <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+                    <div className="d-flex justify-content-center col-sm-12 ">
                         <RenderPizzaChart lingua={linguagens}/>
+                    </div>
 
                     <hr/>
 
-                    <div className="row">
-                    <div className="col-md-12 text-center">
-                        
-                        {linguagens.map((info) => (
-                            
-                            <p>{info.lingua} : {info.quantidade}</p>
-                            
-                        ))}
-
-                    </div>
-                        
-                    </div>
                 </div>
+
+                    <div className="row">
+
+                        <div className="col-md-12 text-center">
+                            
+                            {linguagens.map((info) => (
+                                
+                                <p>{info.lingua} : {info.quantidade}</p>
+                                
+                            ))}
+
+                        </div>
+                        
+                    </div>
             </div>
         </div>  
         
