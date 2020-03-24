@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
+import Css from './estatisticas.css';
 export default function Estatisticas(){
 
     const [totalFeminino, setTotalFeminino] = useState([])
@@ -7,8 +8,6 @@ export default function Estatisticas(){
     const [totalGenero, setTotalGenero] = useState([])
 
     const [linguagens, setLinguagens] = useState([])
-
-    const [ka, setKa] = useState([])
 
     function RenderPizzaChart() {
 
@@ -24,11 +23,13 @@ export default function Estatisticas(){
 
         return (
 
-        <div style={{ width: '100%', height: 300 }}>
+        <div id="barChart" style={{ width: '100%', height: 300 }}>
+
             <ResponsiveContainer>
                 <PieChart>
-                    <Pie dataKey="value" isAnimationActive={false} data={ka} outerRadius={80} fill="#8884d8" label />     
+                    <Pie dataKey="value" isAnimationActive={false} data={ka} cx={'50%'} cy={110} outerRadius={70} fill="#8884d8" label />     
                     <Tooltip />
+                    <Legend wrapperStyle={{ top: 240, right: 20, backgroundColor: '#f5f5f5' }}/>
                 </PieChart>
             </ResponsiveContainer>
         </div>
@@ -51,7 +52,10 @@ export default function Estatisticas(){
 
         
         return ( 
-            <div style={{ width: '100%', height: 300 }}>
+            <div style={{ width: '100%', height: 300} }>
+
+            <div className="text-center">Total de Pessoas cadastradas por gênero</div>
+
             <ResponsiveContainer>
             <BarChart
             
@@ -66,7 +70,8 @@ export default function Estatisticas(){
             <CartesianGrid strokeDasharray="3 3" fill="white"/>
             <XAxis dataKey="name" />
             <YAxis />
-            <Legend/>
+            {/* <Legend  wrapperStyle={{ top: 240, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, margin: 20}} */}
+            />
             <Tooltip/>
            
             <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
@@ -169,44 +174,72 @@ export default function Estatisticas(){
         
     return(
 
-        <div className="container-fluid">
+        <div className="container-fluid bg-white">
 
+          
 
-            <div className="card-body mt-4">
+            <div class="jumbotron py-4 text-center">
+                <h1 class="display-4  contato-h1">Estatisticas</h1>
+            </div>
 
-                <div class="jumbotron py-4">
-                    <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
+      
+
+            
+
+            <div className="row">
+
+                <div className="col-sm-6">
+
+                    <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+                </div>
+                
+                <div className="col-sm-6 ">
+                    <RenderPizzaChart lingua={linguagens}/>
                 </div>
 
-                <div className="card card-body">
+            </div>
 
-                    <div className="d-flex justify-content-center col-sm-6">
 
-                        <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
-                    </div>
-                      
-                    <div className="d-flex justify-content-center col-sm-12 ">
-                        <RenderPizzaChart lingua={linguagens}/>
-                    </div>
+            
+            <div className="row mt-4">
 
-                    <hr/>
+                <div className="col-sm-5">
 
                 </div>
 
-                    <div className="row">
+                <div className="text-center col-sm-2">
 
-                        <div className="col-md-12 text-center">
-                            
+                    <button class="btn btn-info mt-4" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Lista de idiomas
+                    </button>
+
+                    <div class="collapse" id="collapseExample">
+                        <ul className="list-group">
+
+                            <li class="list-group-item list-group-item-success text-center">Idiomas | Quantidade
+                
+                            </li>
                             {linguagens.map((info) => (
                                 
-                                <p>{info.lingua} : {info.quantidade}</p>
+                    
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {info.lingua} 
+                                    <span class="badge badge-success badge-pill">{info.quantidade}</span>
+                                </li>
                                 
                             ))}
 
-                        </div>
-                        
+                        </ul>
+
+                        <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Fechar
+                        </button>
+
                     </div>
-            </div>
+                </div>  
+
+            </div>    
+
         </div>  
         
     );
