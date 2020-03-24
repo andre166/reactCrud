@@ -180,7 +180,7 @@ export default function Estatisticas(){
 
                 <div className="card card-body">
 
-                    <div className="row d-flex justify-content-center col-sm-6">
+                    <div className="d-flex justify-content-center col-sm-6">
 
                         <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
                     </div>
