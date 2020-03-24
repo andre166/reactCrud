@@ -8,26 +8,23 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
-    function RenderPizzaChart(props) {
+    const [ka, setKa] = useState([])
 
+    function RenderPizzaChart() {
 
-        //props é o arrray linguagem
-        //fazer map e criar um array de obj ====: name: value:
-        let data01 = [];
+        let arrM = linguagens;
 
-        // const data01 = [{
-        //     name: 'billi',
-        //     value: 10,
-        // }]
+        let ka = []
 
-        data01 = props.lingua
+        arrM.map((info) => (
+                            
+            ka.push({name:info.lingua, value: info.quantidade})
+            
+        ))
 
-        console.log("props na lingua",data01)
-
-        
         return (
             <PieChart width={400} height={400}>
-                    <Pie dataKey="value" isAnimationActive={false} data={data01} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
+                    <Pie dataKey="value" isAnimationActive={false} data={ka} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />     
                 <Tooltip />
             </PieChart>
         )
