@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Label, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
 export default function Estatisticas(){
 
     const [totalFeminino, setTotalFeminino] = useState([])
@@ -8,6 +8,45 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
+    function RenderPizzaChart() {
+
+        let data01 = [ 
+            {
+                name: ' ',
+                value: ''
+            }
+        ];
+
+        {linguagens.map((info) => ( 
+
+            data01.name = info.lingua,
+            data01.value = info.quantidade
+
+        ))}  
+
+        console.log("a", data01)
+
+
+  
+
+
+
+        return (
+            <PieChart width={400} height={400}>
+
+                
+
+                    <Pie dataKey="value" isAnimationActive={false} data={data01} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
+                    
+                
+
+                <Tooltip />
+            </PieChart>
+        )
+
+    }
+
+//================================================================================================================================================
 
     function RenderLineChart (props) {
 
@@ -21,6 +60,7 @@ export default function Estatisticas(){
         
         return ( 
             <BarChart
+            
                 width={500}
                 height={350}
                 data={data}
@@ -29,7 +69,7 @@ export default function Estatisticas(){
               top: 20, right: 30, left: 20, bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3 3" fill="white"/>
             <XAxis dataKey="name" />
             <YAxis />
             <Legend/>
@@ -96,6 +136,9 @@ export default function Estatisticas(){
     }
     
     pegarContatos();
+
+    
+    
     
 }, []);
 
@@ -140,8 +183,12 @@ export default function Estatisticas(){
                 <div className="card card-body">
 
                     <div className="row d-flex justify-content-center">
-                        <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+
                     </div>
+                      
+    
+                        <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+                        <RenderPizzaChart lingua={linguagens.lingua}/>
 
                     <hr/>
 
@@ -149,13 +196,12 @@ export default function Estatisticas(){
                     <div className="col-md-12 text-center">
                         
                         {linguagens.map((info) => (
-                        
+                            
                             <p>{info.lingua} : {info.quantidade}</p>
-                        
+                            
                         ))}
 
                     </div>
-                       
                         
                     </div>
                 </div>
