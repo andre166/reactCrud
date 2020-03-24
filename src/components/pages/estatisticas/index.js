@@ -8,38 +8,26 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
-    function RenderPizzaChart() {
-
-        let data01 = [ 
-            {
-                name: ' ',
-                value: ''
-            }
-        ];
-
-        {linguagens.map((info) => ( 
-
-            data01.name = info.lingua,
-            data01.value = info.quantidade
-
-        ))}  
-
-        console.log("a", data01)
+    function RenderPizzaChart(props) {
 
 
-  
+        //props é o arrray linguagem
+        //fazer map e criar um array de obj ====: name: value:
+        let data01 = [];
 
+        // const data01 = [{
+        //     name: 'billi',
+        //     value: 10,
+        // }]
 
+        data01 = props.lingua
 
+        console.log("props na lingua",data01)
+
+        
         return (
             <PieChart width={400} height={400}>
-
-                
-
                     <Pie dataKey="value" isAnimationActive={false} data={data01} cx={200} cy={200} outerRadius={80} fill="#8884d8" label />
-                    
-                
-
                 <Tooltip />
             </PieChart>
         )
@@ -133,10 +121,10 @@ export default function Estatisticas(){
         setTotalGenero(qtdFeminino + qtdMasculino)
         setLinguagens(arrayTemp);
         
+   
     }
     
     pegarContatos();
-
     
     
     
@@ -167,6 +155,7 @@ export default function Estatisticas(){
             lista[index].quantidade++;
         }
 
+
     }
         
     return(
@@ -188,7 +177,7 @@ export default function Estatisticas(){
                       
     
                         <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
-                        <RenderPizzaChart lingua={linguagens.lingua}/>
+                        <RenderPizzaChart lingua={linguagens}/>
 
                     <hr/>
 
