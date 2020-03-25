@@ -10,7 +10,7 @@
 }
 
 .navbar-custom{
-    background-color: #ffffff;
+    background-color: #08567a;
     box-shadow: 1px 1px 1px #0808083a;
     padding-top: 20px; 
     padding-bottom: 20px; 
@@ -18,12 +18,14 @@
 
 ul li a{
     font-weight: 700;
-    color: #131212a6;
-    font-size: 25px;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 2px;
 }
 
 ul li a:hover{
-   color: #009e3f !important;
+   color: #007bff !important;
+   
 }
 
 @media (max-width: 575.98px) {

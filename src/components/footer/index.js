@@ -8,13 +8,13 @@ class Footer extends Component{
         
         return(
 
-            <footer class="footer-bottom bg-dark">
+            <footer class="footer-custom">
               
                     <div class="row w-100">
 
-                        <div class="col-md-4"></div>
+                        <div class="col-sm-12 mt-4">
 
-                        <div class="col-md-4 mt-4">
+                           
 
                             <div class="middle mt-4">
                                 
@@ -42,7 +42,7 @@ class Footer extends Component{
                     </div>
 
                     <div class="text-center mt-4">
-                        <p class=""> <b class="b-footer">André Mesquita</b> &copy; Todos os direitos reservados</p>
+                        <b>André Mesquita</b> <span class="text-footer">&copy; Todos os direitos reservados</span>
                     </div>
             
             </footer>

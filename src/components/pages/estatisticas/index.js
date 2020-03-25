@@ -25,8 +25,8 @@ export default function Estatisticas(){
             <div style={{ width: '100%', height: 400 }}>
 
             <div class="text-center alert alert-info" >Quantidade de Usuários cadastrados por Idioma</div>
-            <ResponsiveContainer>
-                <PieChart>
+            <ResponsiveContainer height={350}>
+                <PieChart  height={350}>
                     <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={100} outerRadius={74} fill="#8884d8" label />     
                     <Tooltip />
                  
@@ -173,7 +173,7 @@ export default function Estatisticas(){
         
     return(
 
-        <div className="container-fluid bg-white">
+        <div className="container-fluid bg-white ">
 
 
             <div className="card-body">
@@ -204,15 +204,14 @@ export default function Estatisticas(){
                         
                         <div className="card card-body col-sm-6 ">
                             <RenderPizzaChart lingua={linguagens}/>
-                         <div className="col-md-12">
-
-                         </div>
+                         
                         </div>
 
                     </div>
 
 
                     <hr/>
+                    
 
                     <div className="text-center">
 
