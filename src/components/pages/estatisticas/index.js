@@ -169,16 +169,16 @@ export default function Estatisticas(){
         
     return(
 
-        <div className="container-fluid">
+        <div className="container-fluid bg-white">
 
 
-            <div className="card-body mt-4">
+            <div className="card-body">
 
                 <div class="jumbotron py-4">
                     <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
                 </div>
 
-                <div className="card card-body">
+               
                     <div className="row">
                         <div className="card card-body col-sm-6">
 
@@ -222,7 +222,7 @@ export default function Estatisticas(){
                                     
                                 </form>
                                
-                                </div>
+                           
                             </div>
 
                         </div>
