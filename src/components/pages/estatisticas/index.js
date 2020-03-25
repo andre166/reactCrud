@@ -175,7 +175,7 @@ export default function Estatisticas(){
             <div className="card-body">
 
                 <div class="jumbotron py-4">
-                    <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
+                    <h1 class="display-4 text-center contato-h1">Estatisticas 3</h1>
                 </div>
 
                
