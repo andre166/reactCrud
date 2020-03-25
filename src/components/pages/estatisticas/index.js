@@ -30,7 +30,6 @@ export default function Estatisticas(){
             
             <div style={{ width: '100%', height: 400 }}>
 
-            <div class="text-center alert alert-info" >Quantidade de Usuários cadastrados por Idioma</div>
             <ResponsiveContainer height={350}>
                 <PieChart  height={350}>
                     <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={100} outerRadius={74} fill="#8884d8" label />     
@@ -60,7 +59,6 @@ export default function Estatisticas(){
         
         return ( 
             <div style={{ width: '100%', height: 300 }}>
-                 <div class="text-center alert alert-info" >Total de Usuários cadastrados por gênero</div>
             <ResponsiveContainer>
             <BarChart
             
@@ -190,6 +188,7 @@ export default function Estatisticas(){
                
                     <div className="row">
                         <div className="card card-body col-sm-6">
+                        <div class="text-center alert alert-info" > <strong>Total de Usuários cadastrados por gênero</strong></div>
 
                             <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
                             <div className="row">
@@ -208,6 +207,8 @@ export default function Estatisticas(){
                         </div>
                         
                         <div className="card card-body col-sm-6 ">
+                            <div class="text-center alert alert-info" ><strong>Quantidade de Usuários cadastrados por Idioma</strong></div>
+
                             <RenderPizzaChart lingua={linguagens}/>
                          
                         </div>

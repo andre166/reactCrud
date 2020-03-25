@@ -58,7 +58,7 @@ export default function AddContato() {
     return(
 
         <div class="container">
-            <div className="card card-body mt-4">
+            <div className="card card-body mt-2">
                
                 <div class="jumbotron py-4">
                     <h1 class="text-center contato-h1">Cadastrar Contatos</h1>

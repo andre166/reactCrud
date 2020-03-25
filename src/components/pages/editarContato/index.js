@@ -113,7 +113,7 @@ export default function EditarContatos() {
 
     <div className="container my-2">
        <div class="card card-body">
-            <div class="jumbotron py-4 shadow-custom mb-2">
+            <div class="jumbotron py-4 mb-2">
                 <h1 class="display-4 text-center contato-h1">Editar Contato</h1>
             </div>
 
@@ -138,7 +138,7 @@ export default function EditarContatos() {
                                     <div class="col mb-3">
                                         <label for="validationServer02">Digite a Url</label>
                                         <input type="url" class="form-control" id="validationServer02" 
-                                        value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="https://"/>
+                                        value={avatar}  onChange={(e)=> setAvatar(e.target.value)}/>
                                     </div>
 
                                     <button type="submit" class="btn btn-outline-success btn-sm" onClick={() => editarFoto(contatos, {avatar}, posicaoDocontato)}>Enviar</button>
@@ -155,7 +155,7 @@ export default function EditarContatos() {
                                 <div className="col">
 
                                     <p class="card-text">Nome: {first_name} {last_name}</p>                               
-                                    <p class="card-text">email: {email}</p>
+                                    <p class="card-text">Email: {email}</p>
                                     <p class="card-text">Gênero: {gender == 'M' ? contatos.gender = 'Masculino' :  contatos.gender = 'Feminino'}</p>
                                     <p class="card-text">Linguagem: {language}</p>
                                     <p class="card-text">Data de nascimento: {contatos.birthday}</p>
@@ -190,15 +190,15 @@ export default function EditarContatos() {
                         
                             <div className="row">
                                 
-                                <div class="form-group  col-md-6">
+                                <div class="form-group  col-sm-6">
                                     <label for="exampleInputEmail1">Email:</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"  
                                     placeholder="Email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
                                 </div>
 
-                                <div class="col-md-4 mb-3">
+                                <div class="col-sm-4 mb-3 ml-4">
 
-                                    <div class="form-check form-check-inline">
+                                    <div class="form-check form-check-inline mt-4">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M"   onChange={e => setGender(e.target.value) } />
                                         <label class="form-check-label" for="inlineRadio1">Masculino</label>
                                     </div>
