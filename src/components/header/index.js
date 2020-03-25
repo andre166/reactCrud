@@ -35,19 +35,15 @@ class Header extends Component{
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto" onClick={toogleMenu}>
                     <li class="nav-item">
-                        <Link to="/ListaDeContatos" class="nav-link"><a>Lista de Contatos</a></Link>
+                        <Link to="/ListaDeContatos" class="nav-link"><a><i class="fas fa-list-alt"></i> Lista de Contatos</a></Link>
                     </li>
 
                     <li class="nav-item">
-                        <Link to="/AddContatos" class="nav-link"><a>Cadastrar Contatos</a></Link>
+                        <Link to="/AddContatos" class="nav-link"><a><i class="fas fa-user-plus"></i> Cadastrar Contatos</a></Link>
                     </li>
 
                     <li class="nav-item">
-                        <Link to="/Estatisticas" class="nav-link"><a>Estatisticas</a></Link>
-                    </li>
-
-                    <li class="nav-item">
-                        <Link to="/" class="nav-link"><a>Home <span class="sr-only">(current)</span></a></Link>
+                        <Link to="/Estatisticas" class="nav-link"><a><i class="fas fa-chart-pie"></i> Estatisticas</a></Link>
                     </li>
                    
                 </ul>

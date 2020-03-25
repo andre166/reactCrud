@@ -8,6 +8,12 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
+    function toogleMenu(){
+
+        window.scrollTo(0, 0);
+
+    }
+
     function RenderPizzaChart() {
 
         let arrM = linguagens;
@@ -41,7 +47,6 @@ export default function Estatisticas(){
 
     }
 
-//================================================================================================================================================
 
     function RenderLineChart (props) {
 
@@ -176,7 +181,7 @@ export default function Estatisticas(){
         <div className="container-fluid bg-white ">
 
 
-            <div className="card-body">
+            <div className="card-body my-2">
 
                 <div class="jumbotron py-4">
                     <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
@@ -239,7 +244,8 @@ export default function Estatisticas(){
                                     </ul>
                                 </form>
 
-                                    <button class="btn btn-danger btn-sm mt-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    <button class="btn btn-danger btn-sm mt-2" type="button" data-toggle="collapse" 
+                                    data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onClick={toogleMenu}>
                                         Fechar <i class="fas fa-arrow-up"></i>
                                     </button>
                                     

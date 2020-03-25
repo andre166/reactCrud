@@ -40,54 +40,63 @@ export default function Home(){
 
         <div className="container">
 
-            <div className="card card-body mt-4">
+            <div className="card card-body my-2">
                     
                 <div class="jumbotron">
                     <h1 class="text-center text-info LesteTel_h1">React Cad</h1>
                 </div>
 
-                <div className="card card-body text-center">
-                    <div className="row">
+                <div className="row">
+                    <div class="col-md-3"> </div>
 
-                        <div className="col-sm-4 my-2">
-                            <Link to="/ListaDeContatos"> <button class="btn btn-info btn-lg"  role="button"> <i class="fas fa-list-alt"></i> Lista de contatos </button></Link>
-                        </div>
+                    <div class="col-md-6">
 
-                        <div className="col-sm-4 my-2">
-                            <Link to="/AddContatos"><button class="btn btn-info btn-lg"   role="button"> <i class="fas fa-user-plus"></i> Adicionar contatos </button></Link>
-                        </div>
-                            
-                        <div className="col-sm-4 my-2">
-                            <Link to="/Estatisticas"><button class="btn btn-info btn-lg"   role="button"> <i class="fas fa-chart-pie"></i> Estatisticas </button></Link>
-                        </div>
+                        <div className="card card-body mt-2 text-center">
+                        
+                            <ul class="list-group">
+                                <li class="list-group-item active"><h2>Descrição da API</h2></li>
 
+                                <li class="list-group-item list-group-item-primary">Cadastra, Edita, exclui, lista e gera relatório com gráfico.</li>
+                                <li class="list-group-item">Cadastro: Primeiro nome, Ultimo nome, Email, Gênero, Linguagem, Data de nascimento</li>
+                                <li class="list-group-item">Exclusão, Alteração e Edição de todos os campos citados acima</li>
+                                <li class="list-group-item">Filtros de pesquisa: por Gênero(F/M), por Idade, por Mês(todos de um determinado mês), por Idioma(todos de um determinado Idioma)</li>
+                                <li class="list-group-item">Estatísticas: Gráficos com o total de cadastros por Gênero e Quantidade de Usuários por Idioma </li>
+                                
+                            </ul>
+                        
+                        </div>
                     </div>
 
-                    <div className="row">
-                        <div className="card card-body mt-4">
-                            <div className="alert alert-warning">
 
-                                <h1>Descrição do aplicativo</h1>
-                                <h1>Em breve</h1>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div className="row">
-                        <div className="card card-body mt-4">
-                            <div className="alert alert-warning">
-
-                                <h1>Descrição do aplicativo</h1>
-                                <h1>Em breve</h1>
-
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
-            </div> 
+
+                <div className="row">
+                    <div class="col-md-3"> </div>
+
+                    <div class="col-md-6">
+
+                        <div className="card card-body mt-2 ">
+
+                                <ul class="list-group text-center ">
+
+                                    <li class="list-group-item active"><h1>Tecnologias usadas</h1></li>
+
+                                    <li class="list-group-item">Html5, Css3, BootsTrap, Javascript</li>
+                                    <li class="list-group-item">Node, Npm, Git, Git Kraken, GitHub</li>
+                                    <li class="list-group-item">React JS, Persintência no LocalStorage</li>
+                                    <li class="list-group-item">Axios, Recharts</li>
+                                
+                                </ul>
+
+
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
         </div>
 
     );
