@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import { Label, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
 export default function Estatisticas(){
 
     const [totalFeminino, setTotalFeminino] = useState([])
@@ -24,11 +24,12 @@ export default function Estatisticas(){
 
         return (
 
-        <div style={{ width: '100%', height: 300 }}>
+        <div style={{ width: '100%', height: 400 }}>
             <ResponsiveContainer>
                 <PieChart>
-                    <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={120} outerRadius={80} fill="#8884d8" label />     
+                    <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={100} outerRadius={74} fill="#8884d8" label  margin={{top: 30}}/>     
                     <Tooltip />
+                    <Legend/>  
                 </PieChart>
             </ResponsiveContainer>
         </div>
@@ -44,7 +45,7 @@ export default function Estatisticas(){
 
         const data = [
 
-            { name: 'Total por genero', Feminino: props.qtdFem, Masculino: props.qtdMasc, Total: props.total},
+            { name: 'Genero', Feminino: props.qtdFem, Masculino: props.qtdMasc, Total: props.total},
 
         
         ];
@@ -175,7 +176,7 @@ export default function Estatisticas(){
             <div className="card-body">
 
                 <div class="jumbotron py-4">
-                    <h1 class="display-4 text-center contato-h1">Estatisticas 3</h1>
+                    <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
                 </div>
 
                
@@ -196,21 +197,20 @@ export default function Estatisticas(){
 
                     <div className="text-center">
 
-                            <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Listar por idiomas
+                            <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Listar por idiomas <i class="fas fa-arrow-down"></i>
                             </button>
 
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
+                            <div class="collapse " id="collapseExample">
+                                <div class="card card-body align-items-center">
 
                                 <form class="form-row">
 
-                                    <ul class="list-group">
-                                    <li class="list-group-item text-center">Idioma | quantidade</li>
+                                    <ul class="list-group ">
+                                    <li class="list-group-item text-center list-group-item-action active">Idioma | quantidade</li>
+
                                     {linguagens.map((info) => (
                                 
-                                        // <ul class="list-group-item list-group-item-action" >  : </ul>
-
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             {info.lingua}
                                             <span class="badge badge-primary badge-pill">{info.quantidade}</span>
@@ -219,8 +219,12 @@ export default function Estatisticas(){
                                     ))}
 
                                     </ul>
-                                    
                                 </form>
+
+                                    <button class="btn btn-danger btn-sm mt-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Fechar <i class="fas fa-arrow-up"></i>
+                                    </button>
+                                    
                                
                            
                             </div>
