@@ -156,7 +156,7 @@ export default function ListaDeContatos() {
   }
 
   return (
-    <div className="container mb-2">
+    <div className="container-fluid mb-2">
       <div className="card card-body mt-4">
 
         <div class="jumbotron py-4  mb-2">

@@ -43,22 +43,46 @@ export default function Home(){
             <div className="card card-body mt-4">
                     
                 <div class="jumbotron">
-                    <h1 class="text-center text-success LesteTel_h1">Leste Contact</h1>
+                    <h1 class="text-center text-info LesteTel_h1">React Cad</h1>
                 </div>
 
                 <div className="card card-body text-center">
                     <div className="row">
 
                         <div className="col-sm-4 my-2">
-                            <Link to="/ListaDeContatos"> <button class="btn btn-success btn-lg"  role="button"> <i class="fas fa-list-alt"></i> Lista de contatos </button></Link>
+                            <Link to="/ListaDeContatos"> <button class="btn btn-info btn-lg"  role="button"> <i class="fas fa-list-alt"></i> Lista de contatos </button></Link>
                         </div>
 
                         <div className="col-sm-4 my-2">
-                            <Link to="/AddContatos"><button class="btn btn-success btn-lg"   role="button"> <i class="fas fa-user-plus"></i> Adicionar contatos </button></Link>
+                            <Link to="/AddContatos"><button class="btn btn-info btn-lg"   role="button"> <i class="fas fa-user-plus"></i> Adicionar contatos </button></Link>
                         </div>
                             
                         <div className="col-sm-4 my-2">
-                            <Link to="/Estatisticas"><button class="btn btn-success btn-lg"   role="button"> <i class="fas fa-chart-pie"></i> Estatisticas </button></Link>
+                            <Link to="/Estatisticas"><button class="btn btn-info btn-lg"   role="button"> <i class="fas fa-chart-pie"></i> Estatisticas </button></Link>
+                        </div>
+
+                    </div>
+
+                    <div className="row">
+                        <div className="card card-body mt-4">
+                            <div className="alert alert-warning">
+
+                                <h1>Descrição do aplicativo</h1>
+                                <h1>Em breve</h1>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div className="row">
+                        <div className="card card-body mt-4">
+                            <div className="alert alert-warning">
+
+                                <h1>Descrição do aplicativo</h1>
+                                <h1>Em breve</h1>
+
+                            </div>
                         </div>
 
                     </div>

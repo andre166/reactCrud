@@ -1,7 +1,44 @@
 #logo{
-    margin-left: 20px;
-    width: 120px;
-    height: 65px;
+    background-color: #007bff;
+    width: 90px;
+    height: 90px;
+    margin-top: -4px;
+    margin-right: 5px;
+    border-radius: 100%;
+   
+}
+
+#logo:hover{
+    background-color: #fff !important;
+   
+}
+
+.primeira-logo-text{
+    margin: 0px;
+    padding: 0px;
+    font-weight: 1000;
+    color: #007bff;
+    font-size: 42px;
+    letter-spacing: 2px;
+
+}
+
+.segunda-logo-text{
+    margin: 0px;
+    padding: 0px;
+    font-weight: 1000;
+    color: #007bff;
+    font-size: 42px;
+    letter-spacing: 2px;
+
+}
+
+.logo-text{
+
+    font-weight: 1000;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 2px;
 }
 
 .fa-bars{
@@ -48,18 +85,41 @@ ul li a:hover{
     }
  }
 
- @media (min-width: 576px) and (max-width: 767.98px) { 
-    
-
-    #logo{
-        margin-top: 5px;
-        margin-bottom: 5px;
-        width: 90px;
-        height: 60px;
-    }
+ @media (max-width: 767.98px) { 
 
     .navbar-custom{
         padding-top: 0px; 
         padding-bottom: 0px; 
+    }
+
+    /* ================================================== */
+    #logo{
+     
+        width: 50px;
+        height: 50px;
+        margin-top: -2px;
+        border-radius: 100%;
+       
+    }
+    
+    .primeira-logo-text{
+        font-weight: 800;
+        color: #007bff;
+        font-size: 22px;
+    
+    }
+    
+    .segunda-logo-text{
+        font-weight: 800;
+        color: #007bff;
+        font-size: 22px;
+    
+    }
+    
+    .logo-text{
+        font-weight: 700;
+        color: #fff;
+        font-size: 8px;
+        letter-spacing: 1px;
     }
   }

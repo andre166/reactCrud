@@ -7,18 +7,20 @@
 }
 
 .contato-h1{
+    color: #007bff;
     font-weight: 400;
     letter-spacing: 10px;
     font-size: 40px;
-    text-shadow: 1px 1px 6px #00000069;
 
 }
 
 @media (max-width: 575.98px) { 
 
-    .LesteTel_h1{
-        letter-spacing: 8px;
-        font-size: 50px;
+    .contato-h1{
+        font-weight: 200;
+        letter-spacing: 2px;
+        font-size: 40px;
+    
     }
 
 }
