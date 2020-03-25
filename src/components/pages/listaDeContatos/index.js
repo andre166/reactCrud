@@ -49,6 +49,9 @@ export default function ListaDeContatos() {
     const response = localStorage.getItem("contatosApi");
     let ListaDeContatos = JSON.parse(response);
 
+
+    let limparFilroMes = document.querySelector('#inputGroupSelect01').value = 0;
+
     setContatos(ListaDeContatos);
     setFiltroLinguagem('');
     setFiltroIdade('');
@@ -57,7 +60,7 @@ export default function ListaDeContatos() {
 
   function filtrarLinguagem(e){
 
-    var x = document.getElementById("msgErro");
+    
 
     var letraFormatada = e.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
     { return a.toUpperCase(); });
@@ -67,13 +70,23 @@ export default function ListaDeContatos() {
 
     let linguagemFiltrada = ListaDeContatos.filter(n => n.language == letraFormatada)
 
-    if(linguagemFiltrada.length == 0){
-        x.style.display = "block";    
+
+    alerta(linguagemFiltrada);
+    
+    
+    setContatos(linguagemFiltrada);
+
+  }
+
+  function alerta(e){
+
+    var x = document.getElementById("msgErro");
+
+    if(e.length == 0){
+      x.style.display = "block";    
     }else{
       x.style.display = "none";
     }
-    
-    setContatos(linguagemFiltrada);
 
   }
 
@@ -136,7 +149,9 @@ export default function ListaDeContatos() {
 
       }
 
-      setContatos(ArrayX)
+      alerta(ArrayX);
+
+      setContatos(ArrayX);
 
     }
 
@@ -155,27 +170,32 @@ export default function ListaDeContatos() {
     setContatos(ListaDeContatos)
   }
 
+  function fecharFiltro(){
+
+
+    let x = document.querySelector('#btn-filtro').classList.add('collapsed');
+    let y = document.querySelector('#multiCollapseExample1').classList.remove('show');
+
+    zerarFiltro();
+
+  }
+
   return (
-    <div className="container-fluid mb-2">
-      <div className="card card-body mt-4">
+    <div className="container">
+      <div className="card card-body my-2">
 
         <div class="jumbotron py-4  mb-2">
           <h1 class="display-4 text-center contato-h1">Lista de Contato</h1>
         </div>
-
-       
-          <div className="alert alert-danger text-center" id="msgErro" style={{display: 'none'}}> 
-            Nenhum contato encontrado 
-          </div>
        
           <div>
-            <a  class="btn btn-outline-success" data-toggle="collapse" 
+            <a  id="btn-filtro" class="btn btn-sm btn-outline-success" data-toggle="collapse" 
               href="#multiCollapseExample1" role="button" aria-expanded="false" 
               aria-controls="multiCollapseExample1">Filtro <i class="fas fa-filter"></i>
             </a>
 
-            <button  class="btn btn-outline-danger ml-2" role="button"
-            onClick={zerarFiltro}>Zerar Filtro
+            <button  class="btn btn-sm btn-outline-danger ml-2" role="button" href="#multiCollapseExample1" data-toggle="hide"
+            onClick={fecharFiltro}>Limpar Filtro<i class="fas fa-filter"></i>
             </button>
 
           </div>
@@ -195,8 +215,8 @@ export default function ListaDeContatos() {
                       </button>
 
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#" onClick={filtrarFem}>Feminino</a>
-                          <a class="dropdown-item" href="#" onClick={filtrarMasc}>Masculino</a>
+                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={filtrarFem}>Feminino</a>
+                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={filtrarMasc}>Masculino</a>
                       </div>
                     </div>
 
@@ -274,6 +294,8 @@ export default function ListaDeContatos() {
                     </tr>
                   </thead>
 
+                 
+
                   <tbody id="filtro" >
                     {contatos.map((info) => (
                       
@@ -299,6 +321,10 @@ export default function ListaDeContatos() {
                   </tbody>
 
                 </table>
+
+                <div className="alert alert-danger text-center" id="msgErro" style={{display: 'none'}}> 
+                    <h1>Nenhum contato encontrado</h1> 
+                  </div>
               </div>
             </div>
           </div>
