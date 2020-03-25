@@ -8,6 +8,35 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
+    const [ka, setKa] = useState([])
+
+    function RenderPizzaChart() {
+
+        let arrM = linguagens;
+
+        let ka = []
+
+        arrM.map((info) => (
+                            
+            ka.push({name:info.lingua, value: info.quantidade})
+            
+        ))
+
+        return (
+
+        <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer>
+                <PieChart>
+                    <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={120} outerRadius={80} fill="#8884d8" label />     
+                    <Tooltip />
+                </PieChart>
+            </ResponsiveContainer>
+        </div>
+  
+        )
+
+
+    }
 
 //================================================================================================================================================
 
@@ -76,6 +105,70 @@ export default function Estatisticas(){
     }
         
     return(
+      
+        <div className="container-fluid">
+
+
+            <div className="card-body mt-4">
+
+                <div class="jumbotron py-4">
+                    <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
+                </div>
+
+                <div className="card card-body">
+                    <div className="row">
+                        <div className="card card-body col-sm-6">
+
+                            <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+                        </div>
+                        
+                        <div className="card card-body col-sm-6 ">
+                            <RenderPizzaChart lingua={linguagens}/>
+                        </div>
+
+                    </div>
+
+
+                    <hr/>
+
+                    <div className="text-center">
+
+                            <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Listar por idiomas
+                            </button>
+
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+
+                                <form class="form-row">
+
+                                    <ul class="list-group">
+                                    <li class="list-group-item text-center">Idioma | quantidade</li>
+                                    {linguagens.map((info) => (
+                                
+                                        // <ul class="list-group-item list-group-item-action" >  : </ul>
+
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {info.lingua}
+                                            <span class="badge badge-primary badge-pill">{info.quantidade}</span>
+                                        </li>
+                                        
+                                    ))}
+
+                                    </ul>
+                                    
+                                </form>
+                               
+                                </div>
+                            </div>
+
+                        </div>
+
+                </div>
+
+        
+            </div>
+        </div>  
 
         <div class="container-fluid bg-white">
 
@@ -83,6 +176,5 @@ export default function Estatisticas(){
 
             
         );
-        
-          
+                 
 }
