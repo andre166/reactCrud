@@ -38,7 +38,7 @@ export default function Home(){
         
     return(
 
-        <div className="container">
+        <div className="container-fluid">
 
             <div className="card card-body mt-4">
                     

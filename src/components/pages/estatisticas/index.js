@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 export default function Estatisticas(){
 
     const [totalFeminino, setTotalFeminino] = useState([])
@@ -40,69 +40,6 @@ export default function Estatisticas(){
 
 //================================================================================================================================================
 
-    function RenderLineChart (props) {
-
-        const data = [
-
-            { name: 'Total por genero', Feminino: props.qtdFem, Masculino: props.qtdMasc, Total: props.total},
-
-        
-        ];
-
-        
-        return ( 
-            <div style={{ width: '100%', height: 300 }}>
-            <ResponsiveContainer>
-            <BarChart
-            
-                width={500}
-                height={350}
-                data={data}
-
-            margin={{
-              top: 20, right: 30, left: 20, bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" fill="white"/>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Legend/>
-            <Tooltip/>
-           
-            <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
-                {
-                    data.map((entry, index) => (
-
-                        <Cell key={`cell-${index}`} fill={'pink'} />
-               
-                    ))
-                    
-                }
-            </Bar>
-
-            <Bar dataKey="Masculino" stackId="b" fill="Blue" barSize={30}  label={{ position: 'top' } }>
-                {
-                    data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={'blue'}/>
-                    ))
-                }
-            </Bar>
-
-            <Bar dataKey="Total"  stackId="c" fill="gray" barSize={30} label={{ position: 'top' }}>
-            {
-                data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={'gray'}/>
-                ))
-            }
-            </Bar>
-
-          </BarChart>
-          </ResponsiveContainer>
-          </div>
-
-        )
-    
-    };
     
     useEffect(() => {
     
@@ -168,7 +105,7 @@ export default function Estatisticas(){
     }
         
     return(
-
+      
         <div className="container-fluid">
 
 
@@ -232,10 +169,12 @@ export default function Estatisticas(){
         
             </div>
         </div>  
-        
-    );
-    
+
+        <div class="container-fluid bg-white">
+
+        </div> 
+
+            
+        );
+                 
 }
-
-
-           

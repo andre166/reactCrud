@@ -111,7 +111,7 @@ export default function EditarContatos() {
 
  return (
 
-    <div className="container mt-4">
+    <div className="container-fluid mt-4">
        <div class="card card-body">
             <div class="jumbotron py-4 shadow-custom mb-2">
                 <h1 class="display-4 text-center contato-h1">Editar Contato</h1>

@@ -57,7 +57,7 @@ export default function AddContato() {
    
     return(
 
-        <div class="container">
+        <div class="container-fluid">
             <div className="card card-body mt-4">
                
                 <div class="jumbotron py-4">
