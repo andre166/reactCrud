@@ -8,8 +8,6 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
-    const [ka, setKa] = useState([])
-
     function RenderPizzaChart() {
 
         let arrM = linguagens;
@@ -23,15 +21,19 @@ export default function Estatisticas(){
         ))
 
         return (
+            
+            <div style={{ width: '100%', height: 400 }}>
 
-        <div style={{ width: '100%', height: 400 }}>
+            <div class="text-center alert alert-info" >Quantidade de Usuários cadastrados por Idioma</div>
             <ResponsiveContainer>
                 <PieChart>
-                    <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={100} outerRadius={74} fill="#8884d8" label  margin={{top: 30}}/>     
+                    <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={100} outerRadius={74} fill="#8884d8" label />     
                     <Tooltip />
-                    <Legend/>  
+                 
+                    
                 </PieChart>
             </ResponsiveContainer>
+            
         </div>
   
         )
@@ -45,7 +47,7 @@ export default function Estatisticas(){
 
         const data = [
 
-            { name: 'Genero', Feminino: props.qtdFem, Masculino: props.qtdMasc, Total: props.total},
+            { Feminino: props.qtdFem, Masculino: props.qtdMasc, Total: props.total},
 
         
         ];
@@ -53,21 +55,21 @@ export default function Estatisticas(){
         
         return ( 
             <div style={{ width: '100%', height: 300 }}>
+                 <div class="text-center alert alert-info" >Total de Usuários cadastrados por gênero</div>
             <ResponsiveContainer>
             <BarChart
             
-                width={500}
+                width={'100%'}
                 height={350}
                 data={data}
 
             margin={{
-              top: 20, right: 30, left: 20, bottom: 5,
+              top: 20, right: 30, left: -27, bottom: 5,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" fill="white"/>
-            <XAxis dataKey="name" />
+            <XAxis dataKey="none" />
             <YAxis />
-            <Legend/>
             <Tooltip/>
            
             <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
@@ -99,6 +101,7 @@ export default function Estatisticas(){
 
           </BarChart>
           </ResponsiveContainer>
+               
           </div>
 
         )
@@ -184,10 +187,26 @@ export default function Estatisticas(){
                         <div className="card card-body col-sm-6">
 
                             <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+                            <div className="row">
+                        
+                        <div id="sexoIcon" className="col">
+
+                            <div class="text-center" >
+                                <i class="fas fa-venus"></i>
+                                <i class="fas fa-mars"></i>
+                                <i class="fas fa-venus-mars"></i>
+                            </div>
+
+                        </div>
+                        </div>
+
                         </div>
                         
                         <div className="card card-body col-sm-6 ">
                             <RenderPizzaChart lingua={linguagens}/>
+                         <div className="col-md-12">
+
+                         </div>
                         </div>
 
                     </div>
