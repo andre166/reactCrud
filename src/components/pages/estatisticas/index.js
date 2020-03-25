@@ -27,7 +27,7 @@ export default function Estatisticas(){
         <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer>
                 <PieChart>
-                    <Pie dataKey="value" isAnimationActive={false} data={ka} outerRadius={80} fill="#8884d8" label />     
+                    <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={120} outerRadius={80} fill="#8884d8" label />     
                     <Tooltip />
                 </PieChart>
             </ResponsiveContainer>
@@ -179,33 +179,57 @@ export default function Estatisticas(){
                 </div>
 
                 <div className="card card-body">
+                    <div className="row">
+                        <div className="card card-body col-sm-6">
 
-                    <div className="row d-flex justify-content-center col-sm-6">
+                            <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+                        </div>
+                        
+                        <div className="card card-body col-sm-6 ">
+                            <RenderPizzaChart lingua={linguagens}/>
+                        </div>
 
-                        <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
                     </div>
-                      
-                    <div className="d-flex justify-content-center col-sm-12 ">
-                        <RenderPizzaChart lingua={linguagens}/>
-                    </div>
+
 
                     <hr/>
 
-                </div>
+                    <div className="text-center">
 
-                    <div className="row">
+                            <button class="btn btn-info btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Listar por idiomas
+                            </button>
 
-                        <div className="col-md-12 text-center">
-                            
-                            {linguagens.map((info) => (
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+
+                                <form class="form-row">
+
+                                    <ul class="list-group">
+                                    <li class="list-group-item text-center">Idioma | quantidade</li>
+                                    {linguagens.map((info) => (
                                 
-                                <p>{info.lingua} : {info.quantidade}</p>
-                                
-                            ))}
+                                        // <ul class="list-group-item list-group-item-action" >  : </ul>
+
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {info.lingua}
+                                            <span class="badge badge-primary badge-pill">{info.quantidade}</span>
+                                        </li>
+                                        
+                                    ))}
+
+                                    </ul>
+                                    
+                                </form>
+                               
+                                </div>
+                            </div>
 
                         </div>
-                        
-                    </div>
+
+                </div>
+
+        
             </div>
         </div>  
         
