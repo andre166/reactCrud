@@ -106,14 +106,21 @@ export default function Estatisticas(){
         
     return(
 <<<<<<< HEAD
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> master
         <div className="container-fluid">
 =======
 
         <div className="container-fluid bg-white">
 >>>>>>> a98be0d... foi caralho2
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
             <div className="card-body">
 
                 <div class="jumbotron py-4">
