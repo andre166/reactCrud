@@ -7,7 +7,7 @@ class Erro extends Component{
         
         return(
 
-            <div class="container-fluid mt-4">
+            <div class="container mt-4">
                 <h1 class="h1_erro" >PÁGINA NÃO ENCONTRADA</h1>
                 <p class="p_erro" >Procuramos por essa página em todos os lugares.</p>
                 <p class="p_erro">Tem certeza que o URL do site está correto?</p>
