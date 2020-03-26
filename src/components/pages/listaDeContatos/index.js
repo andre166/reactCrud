@@ -9,6 +9,7 @@ export default function ListaDeContatos() {
   const [contatos, setContatos] = useState([])
   const [filtroLinguagem, setFiltroLinguagem] = useState([])
   const [filtroIdade, setFiltroIdade] = useState([])
+  const [genderSimbol, setGenderSimbol] = useState([])
 
 
   const [alertas, setAlertas] = useState([])
@@ -341,16 +342,15 @@ export default function ListaDeContatos() {
 
             </div>
     
-            <div className="card card-body shadow-custom mt-2">
+            <div className="card card-body mt-2">
               <div className="table-responsive tabela-custom">
                 <table className="table table-sm  table-hover" >
 
                   <thead class="bg-dark text-white">
-                    <tr className="text-center">
-                      <th scope="col-md-2">Foto</th>
-                      <th scope="col" >Id</th>
+                    <tr className="text-center " >
+                      <th scope="col-md-2 ">Foto</th>
                       <th scope="col" >Nome</th>
-                      <th scope="col" >Sobre Nome</th>
+                      <th scope="col" >Último Nome</th>
                       <th scope="col" >Email</th>
                       <th scope="col" >Gênero</th>
                       <th scope="col" > Linguagem</th>
@@ -366,7 +366,6 @@ export default function ListaDeContatos() {
                       
                       <tr key={info.id} id={info.id} className="text-center">
                         <td><img class="img-thumbnail p-0 m-0" src={info.avatar} /></td>
-                        <td >{info.id} </td>
                         <td>{info.first_name}</td>
                         <td>{info.last_name}</td>
                         <td>{info.email}</td>
