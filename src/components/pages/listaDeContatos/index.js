@@ -16,6 +16,21 @@ export default function ListaDeContatos() {
   
   useEffect(() => {
 
+    async function tabelaStriped() {
+
+      let x = document.querySelector('#tabela')
+
+      if(window.innerWidth < 700){
+
+        x.classList.remove('table-hover')
+        x.classList.add('table-striped')
+      }
+
+
+    }
+
+    tabelaStriped();
+
     async function pegarAlerta(alertaParametro) {
 
       let alerta = alertaParametro.alerta;
@@ -344,7 +359,7 @@ export default function ListaDeContatos() {
     
             <div className="card card-body mt-2">
               <div className="table-responsive tabela-custom">
-                <table className="table table-sm  table-hover" >
+                <table className="table table-sm  table-hover" id="tabela">
 
                   <thead class="bg-dark text-white">
                     <tr className="text-center " >
