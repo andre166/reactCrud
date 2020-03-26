@@ -1,14 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 import './listaDeContatos.css';
 
 export default function ListaDeContatos() {
 
+  let alertaParametro = useParams()
+  
   const [contatos, setContatos] = useState([])
   const [filtroLinguagem, setFiltroLinguagem] = useState([])
   const [filtroIdade, setFiltroIdade] = useState([])
 
+
+  const [alertas, setAlertas] = useState([])
+  
   useEffect(() => {
+
+    async function pegarAlerta(alertaParametro) {
+
+      let alerta = alertaParametro.alerta;
+
+      verificaAlerta(alertaParametro.alerta);
+      setAlertas(alerta)
+
+
+
+    }
+
+    pegarAlerta(alertaParametro);
+
+    async function verificaAlerta(alerta) {
+
+        if(alerta == 'editsuccess'){
+
+         let x = document.querySelector('#alertaEditadoComSucesso');
+         x.style.display = "block"; 
+
+         let fadeEffect = setInterval(function () {
+
+                x.style.display = "none";
+
+         }, 2500);
+
+        }
+
+    }
+
+  
+
+
 
     async function pegarContatos() {
 
@@ -180,6 +219,7 @@ export default function ListaDeContatos() {
 
   }
 
+
   return (
     <div className="container">
       <div className="card card-body my-2">
@@ -187,16 +227,24 @@ export default function ListaDeContatos() {
         <div class="jumbotron py-4  mb-2">
           <h1 class="display-4 text-center contato-h1">Lista de Contato</h1>
         </div>
+
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="alert alert-success text-center" id="alertaEditadoComSucesso" style={{display: 'none'}}>
+              <h4>Usuário editado com sucesso</h4>
+            </div>
+          </div>
+        </div>
        
           <div>
-            <a  id="btn-filtro" class="btn btn-sm btn-outline-success" data-toggle="collapse" 
-              href="#multiCollapseExample1" role="button" aria-expanded="false" 
-              aria-controls="multiCollapseExample1">Filtro <i class="fas fa-filter"></i>
-            </a>
+              <a  id="btn-filtro" class="btn btn-sm btn-outline-success" data-toggle="collapse" 
+                href="#multiCollapseExample1" role="button" aria-expanded="false" 
+                aria-controls="multiCollapseExample1">Filtro <i class="fas fa-filter"></i>
+              </a>
 
-            <button  class="btn btn-sm btn-outline-danger ml-2" role="button" href="#multiCollapseExample1" data-toggle="hide"
-            onClick={fecharFiltro}>Limpar Filtro<i class="fas fa-filter"></i>
-            </button>
+              <button  class="btn btn-sm btn-outline-danger ml-2" role="button" href="#multiCollapseExample1" data-toggle="hide"
+              onClick={fecharFiltro}>Limpar Filtro<i class="fas fa-filter"></i>
+              </button>
 
           </div>
 

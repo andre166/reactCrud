@@ -13,6 +13,14 @@ class Erro extends Component{
                 <p class="p_erro">Tem certeza que o URL do site está correto?</p>
                 <p class="p_erro">Entre em contato com o proprietário do site.</p>
                 <Link to="/" ><button type="button" class="btn-erro">Volte ao início</button></Link>
+
+                <div className="invisible"> 
+                    <p>s</p>
+                    <p>s</p> 
+                    <p>s</p> 
+                    <p>s</p> 
+              
+                </div>
             </div>
          
         );

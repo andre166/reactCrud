@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link} from 'react-router-dom';
 import './editarContato.css';
 
 export default function EditarContatos() {
-
 
     let idParams = useParams()
 
@@ -78,6 +77,7 @@ export default function EditarContatos() {
 
         localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos));
 
+       return  <Link to={{pathname:'/ListaDeContatos'}}></Link>;
 
     }
 
@@ -171,7 +171,8 @@ export default function EditarContatos() {
                 <div className="col-md-8">
                     <div className="card card-body">
 
-                        <form onSubmit={editarContato}>
+                        <form onSubmit={editarContato} action={  `/ListaDeContatos/editsuccess`  }>
+                    
                             <div className="row">
 
                                 <div class="form-group col-md-6">
@@ -228,7 +229,7 @@ export default function EditarContatos() {
                                 </div>
                             </div> 
 
-                                <hr/>
+                            <hr/>
 
                             <div className="row">
                                 <div className="col text-center">

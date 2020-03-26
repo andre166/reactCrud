@@ -71,21 +71,21 @@ export default function AddContato() {
                         <div class="form-row">
 
                             <div class="col-md-4 mb-3">
-                                <label>Primeiro Nome</label>
+                                <label>Primeiro Nome:</label>
                                 <input type="text" class="form-control is-valid" 
                                 value={first_name} required 
                                 onChange={(e)=> setFirstName(e.target.value)} placeholder="Digite o nome" />
                             </div>
 
                             <div class="col-md-4 mb-3">
-                                <label for="validationServer02">Sobre Nome</label>
+                                <label for="validationServer02">Último Nome:</label>
                                 <input type="text" class="form-control is-valid" id="validationServer02" 
                                 value={last_name} required 
                                 onChange={(e)=> setLastName(e.target.value)} placeholder="Digite o sobre nome" />
                             </div>
 
                             <div class="col-md-4 mb-3">
-                                <label for="validationServer02">Email</label>
+                                <label for="validationServer02">Email:</label>
                                 <input type="email" class="form-control is-valid" id="validationServer02" 
                                 value={email} required autoFocus autoComplete="off" 
                                 onChange={(e)=> setEmail(e.target.value)} placeholder="Digite o sobre nome" />
@@ -96,21 +96,7 @@ export default function AddContato() {
                         <div class="form-row">
 
                             <div class="col-md-4 mb-3">
-                                <label for="validationServer02">Sexo </label>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation1" name="genero" value="M"   onChange={e => setGender(e.target.value) } required />
-                                    <label class="custom-control-label" for="customControlValidation1">Masculino</label>
-                                </div>
-
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation2" name="genero" value="F" onChange={e => setGender(e.target.value) } required />
-                                    <label class="custom-control-label" for="customControlValidation2">Feminino</label>
-                                </div>
-
-                            </div>
-
-                            <div class="col-md-4 mb-3">
-                                <label for="validationServer02">Linguagem</label>
+                                <label for="validationServer02">Idioma:</label>
 
                                 <input type="text" class="form-control is-valid" id="validationServer02" 
                                 value={language} required 
@@ -118,22 +104,38 @@ export default function AddContato() {
                             </div>
 
                             <div class="col-md-4 mb-3">
-                                <label for="validationServer02">Data de nascimento</label>
+                                <label for="validationServer02">Data de nascimento:</label>
                                 <input type="date" class="form-control is-valid" id="validationServer02" 
                                 value={birthday} required
                                 onChange={(e)=> setBirthday(e.target.value)} placeholder="Digite o sobre nome" />
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="validationServer02">Avatar(Url)</label>
+                                <input type="url" class="form-control" id="validationServer02" 
+                                value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="https://" />
                             </div>
 
                         </div>
 
                         <div class="form-row">
 
-                            <div class="col-md-6 mb-3">
-                                <label for="validationServer02">Avatar(Url)</label>
-                                <input type="url" class="form-control" id="validationServer02" 
-                                value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="https://" />
-                            </div>
 
+                            <label class="ml-2 " for="validationServer02">Sexo: </label>
+                            <div class="col-md-4 mb-3 form-check-inline">
+
+
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="customControlValidation1" name="genero" value="M"   onChange={e => setGender(e.target.value) } required />
+                                    <label class="custom-control-label" for="customControlValidation1">Masculino</label>
+                                </div>
+
+                                <div class="custom-control custom-radio ml-2">
+                                    <input type="radio" class="custom-control-input" id="customControlValidation2" name="genero" value="F" onChange={e => setGender(e.target.value) } required />
+                                    <label class="custom-control-label" for="customControlValidation2">Feminino</label>
+                                </div>
+                            </div>
+                            
                         </div>
 
                         <div className="text-center">
