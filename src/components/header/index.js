@@ -45,6 +45,10 @@ class Header extends Component{
                     <li class="nav-item">
                         <Link to="/Estatisticas" class="nav-link"><a><i class="fas fa-chart-pie"></i> Estatisticas</a></Link>
                     </li>
+
+                    <li class="nav-item">
+                        <Link to="/Ajuda" class="nav-link"><a><i class="fas fa-question-circle"></i> Ajuda</a></Link>
+                    </li>
                    
                 </ul>
             </div>

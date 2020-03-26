@@ -135,7 +135,14 @@ export default function EditarContatos() {
                                     <div class="col mb-3">
                                         <label for="validationServer02">Digite a Url</label>
                                         <input type="url" class="form-control" id="validationServer02" 
-                                        value={avatar}  onChange={(e)=> setAvatar(e.target.value)}/>
+                                        value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="Digite a url"/>
+
+                                        <div className="col">
+                                            <button type="button" class="close closeIcon" aria-label="Close"  data-toggle="collapse"  
+                                                href="#multiCollapseExample1" role="button" onClick={()=> setAvatar('')}>
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
                                     </div>
                                
                                 </div>

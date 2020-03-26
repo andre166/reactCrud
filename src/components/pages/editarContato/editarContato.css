@@ -4,3 +4,13 @@
     }
     
  }
+
+ .closeIcon{
+     color: #ff0000;
+     margin-top: -30px;
+     margin-right: -34px;
+ }
+
+ .closeIcon:hover{
+    color: #ff0000;
+}
