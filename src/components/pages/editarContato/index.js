@@ -20,7 +20,7 @@ export default function EditarContatos() {
 
 
     useEffect(() => {
-
+      
         async function pegarContato(idParams) {
 
             let idConvertido = parseInt(idParams.id);
@@ -94,18 +94,8 @@ export default function EditarContatos() {
         localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos));
 
         setContatos(ListaDeContatos);
-    }
 
-    async function editarFoto(contatos, avatar, posicaoDocontato){
-
-        contatos.avatar = avatar.avatar;
-
-        const response = localStorage.getItem("contatosApi");
-        let ListaDeContatos = JSON.parse(response);
-
-        ListaDeContatos[posicaoDocontato] =  contatos;
-
-        localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos));
+        return <Link ></Link>
 
     }
 
@@ -115,6 +105,14 @@ export default function EditarContatos() {
        <div class="card card-body">
             <div class="jumbotron py-4 mb-2">
                 <h1 class="display-4 text-center contato-h1">Editar Contato</h1>
+            </div>
+
+            <div className="row">
+                <div className="col-sm-12">
+                    <div className="alert alert-success text-center" id="alertaEditadoComSucesso" style={{display: 'none'}}>
+                        <h4>Foto editada com sucesso</h4>
+                    </div>
+                </div>
             </div>
 
             <div className="row">
@@ -134,16 +132,11 @@ export default function EditarContatos() {
                             <div class="collapse" id="collapseExample">
                                 <div class="card card-body">
 
-                                <form class="form-row">
                                     <div class="col mb-3">
                                         <label for="validationServer02">Digite a Url</label>
                                         <input type="url" class="form-control" id="validationServer02" 
                                         value={avatar}  onChange={(e)=> setAvatar(e.target.value)}/>
                                     </div>
-
-                                    <button type="submit" class="btn btn-outline-success btn-sm" onClick={() => editarFoto(contatos, {avatar}, posicaoDocontato)}>Enviar</button>
-                                    
-                                </form>
                                
                                 </div>
                             </div>
@@ -235,6 +228,7 @@ export default function EditarContatos() {
                                 <div className="col text-center">
                                     <button type="submit" class="btn btn-success">Confirmar</button>
                                     <button type="button" class="btn btn-danger ml-2" onClick={()=>{deleteContact(id)}}>Excluir</button>
+
                                 </div>
                             </div>
                         

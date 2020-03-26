@@ -22,8 +22,6 @@ export default function ListaDeContatos() {
       verificaAlerta(alertaParametro.alerta);
       setAlertas(alerta)
 
-
-
     }
 
     pegarAlerta(alertaParametro);
@@ -37,16 +35,24 @@ export default function ListaDeContatos() {
 
          let fadeEffect = setInterval(function () {
 
+          let fadeEffect2 = setInterval(function () {
+            if (!x.style.opacity) {
+                x.style.opacity = 1;
+            }
+            if (x.style.opacity > 0) {
+                x.style.opacity -= 0.1;
+            } else {
+                clearInterval(fadeEffect2);
                 x.style.display = "none";
+            }
+          }, 200);
 
-         }, 2500);
+
+         }, 2000);
 
         }
 
     }
-
-  
-
 
 
     async function pegarContatos() {
@@ -209,13 +215,10 @@ export default function ListaDeContatos() {
     setContatos(ListaDeContatos)
   }
 
-  function fecharFiltro(){
+  function fecharFiltro(e){
 
-
-    let x = document.querySelector('#btn-filtro').classList.add('collapsed');
-    let y = document.querySelector('#multiCollapseExample1').classList.remove('show');
-
-    zerarFiltro();
+      let x = document.querySelector('#btn-filtro').classList.add('collapsed');
+      zerarFiltro();
 
   }
 
@@ -237,13 +240,13 @@ export default function ListaDeContatos() {
         </div>
        
           <div>
-              <a  id="btn-filtro" class="btn btn-sm btn-outline-success" data-toggle="collapse" 
+              <a  id="btn-filtro" class="btn btn-sm btn-outline-info" data-toggle="collapse" 
                 href="#multiCollapseExample1" role="button" aria-expanded="false" 
                 aria-controls="multiCollapseExample1">Filtro <i class="fas fa-filter"></i>
               </a>
 
               <button  class="btn btn-sm btn-outline-danger ml-2" role="button" href="#multiCollapseExample1" data-toggle="hide"
-              onClick={fecharFiltro}>Limpar Filtro<i class="fas fa-filter"></i>
+                onClick={() => {fecharFiltro('fechar')}}>Limpar Filtro<i class="fas fa-filter"></i>
               </button>
 
           </div>
@@ -257,7 +260,7 @@ export default function ListaDeContatos() {
 
                   <div className="col-md-3">
                     <div class="dropdown">
-                      <button class="btn btn-success dropdown-toggle mb-3" type="button" 
+                      <button class="btn btn-info dropdown-toggle mb-3" type="button" 
                       id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Gênero
                       </button>
@@ -278,7 +281,7 @@ export default function ListaDeContatos() {
                       aria-describedby="button-addon2" value={filtroLinguagem} onChange={(e)=> setFiltroLinguagem(e.target.value)} placeholder="linguagem"/>
                         
                       <div class="input-group-append">
-                        <button class="btn btn-outline-success" type="button" id="button-addon2" 
+                        <button class="btn btn-outline-info" type="button" id="button-addon2" 
                         onClick={(e) =>  filtrarLinguagem(filtroLinguagem)}>
                         <i class="fas fa-search"></i></button>
                       </div>
@@ -314,13 +317,27 @@ export default function ListaDeContatos() {
                       onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
 
                       <div class="input-group-append">
-                        <button class="btn btn-outline-success" type="button" id="button-addon2" onClick={(e) => FiltrarPorMesOuIdade(filtroIdade, 'idade')}><i class="fas fa-search"></i></button>
+                        <button class="btn btn-outline-info" type="button" id="button-addon2" onClick={(e) => FiltrarPorMesOuIdade(filtroIdade, 'idade')}><i class="fas fa-search"></i></button>
                       </div>
 
                     </div>
                   </div>
                 </div>
+
+                <div className="row">
+
+                  <div className="col">
+                    <button type="button" class="close" aria-label="Close"  data-toggle="collapse"  href="#multiCollapseExample1" role="button" style={{color: 'red'}}>
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+
+                  </div>
+
+                </div>
+
+
               </form>
+
 
             </div>
     
