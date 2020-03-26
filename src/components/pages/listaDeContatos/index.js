@@ -26,7 +26,6 @@ export default function ListaDeContatos() {
         x.classList.add('table-striped')
       }
 
-
     }
 
     tabelaStriped();
@@ -47,6 +46,28 @@ export default function ListaDeContatos() {
         if(alerta == 'editsuccess'){
 
          let x = document.querySelector('#alertaEditadoComSucesso');
+         x.style.display = "block"; 
+
+         let fadeEffect = setInterval(function () {
+
+          let fadeEffect2 = setInterval(function () {
+            if (!x.style.opacity) {
+                x.style.opacity = 1;
+            }
+            if (x.style.opacity > 0) {
+                x.style.opacity -= 0.1;
+            } else {
+                clearInterval(fadeEffect2);
+                x.style.display = "none";
+            }
+          }, 200);
+
+
+         }, 2000);
+
+        }else if(alerta == 'excluido'){
+
+          let x = document.querySelector('#alertaEditadoComSucesso');
          x.style.display = "block"; 
 
          let fadeEffect = setInterval(function () {
@@ -229,6 +250,9 @@ export default function ListaDeContatos() {
     localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos))
 
     setContatos(ListaDeContatos)
+
+    // verificaAlerta('aa');
+
   }
 
   function fecharFiltro(e){
@@ -380,7 +404,7 @@ export default function ListaDeContatos() {
                     {contatos.map((info) => (
                       
                       <tr key={info.id} id={info.id} className="text-center">
-                        <td><img class="img-thumbnail p-0 m-0" src={info.avatar} /></td>
+                        <td><img class="img-thumbnail p-0 m-0" src={info.avatar} style={{height: '5rem'}, {maxWidth: '5rem'}} /></td>
                         <td>{info.first_name}</td>
                         <td>{info.last_name}</td>
                         <td>{info.email}</td>
@@ -390,7 +414,29 @@ export default function ListaDeContatos() {
                         <td>
                             <div>
                                 <Link to={{pathname: `/EditarContatos/${info.id}`}}><button type="button" class="btn btn-sm btn-secondary mr-2"><i class="fas fa-edit"></i></button></Link>
-                                <button type="button" class="btn btn-sm btn-danger" onClick={()=>{deleteContact(info.id)}}><i class="fas fa-trash"></i></button>
+                                
+                                <div class="btn-group dropleft">
+
+                                  <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-trash"></i>
+                                  </button>
+
+                                  <div class="dropdown-menu m-0 p-0">
+                                   <div className="card-body col-md-12 text-center">
+
+                                     <p class="" >Deseja excluir?</p>
+                                     <hr/>
+
+
+                                     <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
+                                     <a href="#" class="btn btn-danger btn-sm ml-2">Não</a>
+                                    
+
+                                   </div>
+                                  </div>
+
+                                </div>
+                                
                             </div>
                         </td>
 
@@ -398,6 +444,9 @@ export default function ListaDeContatos() {
                     ))}
 
                   </tbody>
+
+                  {/* <button type="button" class="btn btn-sm btn-danger" onClick={()=>{deleteContact(info.id)}}><i class="fas fa-trash"></i></button> */}
+
 
                 </table>
 
