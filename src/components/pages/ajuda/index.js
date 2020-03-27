@@ -39,7 +39,7 @@ export default function Ajuda(){
                 ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
                 ctx.fillRect(0, 0, c.width, c.height);
     
-                ctx.fillStyle = "#00ff0077"; //green text
+                ctx.fillStyle = "#007bff"; //green text
                 ctx.font = font_size + "px arial";
                 //looping over drops
                 for(var i = 0; i < drops.length; i++)
