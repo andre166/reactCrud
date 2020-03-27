@@ -13,9 +13,12 @@ export default function ListaDeContatos() {
 
 
   const [alertas, setAlertas] = useState([])
+
+  
   
   useEffect(() => {
 
+<<<<<<< Updated upstream
     async function tabelaStriped() {
 
       let x = document.querySelector('#tabela')
@@ -29,6 +32,25 @@ export default function ListaDeContatos() {
     }
 
     tabelaStriped();
+=======
+  
+
+    function tabelaMini() {
+
+      let x =  document.querySelector('#tabela')
+
+      if(window.innerWidth < 767.98){
+
+        x.classList.remove('table-hover');
+        x.classList.add('table-striped');
+
+      }
+  
+  
+    }
+
+    tabelaMini();
+>>>>>>> Stashed changes
 
     async function pegarAlerta(alertaParametro) {
 
@@ -262,7 +284,6 @@ export default function ListaDeContatos() {
 
   }
 
-
   return (
     <div className="container">
       <div className="card card-body my-2">
@@ -383,7 +404,11 @@ export default function ListaDeContatos() {
     
             <div className="card card-body mt-2">
               <div className="table-responsive tabela-custom">
+<<<<<<< Updated upstream
                 <table className="table table-sm  table-hover" id="tabela">
+=======
+                <table id="tabela" className="table table-sm  table-hover" >
+>>>>>>> Stashed changes
 
                   <thead class="bg-dark text-white">
                     <tr className="text-center " >
@@ -456,8 +481,12 @@ export default function ListaDeContatos() {
               </div>
             </div>
           </div>
+          
+
+
         </div>
       </div>
+      
     </div>
   );
 }

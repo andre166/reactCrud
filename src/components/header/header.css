@@ -123,3 +123,48 @@ ul li a:hover{
         letter-spacing: 1px;
     }
   }
+
+
+
+@media screen and (max-width: 992px) {
+
+
+    .navbar-custom{
+        padding-top: 0px; 
+        padding-bottom: 0px; 
+    }
+
+    /* ================================================== */
+    #logo{
+     
+        width: 50px;
+        height: 50px;
+        margin-top: -2px;
+        border-radius: 100%;
+       
+    }
+    
+    .primeira-logo-text{
+        font-weight: 800;
+        color: #007bff;
+        font-size: 22px;
+    
+    }
+    
+    .segunda-logo-text{
+        font-weight: 800;
+        color: #007bff;
+        font-size: 22px;
+    
+    }
+    
+    .logo-text{
+        font-weight: 700;
+        color: #fff;
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+  
+	
+}

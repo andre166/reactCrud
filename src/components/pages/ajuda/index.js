@@ -69,7 +69,7 @@ export default function Ajuda(){
            
     }
 
-    setTimeout(myFunction, 10);
+    setTimeout(myFunction, 1);
       
         
     return(
@@ -83,7 +83,7 @@ export default function Ajuda(){
                 <h1>Follow the White Rabbit.</h1>
 
                 <div className="text-center">
-                    <h1>- EM BREVE -</h1>
+                    <h1 className="txt-rabbit2 text-center">- EM BREVE -</h1>
                 </div>
 
             </div>
