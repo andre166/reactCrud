@@ -2,6 +2,11 @@
     box-shadow: 3px 3px 8px #00000038;
 }
 
+#cardUsuario{
+    background-color: #4c484811;
+    border: 2px solid #4042442c;
+}
+
 #filtro tr td{
     vertical-align: middle;
 }

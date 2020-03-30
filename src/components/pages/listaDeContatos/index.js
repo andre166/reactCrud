@@ -395,83 +395,39 @@ export default function ListaDeContatos() {
 
 
             </div>
+            {/* ============================ */}
     
-            <div className="card card-body mt-2">
-              <div className="table-responsive tabela-custom">
+            <div class="card-columns mt-2">
+              {contatos.map((info) => (
 
-                <table id="tabela" className="table table-sm  table-hover" >
-
-                  <thead class="bg-dark text-white">
-                    <tr className="text-center " >
-                      <th scope="col-md-2 ">Foto</th>
-                      <th scope="col" >Nome</th>
-                      <th scope="col" >Último Nome</th>
-                      <th scope="col" >Email</th>
-                      <th scope="col" >Gênero</th>
-                      <th scope="col" > Linguagem</th>
-                      <th scope="col" >Data de nascimento</th>
-                      <th scope="col" >Operação</th>
-                    </tr>
-                  </thead>
-
-                 
-
-                  <tbody id="filtro" >
-                    {contatos.map((info) => (
-                      
-                      <tr key={info.id} id={info.id} className="text-center">
-                        <td><img class="img-thumbnail p-0 m-0" src={info.avatar} style={{height: '5rem'}, {maxWidth: '5rem'}} /></td>
-                        <td>{info.first_name}</td>
-                        <td>{info.last_name}</td>
-                        <td>{info.email}</td>
-                        <td>{info.gender}</td>
-                        <td>{info.language}</td>
-                        <td>{info.birthday}</td>
-                        <td>
-                            <div>
-                                <Link to={{pathname: `/EditarContatos/${info.id}`}}><button type="button" class="btn btn-sm btn-secondary mr-2"><i class="fas fa-edit"></i></button></Link>
-                                
-                                <div class="btn-group dropleft">
-
-                                  <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-trash"></i>
-                                  </button>
-
-                                  <div class="dropdown-menu m-0 p-0">
-                                   <div className="card-body col-md-12 text-center">
-
-                                     <p class="" >Deseja excluir?</p>
-                                     <hr/>
+              <div class="card shadow-sm" key={info.id} id="cardUsuario">
 
 
-                                     <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
-                                     <a href="#" class="btn btn-danger btn-sm ml-2">Não</a>
-                                    
+                  <div class="card-body shadow-sm">
+                  <div class="d-flex justify-content-center">
+                      <img class="card-img-top img-fluid img-thumbnail rounded-circle shadow-sm" src={info.avatar}  style={{height: '8rem'}, {maxWidth: '14rem'}}/>
+                  </div>
 
-                                   </div>
-                                  </div>
+                    <h5 class="card-title mt-2"><strong>Nome: </strong>{info.first_name} {info.last_name}</h5>
+                    <p class="card-text"> <strong>Email: </strong>{info.email}</p>
+                    <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino' } </p>
+                    <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
+                    <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
+                  
+                  </div>
 
-                                </div>
-                                
-                            </div>
-                        </td>
+              </div>
+                ))}
+                </div>
 
-                      </tr>
-                    ))}
-
-                  </tbody>
-
-                  {/* <button type="button" class="btn btn-sm btn-danger" onClick={()=>{deleteContact(info.id)}}><i class="fas fa-trash"></i></button> */}
-
-
-                </table>
-
+{/* ============================ */}
+        
                 <div className="alert alert-danger text-center" id="msgErro" style={{display: 'none'}}> 
                     <h1>Nenhum contato encontrado</h1> 
-                  </div>
-              </div>
+                </div>
+              
             </div>
-          </div>
+        
           
 
 
