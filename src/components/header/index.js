@@ -15,13 +15,10 @@ class Header extends Component{
         
         return(
 
-       
-
             <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
 
                 <Link to="/">
                     <a class="navbar-brand" target="_blank">
-                        <img id="logo" src={logo} alt="Logo"/>
                         <span className="primeira-logo-text">R</span>
                         <span className="logo-text">eact <span className="segunda-logo-text">C</span>ad</span>
                     </a>    

@@ -12,55 +12,52 @@ export default function AddContato() {
     let [birthday, setBirthday] = useState("")
 
 
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
+    
     function gerarId(){
-
+        
         let ultimoId = 0;
-
+        
         const response = localStorage.getItem("contatosApi");
-
+        
         let contactsArray = JSON.parse(response);
-
+        
         let ultimo = contactsArray[contactsArray.length - 1];
-
-
+        
+        
         ultimoId = ultimo.id + 1;
         
         let id = parseInt(ultimoId);
-
+        
         register(id)
-
+        
     }
     
     function register(id) {
-
+        
         const response = localStorage.getItem("contatosApi");
         let contactsArray = JSON.parse(response);
         
         let newContact = [];
-
+        
         let data = String(birthday).split(' ');
         let days = String(data[0]).split('-');
         let dataFormatada =  [days[2],"-", days[1],"-", days[0]].join('');
-
-       
+        
+        
         birthday = dataFormatada;
-
+        
         newContact = {id, first_name, last_name, email, gender, language, avatar, birthday}
-
+        
         contactsArray.push(newContact);
-
+        
         localStorage.setItem("contatosApi", JSON.stringify(contactsArray))
-
-
+        
+        
     }
-
-   
+  
+    
     return(
-
+        
         <div class="container">
             <div className="card card-body mt-2">
                
@@ -70,29 +67,31 @@ export default function AddContato() {
 
                 <div className="card card-body">
                     
-                    <form onSubmit={gerarId} className="was-validated">
+                    <form onSubmit={gerarId} action={  `/ListaDeContatos/editsuccess`  }>
+
 
                         <div class="form-row">
 
                             <div class="col-md-4 mb-3">
                                 <label>Primeiro Nome:</label>
-                                <input type="text" class="form-control is-valid" 
-                                value={first_name} required 
-                                onChange={(e)=> setFirstName(e.target.value)} placeholder="Digite o nome" />
+                                <input type="text" class="form-control" 
+                                value={first_name} 
+                                onChange={(e)=> setFirstName(e.target.value)} placeholder="Digite o nome" required />
+                                
                             </div>
 
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Último Nome:</label>
-                                <input type="text" class="form-control is-valid" id="validationServer02" 
+                                <input type="text" class="form-control" id="validationServer02" 
                                 value={last_name} required 
-                                onChange={(e)=> setLastName(e.target.value)} placeholder="Digite o sobre nome" />
+                                onChange={(e)=> setLastName(e.target.value)} placeholder="Digite o Último nome" />
                             </div>
 
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Email:</label>
-                                <input type="email" class="form-control is-valid" id="validationServer02" 
+                                <input type="email" class="form-control" id="validationServer02" 
                                 value={email} required autoFocus autoComplete="off" 
-                                onChange={(e)=> setEmail(e.target.value)} placeholder="Digite o sobre nome" />
+                                onChange={(e)=> setEmail(e.target.value)} placeholder="Digite o Email" />
                             </div>
 
                         </div>
@@ -102,14 +101,14 @@ export default function AddContato() {
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Idioma:</label>
 
-                                <input type="text" class="form-control is-valid" id="validationServer02" 
+                                <input type="text" class="form-control" id="validationServer02" 
                                 value={language} required 
                                 onChange={(e)=> setLanguage(e.target.value)} placeholder="Digite o sobre nome" />
                             </div>
 
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Data de nascimento:</label>
-                                <input type="date" class="form-control is-valid" id="validationServer02" 
+                                <input type="date" class="form-control" id="validationServer02" 
                                 value={birthday} required
                                 onChange={(e)=> setBirthday(e.target.value)} placeholder="Digite o sobre nome" />
                             </div>
