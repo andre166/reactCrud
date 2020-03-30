@@ -201,6 +201,7 @@ export default function ListaDeContatos() {
     if(alerta == 'editsuccess'){
 
      let x = document.querySelector('#alertaEditadoComSucesso');
+     x.style.opacity = 1;
      x.style.display = "block"; 
 
      let fadeEffect = setInterval(function () {
@@ -223,6 +224,7 @@ export default function ListaDeContatos() {
     }else if(alerta == 'excluido'){
 
     let x = document.querySelector('#alertaExcluidoComSucesso');
+    x.style.opacity = 1;
      x.style.display = "block"; 
 
      setInterval(function () {
