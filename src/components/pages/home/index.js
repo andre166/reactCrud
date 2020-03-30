@@ -1,9 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
 import api from '../../services/api';
 import './estilo.css';
 
 export default function Home(){
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
         if (localStorage.length === 0){
         

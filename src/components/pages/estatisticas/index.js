@@ -8,6 +8,8 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
+  
+
     function toogleMenu(){
 
         window.scrollTo(0, 0);
@@ -142,7 +144,7 @@ export default function Estatisticas(){
     
     pegarContatos();
     
-    
+    window.scrollTo(0, 0)
     
 }, []);
 
@@ -173,6 +175,8 @@ export default function Estatisticas(){
 
 
     }
+
+  
         
     return(
 

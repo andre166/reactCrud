@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './addContato.css';
 
 export default function AddContato() {
@@ -11,6 +11,10 @@ export default function AddContato() {
     let [avatar, setAvatar] = useState("")
     let [birthday, setBirthday] = useState("")
 
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     function gerarId(){
 

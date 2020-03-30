@@ -10,11 +10,7 @@ class Header extends Component{
     render(){
 
         function toogleMenu(){
-            let x = window;
-            x.scrollTop = 0;
-            x.scrollTo(1, 1)
             document.querySelector('#navbarNav').classList.remove('show');
-
         }
         
         return(

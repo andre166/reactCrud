@@ -53,7 +53,9 @@ export default function EditarContatos() {
         }
         
         pegarContato(idParams);
-  
+
+        window.scrollTo(0, 0)
+      
     }, []);
 
     async function editarContato(){

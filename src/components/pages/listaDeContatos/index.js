@@ -44,57 +44,6 @@ export default function ListaDeContatos() {
 
     pegarAlerta(alertaParametro);
 
-    async function verificaAlerta(alerta) {
-
-        if(alerta == 'editsuccess'){
-
-         let x = document.querySelector('#alertaEditadoComSucesso');
-         x.style.display = "block"; 
-
-         let fadeEffect = setInterval(function () {
-
-          let fadeEffect2 = setInterval(function () {
-            if (!x.style.opacity) {
-                x.style.opacity = 1;
-            }
-            if (x.style.opacity > 0) {
-                x.style.opacity -= 0.1;
-            } else {
-                clearInterval(fadeEffect2);
-                x.style.display = "none";
-            }
-          }, 200);
-
-
-         }, 2000);
-
-        }else if(alerta == 'excluido'){
-
-          let x = document.querySelector('#alertaEditadoComSucesso');
-         x.style.display = "block"; 
-
-         let fadeEffect = setInterval(function () {
-
-          let fadeEffect2 = setInterval(function () {
-            if (!x.style.opacity) {
-                x.style.opacity = 1;
-            }
-            if (x.style.opacity > 0) {
-                x.style.opacity -= 0.1;
-            } else {
-                clearInterval(fadeEffect2);
-                x.style.display = "none";
-            }
-          }, 200);
-
-
-         }, 2000);
-
-        }
-
-    }
-
-
     async function pegarContatos() {
 
         const response = localStorage.getItem("contatosApi");
@@ -106,6 +55,10 @@ export default function ListaDeContatos() {
       pegarContatos();
   
   }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   function filtrarFem(){
 
@@ -140,6 +93,7 @@ export default function ListaDeContatos() {
     setContatos(ListaDeContatos);
     setFiltroLinguagem('');
     setFiltroIdade('');
+    alerta(0)
 
   }
 
@@ -242,6 +196,56 @@ export default function ListaDeContatos() {
 
   }
 
+  async function verificaAlerta(alerta) {
+
+    if(alerta == 'editsuccess'){
+
+     let x = document.querySelector('#alertaEditadoComSucesso');
+     x.style.display = "block"; 
+
+     let fadeEffect = setInterval(function () {
+
+      let fadeEffect2 = setInterval(function () {
+        if (!x.style.opacity) {
+            x.style.opacity = 1;
+        }
+        if (x.style.opacity > 0) {
+            x.style.opacity -= 0.1;
+        } else {
+            clearInterval(fadeEffect2);
+            x.style.display = "none";
+        }
+      }, 200);
+
+
+     }, 2000);
+
+    }else if(alerta == 'excluido'){
+
+    let x = document.querySelector('#alertaExcluidoComSucesso');
+     x.style.display = "block"; 
+
+     setInterval(function () {
+
+      let fadeEffect2 = setInterval(function () {
+        if (!x.style.opacity) {
+            x.style.opacity = 1;
+        }
+        if (x.style.opacity > 0) {
+            x.style.opacity -= 0.1;
+        } else {
+            clearInterval(fadeEffect2);
+            x.style.display = "none";
+        }
+      }, 200);
+
+
+     }, 2000);
+
+    }
+
+}
+
   async function deleteContact(id) {
 
     const response = localStorage.getItem("contatosApi");
@@ -252,11 +256,15 @@ export default function ListaDeContatos() {
     ListaDeContatos.splice(contato, 1)
     localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos))
 
-    setContatos(ListaDeContatos)
+    setContatos(ListaDeContatos);
 
-    // verificaAlerta('aa');
+    verificaAlerta('excluido');
 
   }
+
+
+
+  
 
   function fecharFiltro(e){
 
@@ -277,6 +285,9 @@ export default function ListaDeContatos() {
           <div className="col-sm-12">
             <div className="alert alert-success text-center" id="alertaEditadoComSucesso" style={{display: 'none'}}>
               <h4>Usuário editado com sucesso</h4>
+            </div>
+            <div className="alert alert-warning text-center" id="alertaExcluidoComSucesso" style={{display: 'none'}}>
+              <h4>Usuário excluído com sucesso</h4>
             </div>
           </div>
         </div>
