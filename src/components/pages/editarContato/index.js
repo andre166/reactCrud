@@ -105,8 +105,8 @@ export default function EditarContatos() {
 
     <div className="container my-2">
        <div class="card card-body">
-            <div class="jumbotron py-4 mb-2">
-                <h1 class="display-4 text-center contato-h1">Editar Contato</h1>
+            <div class="jumbotron mb-2 contato-h1">
+                <h1 class="text-center ">Editar Contato</h1>
             </div>
 
             <div className="row">
@@ -132,9 +132,9 @@ export default function EditarContatos() {
                             </button>
 
                             <div class="collapse" id="collapseExample">
-                                <div class="card card-body">
+                                <div class="card card-body p-0">
 
-                                    <div class="col mb-3">
+                                    <div class="col mb-2">
                                         <label for="validationServer02">Digite a Url</label>
                                         <input type="url" class="form-control" id="validationServer02" 
                                         value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="Digite a url"/>
@@ -152,15 +152,19 @@ export default function EditarContatos() {
 
                         </div>
 
+<<<<<<< Updated upstream
                         {/* <div class="card-body">
+=======
+                        <div class="card-body pb-2">
+>>>>>>> Stashed changes
                             <div className="row">
                                 <div className="col">
 
-                                    <p class="card-text">Nome: {first_name} {last_name}</p>                               
-                                    <p class="card-text">Email: {email}</p>
-                                    <p class="card-text">Gênero: {gender == 'M' ? contatos.gender = 'Masculino' :  contatos.gender = 'Feminino'}</p>
-                                    <p class="card-text">Linguagem: {language}</p>
-                                    <p class="card-text">Data de nascimento: {contatos.birthday}</p>
+                                    <p class="card-text"><strong>Nome: </strong>{first_name} {last_name}</p>                               
+                                    <p class="card-text"><strong>Email: </strong>{email}</p>
+                                    <p class="card-text"><strong>Gênero: </strong>{gender == 'M' ? contatos.gender = 'Masculino' :  contatos.gender = 'Feminino'}</p>
+                                    <p class="card-text"><strong>Linguagem: </strong>{language}</p>
+                                    <p class="card-text"><strong>Data de nascimento: </strong>{contatos.birthday}</p>
 
                                 </div>
                             </div>
@@ -171,19 +175,19 @@ export default function EditarContatos() {
             
 
                 <div className="col-md-8">
-                    <div className="card card-body">
+                    <div className="card card-body  py-2">
 
                         <form onSubmit={editarContato} action={  `/ListaDeContatos/editsuccess`  }>
                     
-                            <div className="row">
+                            <div className="row py-0">
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 py-0 my-2">
                                     <label for="exampleInputEmail1">Primeiro Nome:</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" 
                                     placeholder="Primeiro nome"  value={first_name} onChange={(e)=> setFirstName(e.target.value)}/>
                                 </div>
 
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-6 py-0 my-2">
                                     <label for="exampleInputEmail1">Ultimo Nome:</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"  
                                     placeholder="Ultimo nome"  value={last_name} onChange={(e)=> setLastName(e.target.value)}/>
@@ -193,7 +197,7 @@ export default function EditarContatos() {
                         
                             <div className="row">
                                 
-                                <div class="form-group  col-sm-6">
+                                <div class="form-group  col-sm-6 py-0 my-2">
                                     <label for="exampleInputEmail1">Email:</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1"  
                                     placeholder="Email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
