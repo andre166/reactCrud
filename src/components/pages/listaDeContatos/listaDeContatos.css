@@ -9,25 +9,27 @@
     margin-bottom: 5px;
     width: 9rem;
     height: 8rem;
+    box-shadow: 2px 1px 2px #b8b8b8;
 }
 
 #lista-body{
     background: #e9ecef;
 
-
 }
 
 #cardUsuario{
+    background-color: #fff;
     margin: 20px 20px 40px 20px;
     height: auto;
     border-top-right-radius: 2%;
     border-bottom-right-radius: 1%;
     border-top-left-radius: 2%;
     border-bottom-left-radius: 1%;
-    box-shadow: 5px 5px 2px #000000a9;
-    border-top: 1px solid #0177ad;
     padding: 0px;
-    background-image: linear-gradient(to bottom, #006695 25%, #00405d 27%);
+    border: 1px solid #b8b8b8;
+    box-shadow: 1px 1px 2px #000000a9;
+    /* border-top: 1px solid #0177ad;  */
+    /* background-image: linear-gradient(to bottom, #006695 25%, #00405d 27%); */
 }
 
 
@@ -66,7 +68,8 @@
 }
 
 #cardUsuario p, #cardUsuario hr{
-    color: #ffffff;
+    color: #000000;
+    /* color: #ffffff; */
     margin: 2px;
     padding: 0px;
     font-size: 10pt;

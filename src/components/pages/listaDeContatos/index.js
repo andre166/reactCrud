@@ -390,7 +390,7 @@ export default function ListaDeContatos() {
 
                   <div class="card-body p-2">
                     <div class="d-flex justify-content-center">
-                        <img class="card-img-top img-thumbnail rounded-circle shadow" src={info.avatar}  id="img-card"/>
+                        <img class="card-img-top img-thumbnail rounded-circle" src={info.avatar}  id="img-card"/>
                     </div>
 
                    <div id="numeroDoCard">
