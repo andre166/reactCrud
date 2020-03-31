@@ -259,15 +259,8 @@ export default function ListaDeContatos() {
 
   }
 
-  let x = 0;
-
-  function contX(){
-    
-    x++
-  }
-
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" >
       <div className="card card-body my-2">
 
         <div class="jumbotron py-4  mb-2">
@@ -388,23 +381,51 @@ export default function ListaDeContatos() {
             </div>
             {/* ============================ */}
             <hr className="mb-0"/>
-            <div class="card card-group d-flex justify-content-center border-0">
+            <div class="card card-group d-flex justify-content-center border-0" id="lista-body"> 
               {contatos.map((info, e) => (
                 
-                <div class="shadow mx-4 mt-4 mb-0 pb-0" key={info.id} id="cardUsuario" >
-                  <div class="card-body">
-                  {/* <span id="numeroDoCard" class="text-center m-0 p-0">{e = e +1}</span> style={{width: '20px'}, {maxWidth: '18.2rem'}, {height: 'auto'}}*/}
-                  <div class="d-flex justify-content-center">
-                      <img class="card-img-top img-fluid img-thumbnail rounded-circle shadow mb-2" src={info.avatar}  style={{height: '8rem'}, {maxWidth: '14rem'}} id="img-card"/>
+                
+                <div class="pb-0" key={info.id} id="cardUsuario" >
+
+
+                  <div class="card-body p-2">
+                    <div class="d-flex justify-content-center">
+                        <img class="card-img-top img-fluid img-thumbnail img-fluid shadow" src={info.avatar}  id="img-card"/>
+                    </div>
+
+                   <div id="numeroDoCard">
+
+                   <Link to={{pathname: `/EditarContatos/${info.id}`}}><button type="button" class="btn badge badge-pill badge-info mx-4"><i class="fas fa-edit"></i>Editar</button></Link>
+
+                   </div>
+                   <div id="numeroDoCard2">
+                              <div class="btn-group dropup">
+                                <button type="button" class="btn badge badge-pill badge-danger dropdown-toggle btn-sm" data-toggle="dropdown">
+                                  <i class="fas fa-trash">Excluir</i>
+                                </button>
+
+                                <div class="dropdown-menu">
+                                  <div className="card-body col-md-12 text-center">
+
+                                    <p class="text-dark" >Deseja excluir?</p>
+                                    <hr class="my-2" />
+
+                                    <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
+                                    <a href="#" class="btn btn-danger btn-sm ml-2">Não</a>
+                                  
+                                  </div>
+                                </div>
+                              </div>      
+                   
                   </div>
 
-                  <div className="card-body pb-2" id="card-info-usuario">
+                  <div className="card-body pb-2 p-0" id="card-info-usuario">
            
                     <p class="card-title"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
                     <hr/>
                     <p class="card-text"> <strong>Email: </strong>{info.email}</p>
                     <hr/>
-                    <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino' } </p>
+                    <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'} </p>
                     <hr/>
                     <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
                     <hr/>
@@ -414,41 +435,7 @@ export default function ListaDeContatos() {
             
 
 
-                      <div className="row mt-2 mb-0">
-        
-
-                          <div className="col-sm-12">
-
-                            <div class="btn-block">
-                              <Link to={{pathname: `/EditarContatos/${info.id}`}} className="btn-block"><button type="button" class="btn-block btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</button></Link>
-                            </div>
-                            
-                         
-
-                              <div class="btn-group dropup btn-block">
-                                <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown">
-                                  <i class="fas fa-trash"> Excluir</i>
-                                </button>
-
-                                <div class="dropdown-menu">
-                                  <div className="card-body col-md-12 text-center">
-
-                                    <p class="" >Deseja excluir?</p>
-                                    <hr/>
-
-                                    <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
-                                    <a href="#" class="btn btn-danger btn-sm ml-2">Não</a>
-                                  
-                                  </div>
-                                </div>
-                              </div>      
-
-                          </div>
-
-                         
-                       
-
-                      </div>
+                     
 
 
                   </div>

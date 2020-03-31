@@ -1,20 +1,44 @@
 .shadow-custom{
     box-shadow: 3px 3px 8px #00000038;
 }
+/* style={{height: '8rem'}, {maxWidth: '14rem'}} */
+#img-card{
+    border-top-left-radius: 20%;
+    border-bottom-right-radius: 20%;
+    margin-top: -5px;
+    margin-bottom: 5px;
+    width: 9rem;
+    height: 8rem;
+}
+
+#lista-body{
+    background-color: #67829e62;
+
+}
 
 #cardUsuario{
-    border-top-right-radius: 5%;
-    border-top-left-radius: 5%;
+    margin: 20px 20px 40px 20px;
+    height: auto;
+    border-top-right-radius: 1%;
+    border-bottom-right-radius: 15%;
+    border-top-left-radius: 15%;
+    border-bottom-left-radius: 1%;
+    box-shadow: 3px 3px 5px #00000096;
+
     padding: 0px;
     background-color: #031d3a;
-    border: 2px solid #4042442c;
+    /* border: 2px solid #4042442c; */
+    /* box-shadow: 3px 3px 3px #504a4a; */
+    background-image: linear-gradient(to left, #00000096 50%, #08567ad8 50%);
 }
 
 #card-info-usuario{
-    border: 2px solid #0061c846;
-    border-top-right-radius: 38%;
-    border-top-left-radius: 8%;
-    background-color: #3897fd83;
+    border-top: 1px solid #fff;
+    /* border-top-right-radius: 38%; */
+    /* border-top-left-radius: 8%; */
+    /* background-image: linear-gradient(to left, #00000096 50%, #08567ad8 50%); */
+  
+    
 }
 
 #numeroDoCard{
@@ -24,7 +48,19 @@
     color: rgb(0, 0, 0);
     position: absolute;
     font-weight: bold;
-    margin-left: 5px;
+    margin-top: 125px;
+    margin-left: 0px;
+}
+
+#numeroDoCard2{
+    vertical-align: middle;
+    width: auto;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    font-weight: bold;
+    margin-top: 125px;
+    margin-left: 115px;
 }
 
 #filtro tr td{
@@ -43,6 +79,7 @@
     color: #ffffff;
     margin: 2px;
     padding: 0px;
+    font-size: 10pt;
 }
 
 
@@ -63,6 +100,16 @@
     #img-card{
         width: 8rem;
         height: 8rem;
+    }
+
+    #numeroDoCard{
+        margin-top: 125px;
+        margin-left: 20px;
+    }
+    
+    #numeroDoCard2{
+        margin-top: 125px;
+        margin-left: 135px;
     }
 
  
