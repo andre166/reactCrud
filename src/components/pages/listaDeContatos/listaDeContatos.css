@@ -7,6 +7,16 @@
     border: 2px solid #4042442c;
 }
 
+#numeroDoCard{
+    vertical-align: middle;
+    width: auto;
+    height: auto;
+    color: rgb(0, 0, 0);
+    position: absolute;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
 #filtro tr td{
     vertical-align: middle;
 }
@@ -19,6 +29,12 @@
 
 }
 
+#cardUsuario p, #cardUsuario hr{
+    margin: 2px;
+    padding: 0px;
+}
+
+
 @media (max-width: 575.98px) { 
 
     .contato-h1{
@@ -27,6 +43,8 @@
         font-size: 40px;
     
     }
+
+ 
 
 }
 

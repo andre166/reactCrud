@@ -18,20 +18,6 @@ export default function ListaDeContatos() {
   
   useEffect(() => {
 
-    async function tabelaStriped() {
-
-      let x = document.querySelector('#tabela')
-
-      if(window.innerWidth < 700){
-
-        x.classList.remove('table-hover')
-        x.classList.add('table-striped')
-      }
-
-    }
-
-    tabelaStriped();
-
 
     async function pegarAlerta(alertaParametro) {
 
@@ -264,8 +250,6 @@ export default function ListaDeContatos() {
 
   }
 
-
-
   
 
   function fecharFiltro(e){
@@ -275,8 +259,15 @@ export default function ListaDeContatos() {
 
   }
 
+  let x = 0;
+
+  function contX(){
+    
+    x++
+  }
+
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="card card-body my-2">
 
         <div class="jumbotron py-4  mb-2">
@@ -396,23 +387,28 @@ export default function ListaDeContatos() {
 
             </div>
             {/* ============================ */}
-    
-            <div class="card-columns mt-2">
-              {contatos.map((info) => (
-
-              <div class="card shadow-sm" key={info.id} id="cardUsuario">
-
-
+            <hr/>
+            <div class="card card-group d-flex justify-content-center border-0">
+              {contatos.map((info, e) => (
+                
+                <div class="shadow-sm mx-4 mt-4 rounded" key={info.id} id="cardUsuario" style={{minWidth: '10rem'}, {maxWidth: '18.2rem'}}>
                   <div class="card-body shadow-sm">
+                  <span id="numeroDoCard" class="text-center m-0 p-0">{e = e +1}</span>
                   <div class="d-flex justify-content-center">
                       <img class="card-img-top img-fluid img-thumbnail rounded-circle shadow-sm" src={info.avatar}  style={{height: '8rem'}, {maxWidth: '14rem'}}/>
                   </div>
 
-                    <h5 class="card-title mt-2"><strong>Nome: </strong>{info.first_name} {info.last_name}</h5>
+                    <p class="card-title mt-2"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
+                    <hr/>
                     <p class="card-text"> <strong>Email: </strong>{info.email}</p>
+                    <hr/>
                     <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino' } </p>
+                    <hr/>
                     <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
+                    <hr/>
                     <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
+                    <hr/>
+                    
                   
                   </div>
 
