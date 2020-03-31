@@ -391,15 +391,15 @@ export default function ListaDeContatos() {
             <div class="card card-group d-flex justify-content-center border-0">
               {contatos.map((info, e) => (
                 
-                <div class="shadow mx-4 mt-4 rounded mb-0 pb-0" key={info.id} id="cardUsuario" style={{minWidth: '10rem'}, {maxWidth: '18.2rem'}, {height: '32rem'}}>
+                <div class="shadow mx-4 mt-4 mb-0 pb-0" key={info.id} id="cardUsuario" >
                   <div class="card-body">
-                  {/* <span id="numeroDoCard" class="text-center m-0 p-0">{e = e +1}</span> */}
+                  {/* <span id="numeroDoCard" class="text-center m-0 p-0">{e = e +1}</span> style={{width: '20px'}, {maxWidth: '18.2rem'}, {height: 'auto'}}*/}
                   <div class="d-flex justify-content-center">
-                      <img class="card-img-top img-fluid img-thumbnail rounded-circle shadow-sm mb-2" src={info.avatar}  style={{height: '8rem'}, {maxWidth: '14rem'}}/>
+                      <img class="card-img-top img-fluid img-thumbnail rounded-circle shadow mb-2" src={info.avatar}  style={{height: '8rem'}, {maxWidth: '14rem'}} id="img-card"/>
                   </div>
 
-                  <div className="card card-body shadow-sm pb-2">
-
+                  <div className="card-body pb-2" id="card-info-usuario">
+           
                     <p class="card-title"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
                     <hr/>
                     <p class="card-text"> <strong>Email: </strong>{info.email}</p>
@@ -411,32 +411,45 @@ export default function ListaDeContatos() {
                     <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                     <hr/>
 
+            
+
+
                       <div className="row mt-2 mb-0">
-                        <div className="col">
-                          <Link to={{pathname: `/EditarContatos/${info.id}`}}><button type="button" class="btn btn-sm btn-info mr-2"><i class="fas fa-edit"></i> Editar</button></Link>
+        
 
-                        </div>
+                          <div className="col-sm-12">
 
-                        <div className="d-flex justify-content-end">
-                            <div class="btn-group dropleft">
-                              <button type="button" class="btn btn-danger dropdown-toggle btn-sm mr-2" data-toggle="dropdown">
-                                <i class="fas fa-trash"> Excluir</i>
-                              </button>
+                            <div class="btn-block">
+                              <Link to={{pathname: `/EditarContatos/${info.id}`}} className="btn-block"><button type="button" class="btn-block btn btn-info btn-sm"><i class="fas fa-edit"></i> Editar</button></Link>
+                            </div>
+                            
+                         
 
-                              <div class="dropdown-menu m-0 p-0">
-                                <div className="card-body col-md-12 text-center">
+                              <div class="btn-group dropup btn-block">
+                                <button type="button" class="btn btn-danger dropdown-toggle btn-sm" data-toggle="dropdown">
+                                  <i class="fas fa-trash"> Excluir</i>
+                                </button>
 
-                                  <p class="" >Deseja excluir?</p>
-                                  <hr/>
+                                <div class="dropdown-menu">
+                                  <div className="card-body col-md-12 text-center">
 
-                                  <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
-                                  <a href="#" class="btn btn-danger btn-sm ml-2">Não</a>
-                                
+                                    <p class="" >Deseja excluir?</p>
+                                    <hr/>
+
+                                    <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
+                                    <a href="#" class="btn btn-danger btn-sm ml-2">Não</a>
+                                  
+                                  </div>
                                 </div>
-                              </div>
-                            </div>      
-                        </div>
+                              </div>      
+
+                          </div>
+
+                         
+                       
+
                       </div>
+
 
                   </div>
                   </div>

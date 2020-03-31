@@ -3,9 +3,18 @@
 }
 
 #cardUsuario{
+    border-top-right-radius: 5%;
+    border-top-left-radius: 5%;
     padding: 0px;
-    background-color: #4c484811;
+    background-color: #031d3a;
     border: 2px solid #4042442c;
+}
+
+#card-info-usuario{
+    border: 2px solid #0061c846;
+    border-top-right-radius: 38%;
+    border-top-left-radius: 8%;
+    background-color: #3897fd83;
 }
 
 #numeroDoCard{
@@ -31,6 +40,7 @@
 }
 
 #cardUsuario p, #cardUsuario hr{
+    color: #ffffff;
     margin: 2px;
     padding: 0px;
 }
@@ -43,6 +53,16 @@
         letter-spacing: 2px;
         font-size: 40px;
     
+    }
+
+    #cardUsuario p{
+        
+        font-size: 12px;
+    }
+
+    #img-card{
+        width: 8rem;
+        height: 8rem;
     }
 
  
