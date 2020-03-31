@@ -422,13 +422,13 @@ export default function ListaDeContatos() {
                   <div className="card-body pb-2 p-0" id="card-info-usuario">
            
                     <p class="card-title"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
-                    <hr className="border-secondary"/>
+                   
                     <p class="card-text"> <strong>Email: </strong>{info.email}</p>
-                    <hr className="border-secondary"/>
+                   
                     <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'} </p>
-                    <hr className="border-secondary"/>
+                  
                     <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
-                    <hr className="border-secondary"/>
+                  
                     <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                     
                   </div>

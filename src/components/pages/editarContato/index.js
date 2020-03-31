@@ -125,7 +125,7 @@ export default function EditarContatos() {
                             <img class="card-img-top img-thumbnail rounded-circle" src={contatos.avatar} alt="Card image cap" style={{height: '12rem'}, {maxWidth: '14rem'}}/>
                         </div>
 
-                        <div className="text-center">
+                        <div className="text-center mb-4">
 
                             <button class="btn btn-info btn-sm mt-2 w-50" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                 Alterar foto
@@ -152,7 +152,7 @@ export default function EditarContatos() {
 
                         </div>
 
-                        <div class="card-body">
+                        {/* <div class="card-body">
                             <div className="row">
                                 <div className="col">
 
@@ -164,7 +164,7 @@ export default function EditarContatos() {
 
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

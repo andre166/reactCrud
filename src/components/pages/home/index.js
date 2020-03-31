@@ -43,9 +43,9 @@ export default function Home(){
 
         <div className="container">
 
-            <div className="card card-body my-2">
+            <div className="card card-body mt-2">
                     
-                <div class="jumbotron">
+                <div class="jumbotron py-2">
                     <h1 class="text-center text-info LesteTel_h1">React Cad</h1>
                 </div>
 
@@ -54,11 +54,10 @@ export default function Home(){
 
                     <div class="col-md-6">
 
-                        <div className="card card-body mt-2 text-center">
+                        <div className="card card-body text-center">
                         
                             <ul class="list-group">
-                                <li class="list-group-item active"><h2>Descrição da API</h2></li>
-
+                                <li class="list-group-item active"><h4>Descrição da API</h4></li>
                                 <li class="list-group-item list-group-item-primary">Cadastra, Edita, exclui, lista e gera relatório com gráfico.</li>
                                 <li class="list-group-item">Cadastro: Primeiro nome, Ultimo nome, Email, Gênero, Linguagem, Data de nascimento</li>
                                 <li class="list-group-item">Exclusão, Alteração e Edição de todos os campos citados acima</li>
@@ -82,7 +81,7 @@ export default function Home(){
 
                                 <ul class="list-group text-center ">
 
-                                    <li class="list-group-item active"><h1>Tecnologias usadas</h1></li>
+                                    <li class="list-group-item active"><h4>Tecnologias usadas</h4></li>
 
                                     <li class="list-group-item">Html5, Css3, BootsTrap, Javascript</li>
                                     <li class="list-group-item">Node, Npm, Git, Git Kraken, GitHub</li>
