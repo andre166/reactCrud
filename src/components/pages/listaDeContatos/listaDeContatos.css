@@ -3,8 +3,8 @@
 }
 /* style={{height: '8rem'}, {maxWidth: '14rem'}} */
 #img-card{
-    border-top-left-radius: 20%;
-    border-bottom-right-radius: 20%;
+    /* border-top-left-radius: 20%;
+    border-bottom-right-radius: 20%; */
     margin-top: -5px;
     margin-bottom: 5px;
     width: 9rem;
@@ -19,27 +19,17 @@
 #cardUsuario{
     margin: 20px 20px 40px 20px;
     height: auto;
-    border-top-right-radius: 1%;
-    border-bottom-right-radius: 15%;
-    border-top-left-radius: 15%;
+    border-top-right-radius: 2%;
+    border-bottom-right-radius: 1%;
+    border-top-left-radius: 2%;
     border-bottom-left-radius: 1%;
-    box-shadow: 3px 3px 5px #00000096;
-
+    box-shadow: 5px 5px 2px #000000a9;
+    border-top: 1px solid #00405d;
     padding: 0px;
-    background-color: #031d3a;
-    /* border: 2px solid #4042442c; */
-    /* box-shadow: 3px 3px 3px #504a4a; */
-    background-image: linear-gradient(to left, #00000096 50%, #08567ad8 50%);
+   
+    background-image: linear-gradient(to bottom, #0b1633 25%, #00405d 50%);
 }
 
-#card-info-usuario{
-    border-top: 1px solid #fff;
-    /* border-top-right-radius: 38%; */
-    /* border-top-left-radius: 8%; */
-    /* background-image: linear-gradient(to left, #00000096 50%, #08567ad8 50%); */
-  
-    
-}
 
 #numeroDoCard{
     vertical-align: middle;

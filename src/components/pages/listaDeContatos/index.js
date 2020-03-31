@@ -390,7 +390,7 @@ export default function ListaDeContatos() {
 
                   <div class="card-body p-2">
                     <div class="d-flex justify-content-center">
-                        <img class="card-img-top img-fluid img-thumbnail img-fluid shadow" src={info.avatar}  id="img-card"/>
+                        <img class="card-img-top img-thumbnail rounded-circle shadow" src={info.avatar}  id="img-card"/>
                     </div>
 
                    <div id="numeroDoCard">
@@ -422,22 +422,15 @@ export default function ListaDeContatos() {
                   <div className="card-body pb-2 p-0" id="card-info-usuario">
            
                     <p class="card-title"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
-                    <hr/>
+                    <hr className="border-info"/>
                     <p class="card-text"> <strong>Email: </strong>{info.email}</p>
-                    <hr/>
+                    <hr className="border-info"/>
                     <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'} </p>
-                    <hr/>
+                    <hr className="border-info"/>
                     <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
-                    <hr/>
+                    <hr className="border-info"/>
                     <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
-                    <hr/>
-
-            
-
-
-                     
-
-
+                    
                   </div>
                   </div>
 

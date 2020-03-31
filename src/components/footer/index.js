@@ -12,10 +12,9 @@ class Footer extends Component{
               
                     <div class="row w-100">
 
-                        <div class="col-sm-12 mt-4">
+                        <div class="col-sm-12">
 
-                           
-
+            
                             <div class="middle mt-4">
                                 
                                 <a class="btn-footer1" href="https://www.facebook.com/andre.mesquitasd" target="_blank">
@@ -41,7 +40,7 @@ class Footer extends Component{
                         </div>
                     </div>
 
-                    <div class="text-center mt-4">
+                    <div class="text-center mt-2">
                         <b>André Mesquita</b> <span class="text-footer">&copy; Todos os direitos reservados</span>
                     </div>
             

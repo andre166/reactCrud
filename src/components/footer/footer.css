@@ -111,6 +111,10 @@ footer b {
     line-height: 40px;
    
   }
+
+  .footer-custom{
+    padding-bottom: 10px;
+}
      
   .btn-footer1{
       display: inline-block;

@@ -68,39 +68,27 @@ ul li a:hover{
 @media (max-width: 575.98px) {
 
     .fa-bars{
+        /* padding: 10px; */
         font-size: 25pt;
-    }
-    
-    #logo{
-        border-radius: 30%;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        width: 50px;
-        height: 50px;
+        margin-top: 10px; 
+        margin-bottom: 10px; 
     }
 
     .navbar-custom{
         padding-top: 0px; 
-        padding-bottom: 0px; 
+        padding-bottom: 0px;  
     }
  }
 
  @media (max-width: 767.98px) { 
 
     .navbar-custom{
-        padding-top: 0px; 
+   
+        padding-top: 20px; 
         padding-bottom: 0px; 
     }
 
     /* ================================================== */
-    #logo{
-     
-        width: 50px;
-        height: 50px;
-        margin-top: -2px;
-        border-radius: 100%;
-       
-    }
     
     .primeira-logo-text{
         font-weight: 800;
