@@ -12,7 +12,8 @@
 }
 
 #lista-body{
-    background-color: #67829e62;
+    background: #e9ecef;
+
 
 }
 
@@ -24,10 +25,9 @@
     border-top-left-radius: 2%;
     border-bottom-left-radius: 1%;
     box-shadow: 5px 5px 2px #000000a9;
-    border-top: 1px solid #00405d;
+    border-top: 1px solid #0177ad;
     padding: 0px;
-   
-    background-image: linear-gradient(to bottom, #0b1633 25%, #00405d 50%);
+    background-image: linear-gradient(to bottom, #006695 25%, #00405d 27%);
 }
 
 
