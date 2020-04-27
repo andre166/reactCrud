@@ -5,35 +5,36 @@ import './estilo.css';
 export default function Home(){
 
     useEffect(() => {
+
         if (localStorage.length === 0){
         
-            async function loadApi(){
+            (async function loadApi(){
     
                 const response = await api.get();
                 let contatos = response.data;
     
-                let mesFiltrado = contatos.filter(n => n.birthday)
+                let mesFiltrado = contatos.filter(n => n.birthday);
                 
-                    mesFiltrado.map((info) => (
-                        info.birthday = formatData(info.birthday)
-                    ))
+                mesFiltrado.map((info) => (
+                    info.birthday = formatData(info.birthday)
+                ));
            
-                    function formatData(data){
+                function formatData(data){
+
+                    data = String(data).split(' ');
+                    var days = String(data[0]).split('-');
+
+                    var dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
+                    
+                    return dataFormatada;
+                }
     
-                        data = String(data).split(' ');
-                        var days = String(data[0]).split('-');
-    
-                        var dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
-                     
-                        return dataFormatada;
-                    }
-    
-                localStorage.setItem("contatosApi", JSON.stringify(contatos));
-            }
-    
-            loadApi();
+                await localStorage.setItem("contatosApi", JSON.stringify(contatos));
+
+            })();
               
         }
+
     }, [])
 
         

@@ -20,18 +20,18 @@ export default function EditarContatos() {
     let [birthday, setBirthday] = useState("")
 
     let ContatoEditado = false;
-    let ContatoExcluido = false;
+    let history = useHistory();
 
 
     useEffect(() => {
       
-        function pegarContato(idParams) {
+        (async function pegarContato(idParams) {
 
             let idConvertido = parseInt(idParams.id);
 
             setId(idConvertido)
 
-            const response = localStorage.getItem("contatosApi");
+            const response = await localStorage.getItem("contatosApi");
             let ListaDeContatos = JSON.parse(response);
             setListaContatos(ListaDeContatos);
 
@@ -55,9 +55,7 @@ export default function EditarContatos() {
             setAvatar(contato.avatar)
             setBirthday(dataFormatada)
 
-        }
-        
-        pegarContato(idParams);
+        })(idParams);
       
     }, []);
 
@@ -100,8 +98,6 @@ export default function EditarContatos() {
 
     }
 
-    let history = useHistory();
-
     async function deleteContact(id) {
         
         let contato = ListaContatos.indexOf(ListaContatos.find(n => n.id == id));
@@ -111,7 +107,6 @@ export default function EditarContatos() {
         await localStorage.setItem("contatosApi", JSON.stringify(ListaContatos));
         await localStorage.setItem("MSG", "ExcluidoSuccess");
 
-        // setContatos(ListaContatos);
         return history.push("/ListaDeContatos");
     }
 

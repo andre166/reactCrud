@@ -19,14 +19,12 @@ const Routes = () =>{
             <Switch>
                 <Route exact path='/' component={Home}/>
 
-                <Route path='/ListaDeContatos/:alerta' component={ListaDeContatos}/>
                 <Route exact path='/ListaDeContatos/' component={ListaDeContatos}/>
 
                 <Route path='/EditarContatos/:id' component={EditarContatos}/>          
                 <Route path='/AddContatos' component={AddContato}/>
                 <Route exact path='/Estatisticas' component={Estatisticas}/>
                 
-
                 <Route path="*" component={Erro}/>
             </Switch>
         <Footer/>

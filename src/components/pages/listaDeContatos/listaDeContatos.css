@@ -21,7 +21,6 @@
     padding: 10px;
     margin-top: 10px;
     border-radius: 5px;
-    /* border: 1px solid #015d2a; */
 }
 
 
@@ -34,7 +33,7 @@
     box-shadow: 1px 1px 1px #b1b1b1,
                 1px 1px 4px #b1b1b1,
                 -1px -1px 1px #b1b1b1;
-                max-width: 230px;
+    max-width: 230px;
     
 }
 #card-info-usuario{

@@ -21,8 +21,7 @@ export default function AddContato() {
         let contactsArray = JSON.parse(response);
         
         let ultimo = contactsArray[contactsArray.length - 1];
-        
-        
+    
         ultimoId = ultimo.id + 1;
         
         let id = parseInt(ultimoId);
@@ -31,9 +30,9 @@ export default function AddContato() {
         
     }
     
-    function register(id) {
+    async function register(id) {
         
-        const response = localStorage.getItem("contatosApi");
+        const response = await localStorage.getItem("contatosApi");
         let contactsArray = JSON.parse(response);
         
         let newContact = [];
@@ -49,8 +48,8 @@ export default function AddContato() {
         
         contactsArray.push(newContact);
         
-        localStorage.setItem("contatosApi", JSON.stringify(contactsArray));
-        localStorage.setItem("MSG", "CadastradoSuccess");
+        await localStorage.setItem("contatosApi", JSON.stringify(contactsArray));
+        await localStorage.setItem("MSG", "CadastradoSuccess");
         
     }
   
