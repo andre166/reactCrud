@@ -27,7 +27,7 @@ export default function AddContato() {
         
         let id = parseInt(ultimoId);
         
-        register(id)
+        register(id);
         
     }
     
@@ -49,7 +49,7 @@ export default function AddContato() {
         
         contactsArray.push(newContact);
         
-        localStorage.setItem("contatosApi", JSON.stringify(contactsArray))
+        localStorage.setItem("contatosApi", JSON.stringify(contactsArray));
         localStorage.setItem("MSG", "CadastradoSuccess");
         
     }
@@ -89,7 +89,7 @@ export default function AddContato() {
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Email:</label>
                                 <input type="email" class="form-control" id="validationServer02" 
-                                value={email} required autoFocus autoComplete="off" 
+                                value={email} required autoComplete="off" 
                                 onChange={(e)=> setEmail(e.target.value)} placeholder="Digite o Email" />
                             </div>
 
@@ -146,12 +146,6 @@ export default function AddContato() {
                         </div>
                     </form>
                 </div>
-            </div>
-
-            <div className="invisible"> 
-               <p>s</p>
-               <p>s</p>
-              
             </div>
 
         </div>         

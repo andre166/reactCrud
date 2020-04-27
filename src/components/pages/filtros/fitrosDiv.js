@@ -6,14 +6,13 @@ import React, {useEffect, useState} from "react"
 // import showDivAlerta from '../listaDeContatos';
 // import alertaMsg  from '../listaDeContatos';
 import DivAlerta from '../filtros/divAlerta';
+import AlertaZeroContato from '../filtros/alertZeroContato';
 
 
 export default function FiltrosDiv( {
   contatos,
   setContatos
 }) {
-
-    let [contacts, setContacts] = useState(contatos);
 
     let [filtroLinguagem, setFiltroLinguagem] = useState([]);
     let [filtroIdade, setFiltroIdade] = useState([]);
@@ -57,7 +56,7 @@ export default function FiltrosDiv( {
   
   
     }
-    function FiltrarPorMesOuIdade(e, idadeOuMes){
+    async function FiltrarPorMesOuIdade(e, idadeOuMes){
 
         if(e != 0){
     
@@ -65,7 +64,7 @@ export default function FiltrosDiv( {
           let ArrayM = [];
           let ArrayX = [];
           
-          const response = localStorage.getItem("contatosApi");
+          const response = await localStorage.getItem("contatosApi");
           let ListaDeContatos = JSON.parse(response);
     
           let mesFiltrado = ListaDeContatos.filter(n => n.birthday)
@@ -83,7 +82,9 @@ export default function FiltrosDiv( {
     
           }
     
-        //   alertaNenhumContato(ArrayX);
+        //   alertaNenhumContato(ArrayX);;
+        // await localStorage.setItem("AlertaNenhumContato", "true");
+
         setContatos(ArrayX);
     
         }
@@ -154,6 +155,8 @@ export default function FiltrosDiv( {
               </button>
 
           </div> 
+
+          
         <div class="row">
             <div class="col-sm-12">
               <div class="collapse multi-collapse" id="multiCollapseExample1">

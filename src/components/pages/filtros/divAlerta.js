@@ -4,10 +4,10 @@ export default function DivAlerta(){
 
   const [alertaMsg, setAlertaMsg] = useState([]);
 
+
     let alertaEditadoSuccess = false;
     let alertaCadastradoSuccess = false;
     let alertaExcluidoSuccess = false;
-
 
     async function verificarAlerta() {
 
@@ -31,10 +31,44 @@ export default function DivAlerta(){
       }
 
     }
-
+    
     verificarAlerta();
 
+    function gerarAlerta() {
+
+      if(alertaEditadoSuccess){
   
+      setAlertaMsg('Editado');
+      
+      let x = document.querySelector('#alertaDeSucesso');
+      x.classList.add('alert-info');
+      showDivAlerta(x);
+      alertaEditadoSuccess = false;
+  
+      }else if(alertaCadastradoSuccess){
+  
+        setAlertaMsg('Cadastrado');
+  
+        let x = document.querySelector('#alertaDeSucesso');
+        x.classList.add('alert-success');
+  
+        showDivAlerta(x);
+        alertaCadastradoSuccess = false;
+  
+      }else if(alertaExcluidoSuccess){
+  
+        setAlertaMsg('Excluido');
+  
+        let x = document.querySelector('#alertaDeSucesso');
+        x.classList.add('alert-danger');
+  
+        showDivAlerta(x);
+  
+        alertaExcluidoSuccess = false;
+    
+      }
+    }
+    
 
   function showDivAlerta(x){
 
@@ -63,40 +97,8 @@ export default function DivAlerta(){
 
   verificarAlerta();
 
-  function gerarAlerta() {
-
-    if(alertaEditadoSuccess){
-
-    setAlertaMsg('Editado');
-    
-    let x = document.querySelector('#alertaDeSucesso');
-    x.classList.add('alert-info');
-    showDivAlerta(x);
-    alertaEditadoSuccess = false;
-
-    }else if(alertaCadastradoSuccess){
-
-      setAlertaMsg('Cadastrado');
-
-      let x = document.querySelector('#alertaDeSucesso');
-      x.classList.add('alert-success');
-
-      showDivAlerta(x);
-      alertaCadastradoSuccess = false;
-
-    }else if(alertaExcluidoSuccess){
-
-      setAlertaMsg('Excluido');
-
-      let x = document.querySelector('#alertaDeSucesso');
-      x.classList.add('alert-danger');
-
-      showDivAlerta(x);
-
-      alertaExcluidoSuccess = false;
   
-    }
-  }
+
 
     return(
         <div className="row">
@@ -108,5 +110,7 @@ export default function DivAlerta(){
         </div>
 
     );
+
+    
 
 }
