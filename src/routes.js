@@ -6,7 +6,6 @@ import AddContato from './components/pages/addContato';
 import ListaDeContatos from './components/pages/listaDeContatos';
 import EditarContatos from './components/pages/editarContato';
 import Estatisticas from './components/pages/estatisticas';
-import Ajuda from './components/pages/ajuda';
 import Erro from './components/pages/erro';
 import Header from './components/header';
 import Footer from './components/footer';
@@ -26,7 +25,7 @@ const Routes = () =>{
                 <Route path='/EditarContatos/:id' component={EditarContatos}/>          
                 <Route path='/AddContatos' component={AddContato}/>
                 <Route exact path='/Estatisticas' component={Estatisticas}/>
-                <Route exact path='/Ajuda' component={Ajuda}/>
+                
 
                 <Route path="*" component={Erro}/>
             </Switch>

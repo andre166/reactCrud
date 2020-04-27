@@ -1,41 +1,61 @@
 html, body{
-  margin: 0px;
-  padding: 0px;
   font-family: Helvetica,Arial,sans-serif;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0px !important;
-  margin: 0px !important;
-  /* position: absolute; */
-  background-size: 100% 100%;
+  padding: 0px;
+  margin: 0px;
   height: 100%;
   width: 100%;
+  background-color: #015d2a;
 }
 
-.txt-rabbit{
-  margin-top: 5%;
-  margin-left: 10%;
-  color: #ffffffa2;
-  position: absolute;
-  z-index: 10;
+.jumbotron{
+  background-color: #015d2a;
 }
 
-.txt-rabbit2{
+.leste-bg-escuro{
+  background-color: #015d2a !important;
+  color: white;
+}
+.border-leste-escuro{
+  border: 1px solid #015d2a;
+}
+
+.jumbotron h1{
+  font-weight: 600;
+  letter-spacing: 4px;
+  font-size: 40px;
   color: #fff;
-  font-size: 7rem;
-  margin-top: 10%;
 }
 
-#bodyProCanvas{
-  background-color: #000000;
+.input-leste{
+  border: 1px solid #015d2a;
 }
 
-@media (max-width: 767.98px) { 
+.btn-leste{
+  background-color: #015d2a;
+  color: #fff;
+}
 
-  .txt-rabbit2{
-  
-    font-size: 2rem;
-  
+.btn-leste:hover{
+  color: #fff;
+  background-color: #00AD4F;
+}
+
+.btn-leste-outline{
+  background-color: #FFF;
+  color: #015d2a;
+  border: 1px solid #015d2a;
+}
+
+.btn-leste-outline:hover{
+  background-color: #015d2a;
+  color: #fff;
+}
+
+@media (max-width: 575.98px) { 
+  .jumbotron h1{
+    letter-spacing: 2px;
+    font-size: 20px;
   }
-   
 }

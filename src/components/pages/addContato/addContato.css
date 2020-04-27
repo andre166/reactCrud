@@ -1,11 +1,21 @@
-.shadow-custom{
-    box-shadow: 3px 3px 8px #00000038;
-}
-
-.contato-h1{
-    font-weight: 400;
-    letter-spacing: 10px;
-    font-size: 40px;
-    text-shadow: 1px 1px 6px #00000069;
+.container-addContato{
+  min-height: 90vh;
 
 }
+.form-row label{
+  font-weight: bold;
+  font-size: 10pt;
+}
+
+.container-addContato input{
+  border: 1px solid #015d2a;
+  background-color:#015d2a28;
+  box-shadow: 1.5px 1.5px 3px #c8c8c8;
+}
+
+.form-cadastro{
+  border: 1px solid #015d2a;
+  box-shadow: 1.5px 1.5px 2px #b8b8b8;
+
+}
+

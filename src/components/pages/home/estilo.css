@@ -1,43 +1,22 @@
-*{
-    margin: 0;
-    padding: 0;
+.home-container{
+    padding: 10px 0px;
+    min-height: 78vh;
 }
 
-body{
-    background-color: #0000002d;
-    /* background-color: rgba(0, 158, 63, 1) ; */
+.home-container ul li{
+    font-size: 10pt;
 }
 
-.LesteTel_h1{
-    letter-spacing: 13px;
-    font-size: 90px;
-
+.titulo{
+    background-color: #015d2a;
+    color: #fff;
+    text-align: center;
 }
-
-.espacamento_pro_footer{
-    width: 90vw;
-    min-height: calc(77vh - 211px - 58px);
-}
-
 
 @media (max-width: 575.98px) { 
-
-    .LesteTel_h1{
-        letter-spacing: 8px;
-        font-size: 25px;
-    }
 
     ul li{
         font-size: 12px;
     }
 
 }
-
-@media (min-width: 576px) and (max-width: 767.98px) { 
-
-    .LesteTel_h1{
-        letter-spacing: 10px;
-        font-size: 70px;
-    }
-
- }

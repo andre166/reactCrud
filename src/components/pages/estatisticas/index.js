@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Label, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import './estatisticas.css';
+
 export default function Estatisticas(){
 
     const [totalFeminino, setTotalFeminino] = useState([])
@@ -183,7 +185,7 @@ export default function Estatisticas(){
         <div className="container-fluid bg-white ">
 
 
-            <div className="card-body my-2">
+            <div className="card-body">
 
                 <div class="jumbotron py-4">
                     <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
@@ -192,7 +194,7 @@ export default function Estatisticas(){
                
                     <div className="row">
                         <div className="card card-body col-sm-6">
-                        <div class="text-center alert alert-info" > <strong>Total de Usuários cadastrados por gênero</strong></div>
+                        <div class="text-center alert alert-success" > <strong>Total de Usuários cadastrados por gênero</strong></div>
 
                             <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
                             <div className="row">
@@ -211,7 +213,7 @@ export default function Estatisticas(){
                         </div>
                         
                         <div className="card card-body col-sm-6 ">
-                            <div class="text-center alert alert-info" ><strong>Quantidade de Usuários cadastrados por Idioma</strong></div>
+                            <div class="text-center alert alert-success" ><strong>Quantidade de Usuários cadastrados por Idioma</strong></div>
 
                             <RenderPizzaChart lingua={linguagens}/>
                          
@@ -219,29 +221,27 @@ export default function Estatisticas(){
 
                     </div>
 
-
-                    <hr/>
                     
 
-                    <div className="text-center">
+                    <div className="text-center mt-2">
 
-                            <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <button class="btn btn-leste-outline" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                 Listar por idiomas <i class="fas fa-arrow-down"></i>
                             </button>
 
                             <div class="collapse " id="collapseExample">
                                 <div class="card card-body align-items-center">
 
-                                <form class="form-row">
+                                <form class="form-row container lista-qtd-linguagem-container">
 
-                                    <ul class="list-group ">
-                                    <li class="list-group-item text-center list-group-item-action active">Idioma | quantidade</li>
+                                    <ul class="list-group">
+                                    <li class="list-group-item text-center list-group-item-action leste-bg-escuro text-white">Idioma | quantidade</li>
 
                                     {linguagens.map((info) => (
                                 
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            {info.lingua}
-                                            <span class="badge badge-primary badge-pill">{info.quantidade}</span>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center  lista-qtd-linguagem">
+                                            <a>{info.lingua}</a>
+                                            <a class="badge leste-bg-escuro badge-pill text-white">{info.quantidade}</a>
                                         </li>
                                         
                                     ))}

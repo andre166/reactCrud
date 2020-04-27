@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './addContato.css';
 
 export default function AddContato() {
@@ -10,7 +10,6 @@ export default function AddContato() {
     let [language, setLanguage] = useState("")
     let [avatar, setAvatar] = useState("")
     let [birthday, setBirthday] = useState("")
-
 
     
     function gerarId(){
@@ -41,7 +40,7 @@ export default function AddContato() {
         
         let data = String(birthday).split(' ');
         let days = String(data[0]).split('-');
-        let dataFormatada =  [days[2],"-", days[1],"-", days[0]].join('');
+        let dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
         
         
         birthday = dataFormatada;
@@ -51,23 +50,23 @@ export default function AddContato() {
         contactsArray.push(newContact);
         
         localStorage.setItem("contatosApi", JSON.stringify(contactsArray))
-        
+        localStorage.setItem("MSG", "CadastradoSuccess");
         
     }
   
     
     return(
         
-        <div class="container">
-            <div className="card card-body mt-2">
+        <div class="container container-addContato">
+            <div className="card card-body mt-2 ">
                
                 <div class="jumbotron py-4">
                     <h1 class="text-center contato-h1">Cadastrar Contatos</h1>
                 </div>
 
-                <div className="card card-body">
+                <div className="card card-body form-cadastro">
                     
-                    <form onSubmit={gerarId} action={  `/ListaDeContatos/editsuccess`  }>
+                    <form onSubmit={gerarId} action={  `/ListaDeContatos`  }>
 
 
                         <div class="form-row">
@@ -76,7 +75,7 @@ export default function AddContato() {
                                 <label>Primeiro Nome:</label>
                                 <input type="text" class="form-control" 
                                 value={first_name} 
-                                onChange={(e)=> setFirstName(e.target.value)} placeholder="Digite o nome" required />
+                                onChange={(e)=> setFirstName(e.target.value)} placeholder="Digite o Primeiro Nome" required />
                                 
                             </div>
 
@@ -103,7 +102,7 @@ export default function AddContato() {
 
                                 <input type="text" class="form-control" id="validationServer02" 
                                 value={language} required 
-                                onChange={(e)=> setLanguage(e.target.value)} placeholder="Digite o sobre nome" />
+                                onChange={(e)=> setLanguage(e.target.value)} placeholder="Digite o idioma" />
                             </div>
 
                             <div class="col-md-4 mb-3">
@@ -142,8 +141,8 @@ export default function AddContato() {
                         </div>
 
                         <div className="text-center">
-                            <hr/>
-                            <button class="btn btn-success mt-2" type="submit">Cadastrar</button>
+                            <hr className="leste-bg-escuro"/>
+                            <button class="btn btn-leste mt-2" type="submit">Cadastrar</button>
                         </div>
                     </form>
                 </div>

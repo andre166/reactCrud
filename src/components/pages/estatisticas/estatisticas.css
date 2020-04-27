@@ -1,16 +1,58 @@
-.shadow-custom{
-    box-shadow: 3px 3px 8px #00000038;
-}
-
-.estatisticas-h1{
-    font-weight: 400;
-    letter-spacing: 10px;
-    font-size: 40px;
-    text-shadow: 1px 1px 6px #00000069;
-
-}
-
 .img-custom{
     width: 50px !important;
     height: 50px !important;
+}
+
+#sexoIcon{
+    left: 5px;
+    margin-top: 60px;
+    font-size: 20px;
+}
+
+.fa-venus{
+    margin-right: 20px;
+    color: #ffc0cb;
+}
+.fa-mars{
+    color: #0000ff;
+}
+.fa-venus-mars{
+    margin-left: 20px;
+    color: #808080;
+}
+
+.lista-qtd-linguagem{
+    cursor: pointer;
+}
+
+.lista-qtd-linguagem span{
+    padding: 5px;
+    min-width: 35px;
+    height: 15px;
+}
+
+.lista-qtd-linguagem:hover{
+    background-color: #0058288d;
+}
+
+.lista-qtd-linguagem-container{
+    width: 100% !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.lista-qtd-linguagem-container ul{
+    width: 400px;
+    font-size: 25pt;
+}
+
+.lista-qtd-linguagem-container ul li a{
+    font-size: 12pt;
+}
+
+.lista-qtd-linguagem-container .list-group-item-action{
+    letter-spacing: 2px;
+    font-size: 14pt;
 }

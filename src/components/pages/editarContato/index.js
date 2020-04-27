@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link} from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import './editarContato.css';
 
 export default function EditarContatos() {
@@ -7,7 +7,8 @@ export default function EditarContatos() {
     let idParams = useParams()
 
     const [contatos, setContatos] = useState([])
-    const [posicaoDocontato, setposicaoDocontato] = useState([])
+    const [posicaoDocontato, setposicaoDocontato] = useState([]);
+    const [ListaContatos, setListaContatos] = useState([]);
 
     let [id, setId] = useState("")
     let [first_name, setFirstName] = useState("")
@@ -18,10 +19,13 @@ export default function EditarContatos() {
     let [avatar, setAvatar] = useState("")
     let [birthday, setBirthday] = useState("")
 
+    let ContatoEditado = false;
+    let ContatoExcluido = false;
+
 
     useEffect(() => {
       
-        async function pegarContato(idParams) {
+        function pegarContato(idParams) {
 
             let idConvertido = parseInt(idParams.id);
 
@@ -29,18 +33,19 @@ export default function EditarContatos() {
 
             const response = localStorage.getItem("contatosApi");
             let ListaDeContatos = JSON.parse(response);
+            setListaContatos(ListaDeContatos);
 
-            let posicaoContato = ListaDeContatos.indexOf(ListaDeContatos.find(n => n.id == idConvertido))
+            let posicaoContato = ListaDeContatos.indexOf(ListaDeContatos.find(n => n.id == idConvertido));
 
-            setposicaoDocontato(posicaoContato)
+            setposicaoDocontato(posicaoContato);
 
             let contato = ListaDeContatos[posicaoContato];   
 
-            setContatos(contato)
+            setContatos(contato);
 
             let data = String(contato.birthday).split(' ');
-            let days = String(data[0]).split('-');
-            let dataFormatada =  [days[2],"-", days[1],"-", days[0]].join('');
+            let days = String(data[0]).split('/');
+            let dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
 
             setFirstName(contato.first_name)
             setLastName(contato.last_name)
@@ -53,206 +58,194 @@ export default function EditarContatos() {
         }
         
         pegarContato(idParams);
-
-        window.scrollTo(0, 0)
       
     }, []);
 
     async function editarContato(){
 
-        const response = localStorage.getItem("contatosApi");
-        let ListaDeContatos = JSON.parse(response);
-
         let newContact = [];
-
+        let data = [];
+        let days = [];
         let dataFormatada = [];
+        
+        if(birthday.indexOf("-") > -1){
 
-        let data = String(birthday).split(' ');
-        let days = String(data[0]).split('-');
-        dataFormatada =  [days[2],"-", days[1],"-", days[0]].join('');
+            data = String(birthday).split(' ');
+            days = String(data[0]).split('-');
+            dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
+            
+        }else{
+
+            data = String(birthday).split(' ');
+            days = String(data[0]).split('/');
+            dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
+
+        }
 
         birthday = dataFormatada;
         
         newContact = {id, first_name, last_name, email, gender, language, avatar, birthday};
         
-        ListaDeContatos[posicaoDocontato] =  newContact;
+        ListaContatos[posicaoDocontato] =  newContact;
 
-        localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos));
+        await localStorage.setItem("contatosApi", JSON.stringify(ListaContatos));
 
-       return  <Link to={{pathname:'/ListaDeContatos'}}></Link>;
+        if(ContatoEditado){
+
+            await localStorage.setItem("MSG", "EditadoSuccess");
+        }else{
+            await localStorage.setItem("MSG", "ExcluidoSuccess");
+
+        }
 
     }
 
+    let history = useHistory();
 
     async function deleteContact(id) {
+        
+        let contato = ListaContatos.indexOf(ListaContatos.find(n => n.id == id));
 
-        const response = localStorage.getItem("contatosApi");
-        let ListaDeContatos = JSON.parse(response);
+        ListaContatos.splice(contato, 1);
 
+        await localStorage.setItem("contatosApi", JSON.stringify(ListaContatos));
+        await localStorage.setItem("MSG", "ExcluidoSuccess");
 
-        let contato = ListaDeContatos.indexOf(ListaDeContatos.find(n => n.id == id));
-
-        ListaDeContatos.splice(contato, 1);
-        localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos));
-
-        setContatos(ListaDeContatos);
-
-        return <Link ></Link>
-
+        // setContatos(ListaContatos);
+        return history.push("/ListaDeContatos");
     }
 
+
  return (
+    <div class="container-editarContato">
+        <div className="container ">
+            <div class="card card-body">
 
-    <div className="container my-2">
-       <div class="card card-body">
-            <div class="jumbotron mb-2 contato-h1">
-                <h1 class="text-center ">Editar Contato</h1>
-            </div>
-
-            <div className="row">
-                <div className="col-sm-12">
-                    <div className="alert alert-success text-center" id="alertaEditadoComSucesso" style={{display: 'none'}}>
-                        <h4>Foto editada com sucesso</h4>
-                    </div>
+                <div class="jumbotron py-4  mb-2">
+                    <h1 class="display-4 text-center">Editar Contato</h1>
                 </div>
-            </div>
 
-            <div className="row">
-                <div className="col-md-4">
-                    <div class="card" >
+                <div className="row ">
 
-                        <div className="text-center mt-2">
-                            <img class="card-img-top img-thumbnail rounded-circle" src={contatos.avatar} alt="Card image cap" style={{height: '12rem'}, {maxWidth: '14rem'}}/>
-                        </div>
+                    <div className="col-md-4 ">
+                        <div class="card " >
 
-                        <div className="text-center mb-4">
+                            <div className="text-center mt-2">
+                                <img class="card-img-top img-thumbnail rounded-circle" src={contatos.avatar} alt="Card image cap" style={{height: '12rem'}, {maxWidth: '14rem'}}/>
+                            </div>
 
-                            <button class="btn btn-info btn-sm mt-2 w-50" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Alterar foto
-                            </button>
+                            <div className="text-center px-2 mb-2">
 
-                            <div class="collapse" id="collapseExample">
-                                <div class="card card-body p-0">
+                                <button class="btn btn-info btn-sm my-2 w-50" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    Alterar foto
+                                </button>
 
-                                    <div class="col mb-2">
-                                        <label for="validationServer02">Digite a Url</label>
-                                        <input type="url" class="form-control" id="validationServer02" 
-                                        value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="Digite a url"/>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body p-0">
 
-                                        <div className="col">
-                                            <button type="button" class="close closeIcon" aria-label="Close"  data-toggle="collapse"  
-                                                href="#multiCollapseExample1" role="button" onClick={()=> setAvatar('')}>
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                        <div class="col mb-4">
+                                            <label for="validationServer02">Digite a Url</label>
+                                            <input type="url" class="form-control input-url" id="validationServer02" 
+                                            value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="Digite a url"/>
+
+                                            <div className="col">
+                                                <button type="button" class="close closeIcon" aria-label="Close"  data-toggle="collapse"  
+                                                    href="#multiCollapseExample1" role="button" onClick={()=> setAvatar('')}>
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
                                         </div>
+                                
                                     </div>
-                               
                                 </div>
+
                             </div>
 
                         </div>
-
-<<<<<<< Updated upstream
-                        {/* <div class="card-body">
-=======
-                        <div class="card-body pb-2">
->>>>>>> Stashed changes
-                            <div className="row">
-                                <div className="col">
-
-                                    <p class="card-text"><strong>Nome: </strong>{first_name} {last_name}</p>                               
-                                    <p class="card-text"><strong>Email: </strong>{email}</p>
-                                    <p class="card-text"><strong>Gênero: </strong>{gender == 'M' ? contatos.gender = 'Masculino' :  contatos.gender = 'Feminino'}</p>
-                                    <p class="card-text"><strong>Linguagem: </strong>{language}</p>
-                                    <p class="card-text"><strong>Data de nascimento: </strong>{contatos.birthday}</p>
-
-                                </div>
-                            </div>
-                        </div> */}
-
                     </div>
-                </div>
-            
+                
 
-                <div className="col-md-8">
-                    <div className="card card-body  py-2">
+                    <div className="col-md-8">
+                        <div className="card card-body  py-2">
 
-                        <form onSubmit={editarContato} action={  `/ListaDeContatos/editsuccess`  }>
-                    
-                            <div className="row py-0">
-
-                                <div class="form-group col-md-6 py-0 my-2">
-                                    <label for="exampleInputEmail1">Primeiro Nome:</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" 
-                                    placeholder="Primeiro nome"  value={first_name} onChange={(e)=> setFirstName(e.target.value)}/>
-                                </div>
-
-                                <div class="form-group col-md-6 py-0 my-2">
-                                    <label for="exampleInputEmail1">Ultimo Nome:</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"  
-                                    placeholder="Ultimo nome"  value={last_name} onChange={(e)=> setLastName(e.target.value)}/>
-                                </div>
-
-                            </div>
+                            <form onSubmit={editarContato} action={  `/ListaDeContatos`  }>
                         
-                            <div className="row">
-                                
-                                <div class="form-group  col-sm-6 py-0 my-2">
-                                    <label for="exampleInputEmail1">Email:</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1"  
-                                    placeholder="Email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                                <div className="row py-0">
+
+                                    <div class="form-group col-md-6 py-0 my-2">
+                                        <label for="exampleInputEmail1">Primeiro Nome:</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" 
+                                        placeholder="Primeiro nome"  value={first_name} onChange={(e)=> setFirstName(e.target.value)}/>
+                                    </div>
+
+                                    <div class="form-group col-md-6 py-0 my-2">
+                                        <label for="exampleInputEmail1">Ultimo Nome:</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"  
+                                        placeholder="Ultimo nome"  value={last_name} onChange={(e)=> setLastName(e.target.value)}/>
+                                    </div>
+
                                 </div>
-
-                                <div class="col-sm-4 mb-3 ml-4">
-
-                                    <div class="form-check form-check-inline mt-4">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M"   onChange={e => setGender(e.target.value) } />
-                                        <label class="form-check-label" for="inlineRadio1">Masculino</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F"   onChange={e => setGender(e.target.value)} />
-                                        <label class="form-check-label" for="inlineRadio2">Feminino</label>
-                                    </div>
+                            
+                                <div className="row">
                                     
-                                </div>
-                            
-                            </div> 
+                                    <div class="form-group  col-sm-6 py-0 my-2">
+                                        <label for="exampleInputEmail1">Email:</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"  
+                                        placeholder="Email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                                    </div>
 
-                            <div className="row">
+                                    <div class="col-sm-4 mb-3 ml-4">
+
+                                        <div class="form-check form-check-inline mt-4">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M"   onChange={e => setGender(e.target.value) } />
+                                            <label class="form-check-label" for="inlineRadio1">Masculino</label>
+                                        </div>
+
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F"   onChange={e => setGender(e.target.value)} />
+                                            <label class="form-check-label" for="inlineRadio2">Feminino</label>
+                                        </div>
+                                        
+                                    </div>
                                 
-                                <div class="form-group  col-md-6">
-                                    <label for="exampleInputEmail1">Linguagem:</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" 
-                                    placeholder="Enter email" value={language} 
-                                    onChange={(e)=> setLanguage(e.target.value)}/>
+                                </div> 
+
+                                <div className="row">
+                                    
+                                    <div class="form-group  col-md-6">
+                                        <label for="exampleInputEmail1">Linguagem:</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" 
+                                        placeholder="Enter email" value={language} 
+                                        onChange={(e)=> setLanguage(e.target.value)}/>
+                                    </div>
+                                
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleInputPassword1">Data de nascimento:</label>
+                                        <input type="date" class="form-control" id="exampleInputPassword1" 
+                                        value={birthday} onChange={(e)=> setBirthday(e.target.value)}/>
+                                    </div>
+                                </div> 
+
+                                <hr/>
+
+                                <div className="row">
+                                    <div className="col text-center">
+                                        <button type="submit" class="btn btn-leste" onClick={()=>{ ContatoEditado = true}} >Confirmar</button>
+                                        <button type="button" class="btn btn-danger ml-2" onClick={()=>{deleteContact(id)}}>Excluir</button>
+                                    </div>
                                 </div>
                             
-                                <div class="form-group col-md-6">
-                                    <label for="exampleInputPassword1">Data de nascimento:</label>
-                                    <input type="date" class="form-control" id="exampleInputPassword1" 
-                                    value={birthday} onChange={(e)=> setBirthday(e.target.value)}/>
-                                </div>
-                            </div> 
+                            </form>
 
-                            <hr/>
-
-                            <div className="row">
-                                <div className="col text-center">
-                                    <button type="submit" class="btn btn-success">Confirmar</button>
-                                    <button type="button" class="btn btn-danger ml-2" onClick={()=>{deleteContact(id)}}>Excluir</button>
-
-                                </div>
-                            </div>
-                        
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </div>   
             </div>   
-        </div>   
+        </div>
     </div>
  )
 }
+
 
 
 

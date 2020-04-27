@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import './footer.css';
 
 
@@ -12,10 +11,10 @@ class Footer extends Component{
               
                     <div class="row w-100">
 
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
 
             
-                            <div class="middle mt-4">
+                            <div class="middle">
                                 
                                 <a class="btn-footer1" href="https://www.facebook.com/andre.mesquitasd" target="_blank">
                                     <i class="fab fa-facebook-f"></i>
@@ -38,11 +37,16 @@ class Footer extends Component{
 
                             </div>
                         </div>
+
+
+                        <div class="col-sm-6">
+                            <div class="text-center mt-2">
+                                <b>Lest Contact</b> <span class="text-footer">&copy; Todos os direitos reservados</span>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="text-center mt-2">
-                        <b>André Mesquita</b> <span class="text-footer">&copy; Todos os direitos reservados</span>
-                    </div>
             
             </footer>
 

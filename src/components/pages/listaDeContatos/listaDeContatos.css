@@ -1,73 +1,57 @@
-.shadow-custom{
-    box-shadow: 3px 3px 8px #00000038;
+.container-listaDeContatos{
+    min-height: 90vh;
 }
-/* style={{height: '8rem'}, {maxWidth: '14rem'}} */
 #img-card{
-    /* border-top-left-radius: 20%;
-    border-bottom-right-radius: 20%; */
-    margin-top: -5px;
     margin-bottom: 5px;
-    width: 9rem;
+    max-width: 9rem;
     height: 8rem;
     box-shadow: 2px 1px 2px #b8b8b8;
 }
-
-#lista-body{
-    background: #e9ecef;
+.filtro-container{
+    background-color: #015d2a38;
+    border: 1px solid #015d2a;
 
 }
+ 
+#lista-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    /* border: 1px solid #015d2a; */
+}
+
+
 
 #cardUsuario{
     background-color: #fff;
     margin: 20px 10px 40px 10px;
-    height: auto;
-    border-top-right-radius: 2%;
-    border-bottom-right-radius: 1%;
-    border-top-left-radius: 2%;
-    border-bottom-left-radius: 1%;
+    border-radius: 5px;
     padding: 0px;
-    border: 1px solid #b8b8b8;
-    box-shadow: 1px 1px 2px #000000a9;
-    /* border-top: 1px solid #0177ad;  */
-    /* background-image: linear-gradient(to bottom, #006695 25%, #00405d 27%); */
+    box-shadow: 1px 1px 1px #b1b1b1,
+                1px 1px 4px #b1b1b1,
+                -1px -1px 1px #b1b1b1;
+                max-width: 230px;
+    
+}
+#card-info-usuario{
+    margin-top: 10px; 
 }
 
-
-#numeroDoCard{
-    vertical-align: middle;
-    width: auto;
-    height: auto;
-    /* position: absolute; */
-    font-weight: bold;
-    /* margin-top: 120px;
-    margin-left: 0px; */
-}
-
-#numeroDoCard2{
-    vertical-align: middle;
-    width: auto;
-    height: auto;
-    position: absolute;
-    font-weight: bold;
+#btn-contato-container{
     margin-top: -25px;
     margin-left: 110px;
 }
 
-#filtro tr td{
-    vertical-align: middle;
+.badge-pill:hover{
+    color: #fff;
 }
 
-.contato-h1{
-    color: #007bff;
-    font-weight: 400;
-    letter-spacing: 10px;
-    font-size: 40px;
-
-}
-
-#cardUsuario p, #cardUsuario hr{
+#card-info-usuario p{
     color: #000000;
-    /* color: #ffffff; */
     margin: 2px;
     padding: 0px;
     font-size: 10pt;
@@ -75,6 +59,11 @@
 
 
 @media (max-width: 575.98px) { 
+    #lista-body{
+        display: flex;
+             flex-direction: column;
+           
+    }
 
     .contato-h1{
         font-weight: 200;
@@ -83,30 +72,23 @@
     
     }
 
-    #cardUsuario p{
-        
-        font-size: 12px;
-    }
-
     #cardUsuario{
         margin-top: 10px;
         margin-bottom: 10px;
-        margin-left: 11%;
-        width: 14rem;
+        max-width: 14rem;
     }
 
     #img-card{
-        width: 8rem;
+        max-width: 8rem;
         height: 8rem;
     }
 
     #numeroDoCard2{
        
         margin-top: -25px;
-    margin-left: 110px;
+        margin-left: 110px;
     }
 
- 
 
 }
 
@@ -118,15 +100,3 @@
     }
 
  }
-
-
-@media (max-width: 990px){
-
-    .tabela-custom{
-        height: 500px !important;
-       
-    }
-
-   
-	
-}

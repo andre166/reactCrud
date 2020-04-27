@@ -1,44 +1,18 @@
 #logo{
-    background-color: #007bff;
-    width: 90px;
-    height: 90px;
-    margin-top: -4px;
-    margin-right: 5px;
-    border-radius: 100%;
-   
+    background-color: #fff;
+    width: 75px;
+    height: 75px;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 13px;
 }
 
-#logo:hover{
-    background-color: #fff !important;
-   
-}
-
-.primeira-logo-text{
-    margin-left: 10px;
-    padding: 0px;
-    font-weight: 1000;
-    color: #007bff;
-    font-size: 42px;
-    letter-spacing: 2px;
-
-}
-
-.segunda-logo-text{
-    margin: 0px;
-    padding: 0px;
-    font-weight: 1000;
-    color: #007bff;
-    font-size: 42px;
-    letter-spacing: 2px;
-
-}
-
-.logo-text{
-
-    font-weight: 1000;
-    color: #fff;
-    font-size: 20px;
-    letter-spacing: 2px;
+#logo-container{
+    background-color: #fff;
+    border-radius: 50px;
+    width: 100px;
+    height: 100px;
+    align-items: center;
 }
 
 .fa-bars{
@@ -47,114 +21,107 @@
 }
 
 .navbar-custom{
-    background-color: #08567a;
-    box-shadow: 1px 1px 1px #0808083a;
-    padding-top: 20px; 
-    padding-bottom: 20px; 
+    background-color: #00AD4F;
+    padding: 5px 25px!important; 
+}
+ul li{
+    text-decoration: none;
+    position: relative;
+    color: #313131;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: sans-serif;
+    display: block;
+    overflow: hidden;
+    transition: 0.7s all;
+    /* padding: 14px 30px; */
+    text-transform: uppercase;
 }
 
-ul li a{
+#menu li:hover:before{
+    right: 0;
+}
+
+#menu li a{
     font-weight: 700;
     color: #fff;
     font-size: 20px;
     letter-spacing: 2px;
 }
 
-ul li a:hover{
-   color: #007bff !important;
-   
+
+#menu li a:hover{
+   color: #fff !important; 
 }
+
+
+/* ===================== */
+
 
 @media (max-width: 575.98px) {
 
+    #menu li:before{
+        content: '';
+        width: 0px;
+        position: absolute;
+        border-bottom: none;
+        bottom: 0;
+        right: 0px;
+        transition: 0.5s all;
+    }
+
     .fa-bars{
-        /* padding: 10px; */
         font-size: 25pt;
         margin-top: 10px; 
         margin-bottom: 10px; 
     }
 
-    .navbar-custom{
-        padding-top: 0px; 
-        padding-bottom: 0px;  
+    #logo{
+        background-color: #fff;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        padding: 2px;
+        margin: 13px;
+    }
+    
+    #logo-container{
+        background-color: #fff;
+        border-radius: 50px;
+        width: 65px;
+        height: 65px;
+        align-items: center;
     }
 
+    ul li a{
+        font-size: 10pt !important;
+    }
 
  }
 
  @media (max-width: 767.98px) { 
 
-    .navbar-custom{
    
-        padding-top: 20px; 
-        padding-bottom: 0px; 
-    }
 
-    /* ================================================== */
-    
-    .primeira-logo-text{
-        font-weight: 800;
-        color: #007bff;
-        font-size: 22px;
-    
-    }
-    
-    .segunda-logo-text{
-        font-weight: 800;
-        color: #007bff;
-        font-size: 22px;
-    
-    }
-    
-    .logo-text{
-        font-weight: 700;
-        color: #fff;
-        font-size: 8px;
-        letter-spacing: 1px;
-    }
-  }
+
+}
 
 
 
-@media screen and (max-width: 992px) {
-
-
-    .navbar-custom{
-        padding-top: 0px; 
-        padding-bottom: 0px; 
-    }
-
-    /* ================================================== */
-    #logo{
-     
-        width: 50px;
-        height: 50px;
-        margin-top: -2px;
-        border-radius: 100%;
-       
-    }
-    
-    .primeira-logo-text{
-        font-weight: 800;
-        color: #007bff;
-        font-size: 22px;
-    
-    }
-    
-    .segunda-logo-text{
-        font-weight: 800;
-        color: #007bff;
-        font-size: 22px;
-    
-    }
-    
-    .logo-text{
-        font-weight: 700;
-        color: #fff;
-        font-size: 8px;
-        letter-spacing: 1px;
-    }
-
-  
+@media screen and (min-width: 992px) {
+    #menu li:before{
+        content: '';
+        width: 100%;
+        position: absolute;
+        border-bottom: 3px solid #015d2a;
+        bottom: 0;
+        right: 350px;
+        transition: 0.5s all;
+    } 
 	
 }
+
+
+
+  
+  
