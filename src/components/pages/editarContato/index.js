@@ -91,6 +91,7 @@ export default function EditarContatos() {
         if(ContatoEditado){
 
             await localStorage.setItem("MSG", "EditadoSuccess");
+
         }else{
             await localStorage.setItem("MSG", "ExcluidoSuccess");
 
@@ -100,12 +101,14 @@ export default function EditarContatos() {
 
     async function deleteContact(id) {
         
+        await localStorage.setItem("MSG", "ExcluidoSuccess");
+        
         let contato = ListaContatos.indexOf(ListaContatos.find(n => n.id == id));
 
         ListaContatos.splice(contato, 1);
 
+
         await localStorage.setItem("contatosApi", JSON.stringify(ListaContatos));
-        await localStorage.setItem("MSG", "ExcluidoSuccess");
 
         return history.push("/ListaDeContatos");
     }

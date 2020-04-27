@@ -1,109 +1,108 @@
-import React, { useState, useEffect }from 'react';
+// import React, { useState, useEffect }from 'react';
 
-export default function DivAlert(){
+// export default function DivAlert(){
 
-  const [alertaMsg, setAlertaMsg] = useState([]);
+//   const [alertaMsg, setAlertaMsg] = useState([]);
 
-  let alertaEditadoSuccess = false;
-  let alertaCadastradoSuccess = false;
-  let alertaExcluidoSuccess = false;
+//   let alertaEditadoSuccess = false;
+//   let alertaCadastradoSuccess = false;
+//   let alertaExcluidoSuccess = false;
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    (async function verificarAlerta() {
+//     (async function verificarAlerta() {
 
-      const  MenssagemEditadoouCadastrado = await localStorage.getItem("MSG");
+//       const  MenssagemEditadoouCadastrado = await localStorage.getItem("MSG");
 
-      if(MenssagemEditadoouCadastrado == "EditadoSuccess"){
+//       if(MenssagemEditadoouCadastrado == "EditadoSuccess"){
 
-        alertaEditadoSuccess = true;
-        gerarAlerta();
+//         alertaEditadoSuccess = true;
+//         gerarAlerta();
 
-      }else if(MenssagemEditadoouCadastrado == "CadastradoSuccess"){
+//       }else if(MenssagemEditadoouCadastrado == "CadastradoSuccess"){
 
-        alertaCadastradoSuccess = true;
-        gerarAlerta();
+//         alertaCadastradoSuccess = true;
+//         gerarAlerta();
 
-      }else if(MenssagemEditadoouCadastrado == "ExcluidoSuccess"){
+//       }else if(MenssagemEditadoouCadastrado == "ExcluidoSuccess"){
 
-        alertaExcluidoSuccess = true;
-        gerarAlerta();
-      }
+//         alertaExcluidoSuccess = true;
+//         gerarAlerta();
+//       }
 
-    })();
+//     })();
 
-    }, [localStorage.getItem("MSG")]);
+//     }, [localStorage.getItem("MSG")]);
 
 
-  function gerarAlerta() {
+//   function gerarAlerta() {
 
-    if(alertaEditadoSuccess){
+//     if(alertaEditadoSuccess){
 
-    setAlertaMsg('Editado');
+//     setAlertaMsg('Editado');
     
-    let x = document.querySelector('#alertaDeSucesso');
-    x.classList.add('alert-info');
-    showDivAlerta(x);
-    alertaEditadoSuccess = false;
+//     let x = document.querySelector('#alertaDeSucesso');
+//     x.classList.add('alert-info');
 
-    }else if(alertaCadastradoSuccess){
+//     showDivAlerta(x);
+//     alertaEditadoSuccess = false;
 
-      setAlertaMsg('Cadastrado');
+//     }else if(alertaCadastradoSuccess){
 
-      let x = document.querySelector('#alertaDeSucesso');
-      x.classList.add('alert-success');
+//       setAlertaMsg('Cadastrado');
 
-      showDivAlerta(x);
-      alertaCadastradoSuccess = false;
+//       let x = document.querySelector('#alertaDeSucesso');
+//       x.classList.add('alert-success');
 
-    }else if(alertaExcluidoSuccess){
+//       showDivAlerta(x);
+//       alertaCadastradoSuccess = false;
 
-      setAlertaMsg('Excluido');
+//     }else if(alertaExcluidoSuccess){
 
-      let x = document.querySelector('#alertaDeSucesso');
-      x.classList.add('alert-danger');
+//       setAlertaMsg('Excluido');
 
-      showDivAlerta(x);
+//       let x = document.querySelector('#alertaDeSucesso');
+//       x.classList.add('alert-danger');
 
-      alertaExcluidoSuccess = false;
+//       showDivAlerta(x);
+
+//       alertaExcluidoSuccess = false;
   
-    }
-  }
+//     }
+//   }
     
-  function showDivAlerta(x){
+//   function showDivAlerta(x){
 
-    x.style.opacity = 1;
-    x.style.display = "block"; 
+//     x.style.opacity = 1;
+//     x.style.display = "block"; 
 
-    setInterval(function () {
+//     setInterval(function () {
 
-      let fadeEffect2 = setInterval(function () {
-        if (!x.style.opacity) {
-            x.style.opacity = 1;
-        }
-        if (x.style.opacity > 0) {
-          x.style.opacity -= 0.1;
-        } else {
-            clearInterval(fadeEffect2);
-            x.style.display = "none";
-          }
+//       let fadeEffect2 = setInterval(function () {
+//         if (!x.style.opacity) {
+//             x.style.opacity = 1;
+//         }
+//         if (x.style.opacity > 0) {
+//           x.style.opacity -= 0.1;
+//         } else {
+//             clearInterval(fadeEffect2);
+//             x.style.display = "none";
+//           }
 
-      }, 200);
+//       }, 200);
 
-    }, 2000);
+//     }, 2000);
 
-     localStorage.removeItem("MSG");
-  }
+//      localStorage.removeItem("MSG");
+//   }
 
-  return(
-      <div className="row">
-        <div className="col-sm-12">
-          <div className="alert text-center" id="alertaDeSucesso" style={{display: 'none'}}>
-            <h4>Usuário <strong>{alertaMsg}</strong> com sucesso!</h4>
-          </div>
-        </div>
-      </div>
+//   return(
+//           <div className="alert text-center" id="alertaDeSucesso" style={{display: 'none'}}>
+    
+//               <h4>Usuário <strong>{alertaMsg}</strong> com sucesso!</h4>
+         
+//           </div>
 
-  );
+//   );
 
-}
+// }

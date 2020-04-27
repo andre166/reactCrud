@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './listaDeContatos.css';
-import DivAlert from './components/divAlert';
+// import DivAlert from './components/divAlert';
 import FiltrosDiv from './components/filtros';
 import AlertaZeroContato from './components/alertZeroContato';
 import MostrarContatos from './components/mostrarContatos';
+import SnackBar from "./components/snackBarAlert";
 
 export default function ListaDeContatos() {
 
@@ -21,8 +22,9 @@ export default function ListaDeContatos() {
   
   }, [localStorage.getItem("contatosApi")]);
 
-
   return (
+<div>
+
 
     <div className="container-fluid container-listaDeContatos">
       <div className="card card-body my-2">
@@ -36,19 +38,20 @@ export default function ListaDeContatos() {
           <div class="row">
             <div class="col-sm-12">
 
-              <DivAlert></DivAlert>
+              {/* <DivAlert></DivAlert> */}
 
               <MostrarContatos contatos={contatos}></MostrarContatos>
 
               <AlertaZeroContato contatos={contatos}></AlertaZeroContato>
-        
             </div>
         </div>
 
       </div>
     </div>
+    <div>
+      <SnackBar/>
+
+    </div>
+    </div>
   );
 }
-
-
-

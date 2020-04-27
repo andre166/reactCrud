@@ -7,6 +7,21 @@
     height: 8rem;
     box-shadow: 2px 1px 2px #b8b8b8;
 }
+#snackBar{
+    /* max-width: 400px; */
+    display: flex;
+    align-items: center;
+}
+
+#alertaDeSucesso{
+    position: relative;               
+    /* top: 50%;                          */
+    /* transform: translate(0, -50%);   */
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
 .filtro-container{
     background-color: #015d2a38;
     border: 1px solid #015d2a;
@@ -60,7 +75,7 @@
 @media (max-width: 575.98px) { 
     #lista-body{
         display: flex;
-             flex-direction: column;
+        flex-direction: column;
            
     }
 

@@ -9,6 +9,7 @@ import Estatisticas from './components/pages/estatisticas';
 import Erro from './components/pages/erro';
 import Header from './components/header';
 import Footer from './components/footer';
+import SnackBar from './components/snackBar';
 
 
 const Routes = () =>{
@@ -27,6 +28,7 @@ const Routes = () =>{
                 
                 <Route path="*" component={Erro}/>
             </Switch>
+        {/* <SnackBar contatos={localStorage.getItem("MSG")}/> */}
         <Footer/>
     </BrowserRouter>
 

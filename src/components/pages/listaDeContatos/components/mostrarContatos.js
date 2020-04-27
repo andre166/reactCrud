@@ -6,6 +6,8 @@ export default function MostrarContatos({ contatos }){
 
     async function deleteContact(id) {
 
+        await localStorage.setItem("MSG", "ExcluidoSuccess");
+        
         const response = await localStorage.getItem("contatosApi");
         let ListaDeContatos = JSON.parse(response);
     
@@ -15,7 +17,6 @@ export default function MostrarContatos({ contatos }){
     
         await localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos));
 
-        await localStorage.setItem("MSG", "ExcluidoSuccess");
     
     }
     
