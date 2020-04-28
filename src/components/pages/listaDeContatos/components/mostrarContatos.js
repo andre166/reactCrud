@@ -1,8 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import { Link } from 'react-router-dom';
 
-
 export default function MostrarContatos({ contatos }){
+
+    function mascararIdade(data){
+
+        let data2 = String(data).split(' ');
+        let days = String(data2[0]).split('/');
+        let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
+    
+        let calendario = new Date;
+
+        let anoAtual = calendario.getFullYear();
+        let mesAtual = calendario.getMonth() + 1;
+        let diaAtual = calendario.getDate();
+
+        let anoAniversario = dataFormatada[0];
+        let mesAniversario = dataFormatada[2];
+        let diaAniversario = dataFormatada[4];
+      
+        let quantos_anos = anoAtual - anoAniversario;
+
+        if (mesAtual < mesAniversario || mesAtual == mesAniversario && diaAtual < diaAniversario) {
+            quantos_anos--;
+        }
+
+        return quantos_anos;
+    }
 
     async function deleteContact(id) {
 
@@ -22,9 +46,10 @@ export default function MostrarContatos({ contatos }){
     
     return(
         <div class="card-group d-flex" id="lista-body">
-            {contatos.map((info, e) => (
-                      
-                <div class="pb-0" key={info.id} id="cardUsuario" >
+
+            {contatos.map((info) => ( 
+
+                <div class='pb-0' key={info.id} id="cardUsuario" >
     
                     <div class="card-body p-2">
                         <div class="d-flex justify-content-center">
@@ -56,12 +81,15 @@ export default function MostrarContatos({ contatos }){
                         </div>
         
                         <div className="card-body pb-2 p-0" id="card-info-usuario">
-                
+
+                            <p class="card-title"><strong>Id: </strong>{info.id}</p>
                             <p class="card-title"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
-                            <p class="card-text"> <strong>Email: </strong>{info.email}</p>
-                            <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'} </p>
-                            <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
+                            <p class="card-text"><strong>Idade: </strong>{mascararIdade(info.birthday)}</p>
                             <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
+                            <p class="card-text"> <strong>Email: </strong>{info.email}</p>
+                            <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'}</p>
+                            
+                            <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
                             
                         </div>
 

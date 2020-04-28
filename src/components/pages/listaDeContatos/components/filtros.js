@@ -5,8 +5,6 @@ export default function FiltrosDiv( { setContatos }) {
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
 
-  let [idiomaSubMenssagem, setIdiomaSubMenssagem] = useState(false);
-  let [idadeSubMenssagem, setIdadeSubMenssagem] = useState(false);
 
   useEffect(() => {
 
@@ -20,7 +18,7 @@ export default function FiltrosDiv( { setContatos }) {
 
   function fecharFiltro(e){
     let x = document.querySelector('#btn-filtro').classList.add('collapsed');
-    zerarFiltro();
+    zerarFiltro("geral");
   }
 
   function formatData(data, obj, e, idadeOuMes){
@@ -30,12 +28,10 @@ export default function FiltrosDiv( { setContatos }) {
     let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
     let dataFinal = dataFormatada[2]
 
-    console.log("data2", data2)
-    console.log("days", days)
-    console.log("dataFormatada", dataFormatada)
-    
     if(idadeOuMes == 'mes'){
-    
+
+      zerarFiltro("mes");
+
       if(dataFinal == e){
         return obj;
       }else{
@@ -43,6 +39,8 @@ export default function FiltrosDiv( { setContatos }) {
       }
 
     }else if(idadeOuMes == 'idade'){
+
+      zerarFiltro("idade");
 
       let calendario = new Date;
 
@@ -108,8 +106,8 @@ export default function FiltrosDiv( { setContatos }) {
 
   async function filtrarLinguagem(e){
 
-    if(e.length === 0){
-      setIdiomaSubMenssagem(true);
+    if(e.length === 0 ){
+      return;
     }
 
     let letraFormatada = e.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
@@ -121,39 +119,54 @@ export default function FiltrosDiv( { setContatos }) {
     let linguagemFiltrada = ListaDeContatos.filter(n => n.language == letraFormatada)
 
     setContatos(linguagemFiltrada);
+    zerarFiltro("linguagem");
 
   }
-
-  async function filtrarFem(){
+  async function filtrarGenero(genero){
 
     const response = await localStorage.getItem("contatosApi");
     let ListaDeContatos = JSON.parse(response);
 
-    let newLista = ListaDeContatos.filter(person => person.gender == 'F');
-    setContatos(newLista);
-  
-  }
-        
-  async function filtrarMasc(){
+    if(genero === "F"){
+      const newLista = ListaDeContatos.filter(person => person.gender == 'F');
+      setContatos(newLista);
 
-    const response = await localStorage.getItem("contatosApi");
-    let ListaDeContatos = JSON.parse(response);
+    }else if(genero === "M"){
+      const newLista = ListaDeContatos.filter(person => person.gender == 'M');
+      setContatos(newLista);
+    }
 
-    const newLista = ListaDeContatos.filter(person => person.gender == 'M');
-    setContatos(newLista);
-
+    zerarFiltro("genero"); 
   }
         
-  async function zerarFiltro(){
+  async function zerarFiltro(Filtro){
 
     const response = await localStorage.getItem("contatosApi");
     let ListaDeContatos = JSON.parse(response);
 
-    document.querySelector('#inputGroupSelect01').value = 0;
-    setContatos(ListaDeContatos);
-    setFiltroLinguagem('');
-    setFiltroIdade('');
+    if(Filtro === "linguagem"){
+      setFiltroIdade('');
+      document.querySelector('#inputGroupSelect01').value = 0;
 
+    }else if(Filtro === "genero"){
+      document.querySelector('#inputGroupSelect01').value = 0;
+      setFiltroLinguagem('');
+      setFiltroIdade('');
+
+    }else if(Filtro === "idade"){
+      document.querySelector('#inputGroupSelect01').value = 0;
+      setFiltroLinguagem('');
+
+    }else if(Filtro === "mes"){
+      setFiltroIdade('');
+      setFiltroLinguagem('');
+
+    }else if(Filtro === "geral"){
+      document.querySelector('#inputGroupSelect01').value = 0;
+      setContatos(ListaDeContatos);
+      setFiltroLinguagem('');
+      setFiltroIdade('');
+    }
   }
         
   return(
@@ -185,8 +198,8 @@ export default function FiltrosDiv( { setContatos }) {
                       </button>
 
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={filtrarFem}>Feminino</a>
-                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={filtrarMasc}>Masculino</a>
+                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={(e)=> filtrarGenero("F")}>Feminino</a>
+                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={(e)=> filtrarGenero("M")}>Masculino</a>
                       </div>
 
                     </div>
@@ -248,11 +261,11 @@ export default function FiltrosDiv( { setContatos }) {
                     <button type="button" class="close" aria-label="Close"  data-toggle="collapse"  href="#multiCollapseExample1" role="button" style={{color: 'red'}}>
                       <span aria-hidden="true">&times;</span>
                     </button>
-
                   </div>
 
                 </div>
               </form>
+              
             </div>
           </div>
       </div>
