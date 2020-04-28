@@ -13,13 +13,13 @@ export default function ListaDeContatos() {
 
     (async function pegarContatos() {
 
-      const response = await localStorage.getItem("contatosApi");
+      const response = await localStorage.getItem("ListaDeContatos");
       let ListaDeContatos = JSON.parse(response);
       setContatos(ListaDeContatos);
 
     })();
   
-  }, [localStorage.getItem("contatosApi")]);
+  }, [localStorage.getItem("ListaDeContatos")]);
 
   return (
     <div>

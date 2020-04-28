@@ -5,11 +5,9 @@ import './estilo.css';
 export default function Home(){
 
     useEffect(() => {
-
-        if (localStorage.length === 0){
         
-            (async function loadApi(){
-    
+            async function loadApi2(){
+            
                 const response = await api.get();
                 let contatos = response.data;
     
@@ -29,13 +27,20 @@ export default function Home(){
                     return dataFormatada;
                 }
     
-                await localStorage.setItem("contatosApi", JSON.stringify(contatos));
+                await localStorage.setItem("ListaDeContatos", JSON.stringify(contatos));
 
-            })();
+            };
+
+            if(!localStorage.getItem("ListaDeContatos")){
+                loadApi2();
+                
+            }else if(localStorage.getItem("ListaDeContatos").length == 2){
+                localStorage.removeItem("ListaDeContatos");
+                loadApi2();
+            }
               
-        }
 
-    }, [])
+    }, [localStorage.getItem("ListaDeContatos")]);
 
         
     return(
@@ -53,7 +58,7 @@ export default function Home(){
                     <div class="col-md-6">
 
                         <ul class="list-group">
-                            <li class="list-group-item titulo"><h4>Descrição da API</h4></li>
+                            <li class="list-group-item titulo"><h4>Descrição</h4></li>
                             <li class="list-group-item">1 - Operações: Cadastra, Edita, exclui, lista e gera relatório com gráfico.</li>
                             <li class="list-group-item">2 - Cadastro: Primeiro nome, Ultimo nome, Email, Gênero, Linguagem, Data de nascimento</li>
                             <li class="list-group-item">3 - Filtros de pesquisa: por Gênero(F/M), por Idade, por Mês(todos de um determinado mês), por Idioma(todos de um determinado Idioma)</li>

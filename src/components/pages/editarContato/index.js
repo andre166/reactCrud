@@ -31,7 +31,7 @@ export default function EditarContatos() {
 
             setId(idConvertido)
 
-            const response = await localStorage.getItem("contatosApi");
+            const response = await localStorage.getItem("ListaDeContatos");
             let ListaDeContatos = JSON.parse(response);
             setListaContatos(ListaDeContatos);
 
@@ -90,7 +90,7 @@ export default function EditarContatos() {
         
         ListaContatos[posicaoDocontato] =  newContact;
 
-        await localStorage.setItem("contatosApi", JSON.stringify(ListaContatos));
+        await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaContatos));
 
         if(ContatoEditado){
 
@@ -112,7 +112,7 @@ export default function EditarContatos() {
         ListaContatos.splice(contato, 1);
 
 
-        await localStorage.setItem("contatosApi", JSON.stringify(ListaContatos));
+        await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaContatos));
 
         return history.push("/ListaDeContatos");
     }

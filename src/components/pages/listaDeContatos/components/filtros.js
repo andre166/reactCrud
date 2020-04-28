@@ -81,7 +81,7 @@ export default function FiltrosDiv( { setContatos }) {
       let ArrayM = [];
       let ArrayX = [];
       
-      const response = await localStorage.getItem("contatosApi");
+      const response = await localStorage.getItem("ListaDeContatos");
       let ListaDeContatos = JSON.parse(response);
 
       let mesFiltrado = ListaDeContatos.filter(n => n.birthday)
@@ -113,7 +113,7 @@ export default function FiltrosDiv( { setContatos }) {
     let letraFormatada = e.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
     { return a.toUpperCase(); });
 
-    const response = localStorage.getItem("contatosApi");
+    const response = localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = await JSON.parse(response);
 
     let linguagemFiltrada = ListaDeContatos.filter(n => n.language == letraFormatada)
@@ -124,7 +124,7 @@ export default function FiltrosDiv( { setContatos }) {
   }
   async function filtrarGenero(genero){
 
-    const response = await localStorage.getItem("contatosApi");
+    const response = await localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = JSON.parse(response);
 
     if(genero === "F"){
@@ -141,7 +141,7 @@ export default function FiltrosDiv( { setContatos }) {
         
   async function zerarFiltro(Filtro){
 
-    const response = await localStorage.getItem("contatosApi");
+    const response = await localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = JSON.parse(response);
 
     if(Filtro === "linguagem"){

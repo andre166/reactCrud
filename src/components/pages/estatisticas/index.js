@@ -91,7 +91,7 @@ export default function Estatisticas(){
             
             let arrayTemp = [];
             
-            const response = await localStorage.getItem("contatosApi");
+            const response = await localStorage.getItem("ListaDeContatos");
             let ListaDeContatos = JSON.parse(response);
             
             ListaDeContatos.map(contatos => {

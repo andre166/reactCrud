@@ -36,14 +36,14 @@ export default function MostrarContatos({ contatos }){
 
         await localStorage.setItem("MSG", "ExcluidoSuccess");
         
-        const response = await localStorage.getItem("contatosApi");
+        const response = await localStorage.getItem("ListaDeContatos");
         let ListaDeContatos = JSON.parse(response);
     
         let contato = ListaDeContatos.indexOf(ListaDeContatos.find(n => n.id == id));
     
         ListaDeContatos.splice(contato, 1)
     
-        await localStorage.setItem("contatosApi", JSON.stringify(ListaDeContatos));
+        await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaDeContatos));
 
     
     }

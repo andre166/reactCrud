@@ -11,11 +11,11 @@ export default function AddContato() {
     let [avatar, setAvatar] = useState("");
     let [birthday, setBirthday] = useState("");
     
-    function gerarId(){
+    async function gerarId(){
         
         let ultimoId = 0;
         
-        const response = localStorage.getItem("contatosApi");
+        const response = await localStorage.getItem("ListaDeContatos");
         
         let contactsArray = JSON.parse(response);
         
@@ -31,7 +31,7 @@ export default function AddContato() {
     
     async function register(id) {
         
-        const response = await localStorage.getItem("contatosApi");
+        const response = await localStorage.getItem("ListaDeContatos");
         let contactsArray = JSON.parse(response);
         
         let newContact = [];
@@ -51,7 +51,7 @@ export default function AddContato() {
         
         contactsArray.push(newContact);
         
-        await localStorage.setItem("contatosApi", JSON.stringify(contactsArray));
+        await localStorage.setItem("ListaDeContatos", JSON.stringify(contactsArray));
         await localStorage.setItem("MSG", "CadastradoSuccess");
         
     }
