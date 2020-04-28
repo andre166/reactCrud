@@ -31,7 +31,15 @@ export default function Home(){
 
             };
 
-            if(!localStorage.getItem("ListaDeContatos")){
+            //Para não gerar erro com a api inicial do desafio 
+            if(localStorage.getItem("contatosApi")){
+
+                (async function loadApi(){
+                    await localStorage.removeItem("contatosApi");
+                    loadApi2();
+                })();
+
+            }else if(!localStorage.getItem("ListaDeContatos")){
                 loadApi2();
                 
             }else if(localStorage.getItem("ListaDeContatos").length == 2){
