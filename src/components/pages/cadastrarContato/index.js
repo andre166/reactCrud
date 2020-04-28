@@ -3,14 +3,13 @@ import './cadastrarContato.css';
 
 export default function AddContato() {
 
-    let [first_name, setFirstName] = useState("")
-    let [last_name, setLastName] = useState("")
-    let [email, setEmail] = useState("")
-    let [gender, setGender] = useState("")
-    let [language, setLanguage] = useState("")
-    let [avatar, setAvatar] = useState("")
-    let [birthday, setBirthday] = useState("")
-
+    let [first_name, setFirstName] = useState("");
+    let [last_name, setLastName] = useState("");
+    let [email, setEmail] = useState("");
+    let [gender, setGender] = useState("");
+    let [language, setLanguage] = useState("");
+    let [avatar, setAvatar] = useState("");
+    let [birthday, setBirthday] = useState("");
     
     function gerarId(){
         
@@ -71,7 +70,6 @@ export default function AddContato() {
                     
                     <form onSubmit={gerarId} action={  `/ListaDeContatos`  }>
 
-
                         <div class="form-row">
 
                             <div class="col-md-4 mb-3">
@@ -129,9 +127,8 @@ export default function AddContato() {
                             <label class="ml-2 " for="validationServer02">Sexo: </label>
                             <div class="col-md-4 mb-3 form-check-inline">
 
-
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="customControlValidation1" name="genero" value="M"   onChange={e => setGender(e.target.value) } required />
+                                    <input type="radio" class="custom-control-input" id="customControlValidation1" name="genero" value="M"   onChange={e => setGender(e.target.value) } required/>
                                     <label class="custom-control-label" for="customControlValidation1">Masculino</label>
                                 </div>
 

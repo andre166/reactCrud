@@ -25,6 +25,10 @@ export default function MostrarContatos({ contatos }){
             quantos_anos--;
         }
 
+        if(quantos_anos < 0){
+            quantos_anos = 0;
+        }
+
         return quantos_anos;
     }
 
@@ -88,7 +92,6 @@ export default function MostrarContatos({ contatos }){
                             <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                             <p class="card-text"> <strong>Email: </strong>{info.email}</p>
                             <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'}</p>
-                            
                             <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
                             
                         </div>
