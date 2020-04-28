@@ -1,24 +1,38 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 
 export default function FiltrosDiv( { setContatos }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
 
-  function fecharFiltro(e){
+  let [idiomaSubMenssagem, setIdiomaSubMenssagem] = useState(false);
+  let [idadeSubMenssagem, setIdadeSubMenssagem] = useState(false);
 
+  useEffect(() => {
+
+    (function mostrarBloco(){
+
+    })();
+
+
+  }, [filtroLinguagem]);
+
+
+  function fecharFiltro(e){
     let x = document.querySelector('#btn-filtro').classList.add('collapsed');
     zerarFiltro();
-
   }
 
   function formatData(data, obj, e, idadeOuMes){
 
     let data2 = String(data).split(' ');
-
     let days = String(data2[0]).split('/');
     let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
     let dataFinal = dataFormatada[2]
+
+    console.log("data2", data2)
+    console.log("days", days)
+    console.log("dataFormatada", dataFormatada)
     
     if(idadeOuMes == 'mes'){
     
@@ -31,8 +45,25 @@ export default function FiltrosDiv( { setContatos }) {
     }else if(idadeOuMes == 'idade'){
 
       let calendario = new Date;
+
       let anoAtual = calendario.getFullYear();
-      let idadeDoContato = anoAtual - dataFormatada[0];
+      let mesAtual = calendario.getMonth() + 1;
+      let diaAtual = calendario.getDate();
+
+      let anoAniversario = dataFormatada[0];
+      let mesAniversario = dataFormatada[2];
+      let diaAniversario = dataFormatada[4];
+      
+      let quantos_anos = anoAtual - anoAniversario;
+      
+      console.log("quantos_anos =>", quantos_anos)
+      
+      
+      if (mesAtual < mesAniversario || mesAtual == mesAniversario && diaAtual < diaAniversario) {
+        quantos_anos--;
+      }
+      
+      let idadeDoContato = quantos_anos;
 
       if(idadeDoContato == e){
         return obj;
@@ -77,7 +108,11 @@ export default function FiltrosDiv( { setContatos }) {
 
   async function filtrarLinguagem(e){
 
-    var letraFormatada = e.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
+    if(e.length === 0){
+      setIdiomaSubMenssagem(true);
+    }
+
+    let letraFormatada = e.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
     { return a.toUpperCase(); });
 
     const response = localStorage.getItem("contatosApi");

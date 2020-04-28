@@ -98,7 +98,7 @@ export default function Footer() {
 
       }, 200);
 
-    }, 2000);
+    }, 3500);
 
      localStorage.removeItem("MSG");
   }

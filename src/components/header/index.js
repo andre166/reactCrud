@@ -13,11 +13,9 @@ export default function Header() {
 
         <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
 
-                    <Link to="/">
-                <div id="logo-container">
-                        <img id="logo" src={logo} />
-                </div>
-                    </Link>
+            <Link to="/">
+                <div id="logo-container"> <img id="logo" src={logo} /> </div>
+            </Link>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span><i class="fas fa-bars"></i></span>
@@ -25,12 +23,13 @@ export default function Header() {
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto" id="menu" onClick={toogleMenu}>
+                    
                     <li class="nav-item">
                         <Link to="/ListaDeContatos" class="nav-link"><a ><i class="fas fa-list-alt"></i> Lista de Contatos</a></Link>
                     </li>
 
                     <li class="nav-item">
-                        <Link to="/AddContatos" class="nav-link"><a><i class="fas fa-user-plus"></i> Cadastrar Contatos</a></Link>
+                        <Link to="/CadastrarContato" class="nav-link"><a><i class="fas fa-user-plus"></i> Cadastrar Contatos</a></Link>
                     </li>
 
                     <li class="nav-item">

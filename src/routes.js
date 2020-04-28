@@ -2,14 +2,13 @@ import React from 'react';
 import { BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import Home from './components/pages/home';
-import AddContato from './components/pages/addContato';
+import CadastrarContato from './components/pages/cadastrarContato';
 import ListaDeContatos from './components/pages/listaDeContatos';
 import EditarContatos from './components/pages/editarContato';
 import Estatisticas from './components/pages/estatisticas';
 import Erro from './components/pages/erro';
 import Header from './components/header';
 import Footer from './components/footer';
-import SnackBar from './components/snackBar';
 
 
 const Routes = () =>{
@@ -23,12 +22,11 @@ const Routes = () =>{
                 <Route exact path='/ListaDeContatos/' component={ListaDeContatos}/>
 
                 <Route path='/EditarContatos/:id' component={EditarContatos}/>          
-                <Route path='/AddContatos' component={AddContato}/>
+                <Route path='/CadastrarContato' component={CadastrarContato}/>
                 <Route exact path='/Estatisticas' component={Estatisticas}/>
                 
                 <Route path="*" component={Erro}/>
             </Switch>
-        {/* <SnackBar contatos={localStorage.getItem("MSG")}/> */}
         <Footer/>
     </BrowserRouter>
 

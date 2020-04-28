@@ -80,7 +80,11 @@ export default function EditarContatos() {
 
         }
 
+        let languageFormatada = language.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
+        { return a.toUpperCase(); });
+
         birthday = dataFormatada;
+        language = languageFormatada;
         
         newContact = {id, first_name, last_name, email, gender, language, avatar, birthday};
         

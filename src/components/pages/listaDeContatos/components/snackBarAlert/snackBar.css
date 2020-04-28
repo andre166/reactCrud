@@ -4,6 +4,7 @@
     width: 100%;
     background-color: none;
     margin-bottom: 20px;
+    z-index: 10;
 }
 
 #snackBarContent{

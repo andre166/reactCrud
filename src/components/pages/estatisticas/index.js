@@ -10,106 +10,73 @@ export default function Estatisticas(){
 
     const [linguagens, setLinguagens] = useState([])
 
-  
-
-    function toogleMenu(){
-
-        window.scrollTo(0, 0);
-
-    }
-
     function RenderPizzaChart() {
 
         let arrM = linguagens;
 
         let ka = []
 
-        arrM.map((info) => (
-                            
-            ka.push({name:info.lingua, value: info.quantidade})
-            
+        arrM.map((info) => (               
+            ka.push({name:info.lingua, value: info.quantidade}) 
         ))
 
         return (
             
             <div style={{ width: '100%', height: 400 }}>
 
-            <ResponsiveContainer height={350}>
-                <PieChart  height={350}>
-                    <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={100} outerRadius={74} fill="#8884d8" label />     
-                    <Tooltip />
-                 
-                    
-                </PieChart>
-            </ResponsiveContainer>
-            
-        </div>
+                <ResponsiveContainer height={350}>
+                    <PieChart  height={350}>
+
+                        <Pie dataKey="value" isAnimationActive={false} data={ka}  cy={100} outerRadius={74} fill="#8884d8" label />     
+                        <Tooltip />
+        
+                    </PieChart>
+                </ResponsiveContainer>
+
+            </div>
   
         )
-
 
     }
 
 
     function RenderLineChart (props) {
 
-        const data = [
-
-            { Feminino: props.qtdFem, Masculino: props.qtdMasc, Total: props.total},
-
-        
-        ];
+        const data = [ { Feminino: props.qtdFem, Masculino: props.qtdMasc, Total: props.total } ];
 
         
         return ( 
+
             <div style={{ width: '100%', height: 300 }}>
-            <ResponsiveContainer>
-            <BarChart
+                <ResponsiveContainer>
+                    <BarChart width={'100%'} height={350} data={data} margin={{ top: 20, right: 30, left: -27, bottom: 5 }}>
+
+                        <CartesianGrid strokeDasharray="3 3" fill="white"/>
+                        <XAxis dataKey="none" />
+                        <YAxis />
+                        <Tooltip/>
             
-                width={'100%'}
-                height={350}
-                data={data}
+                        <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
+                            {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={'pink'} />
+                            ))}
+                        </Bar>
 
-            margin={{
-              top: 20, right: 30, left: -27, bottom: 5,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" fill="white"/>
-            <XAxis dataKey="none" />
-            <YAxis />
-            <Tooltip/>
-           
-            <Bar dataKey="Feminino" stackId="a" fill="pink" barSize={30} label={{ position: 'top' }}>
-                {
-                    data.map((entry, index) => (
+                        <Bar dataKey="Masculino" stackId="b" fill="Blue" barSize={30}  label={{ position: 'top' } }>
+                            {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={'blue'}/>
+                            ))}
+                        </Bar>
 
-                        <Cell key={`cell-${index}`} fill={'pink'} />
-               
-                    ))
-                    
-                }
-            </Bar>
+                        <Bar dataKey="Total"  stackId="c" fill="gray" barSize={30} label={{ position: 'top' }}>
+                            { data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={'gray'}/>
+                            ))}
+                        </Bar>
 
-            <Bar dataKey="Masculino" stackId="b" fill="Blue" barSize={30}  label={{ position: 'top' } }>
-                {
-                    data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={'blue'}/>
-                    ))
-                }
-            </Bar>
-
-            <Bar dataKey="Total"  stackId="c" fill="gray" barSize={30} label={{ position: 'top' }}>
-            {
-                data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={'gray'}/>
-                ))
-            }
-            </Bar>
-
-          </BarChart>
-          </ResponsiveContainer>
-               
-          </div>
+                    </BarChart>
+                </ResponsiveContainer>  
+            </div>
 
         )
     
@@ -117,38 +84,33 @@ export default function Estatisticas(){
     
     useEffect(() => {
     
-        async function pegarContatos() {
+        (async function pegarContatos() {
             
             let qtdFeminino = 0
             let qtdMasculino = 0
             
             let arrayTemp = [];
             
-            const response = localStorage.getItem("contatosApi");
+            const response = await localStorage.getItem("contatosApi");
             let ListaDeContatos = JSON.parse(response);
             
-        ListaDeContatos.map(contatos => {
+            ListaDeContatos.map(contatos => {
             
-            if (contatos.gender === "F") qtdFeminino += 1;
-            if (contatos.gender === "M") qtdMasculino += 1;
+                if (contatos.gender === "F") qtdFeminino += 1;
+                if (contatos.gender === "M") qtdMasculino += 1;
+                
+                filtrarLinguagens(arrayTemp, contatos.language);
             
-            filtrarLinguagens(arrayTemp, contatos.language);
-            
-        })
+            });
         
         setTotalFeminino(qtdFeminino)
         setTotalMasculino(qtdMasculino)
         setTotalGenero(qtdFeminino + qtdMasculino)
         setLinguagens(arrayTemp);
         
-   
-    }
+        })();
     
-    pegarContatos();
-    
-    window.scrollTo(0, 0)
-    
-}, []);
+    }, []);
 
 
     function filtrarLinguagens(lista, lingua){
@@ -161,9 +123,8 @@ export default function Estatisticas(){
             if(info.lingua == lingua){
 
                 index = i;
-
                 varItem = info.lingua;
-                
+        
             }
             
         })
@@ -175,7 +136,6 @@ export default function Estatisticas(){
             lista[index].quantidade++;
         }
 
-
     }
 
   
@@ -183,23 +143,21 @@ export default function Estatisticas(){
     return(
 
         <div className="container-fluid bg-white ">
-
-
             <div className="card-body">
 
                 <div class="jumbotron py-4">
                     <h1 class="display-4 text-center contato-h1">Estatisticas</h1>
                 </div>
+            
+                <div className="row">
+                    <div className="card card-body col-sm-6">
 
-               
-                    <div className="row">
-                        <div className="card card-body col-sm-6">
                         <div class="text-center alert alert-success" > <strong>Total de Usuários cadastrados por gênero</strong></div>
 
-                            <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
-                            <div className="row">
-                        
-                        <div id="sexoIcon" className="col">
+                        <RenderLineChart total={totalGenero} qtdFem={totalFeminino} qtdMasc={totalMasculino}/>
+                        <div className="row">
+                    
+                            <div id="sexoIcon" className="col">
 
                             <div class="text-center" >
                                 <i class="fas fa-venus"></i>
@@ -208,33 +166,29 @@ export default function Estatisticas(){
                             </div>
 
                         </div>
-                        </div>
-
-                        </div>
-                        
-                        <div className="card card-body col-sm-6 ">
-                            <div class="text-center alert alert-success" ><strong>Quantidade de Usuários cadastrados por Idioma</strong></div>
-
-                            <RenderPizzaChart lingua={linguagens}/>
-                         
-                        </div>
 
                     </div>
+                </div>
+                
+                <div className="card card-body col-sm-6 ">
 
-                    
+                    <div class="text-center alert alert-success" ><strong>Quantidade de Usuários cadastrados por Idioma</strong></div>
+                        <RenderPizzaChart lingua={linguagens}/>
+                    </div>
 
-                    <div className="text-center mt-2">
+                </div>
 
-                            <button class="btn btn-leste-outline" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Listar por idiomas <i class="fas fa-arrow-down"></i>
-                            </button>
+                <div className="text-center mt-2">
 
-                            <div class="collapse " id="collapseExample">
-                                <div class="card card-body align-items-center">
+                    <button class="btn btn-leste-outline" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Listar por idiomas <i class="fas fa-arrow-down"></i>
+                    </button>
 
-                                <form class="form-row container lista-qtd-linguagem-container">
+                    <div class="collapse " id="collapseExample">
+                        <div class="card card-body align-items-center">
 
-                                    <ul class="list-group">
+                            <form class="form-row container lista-qtd-linguagem-container">
+                                <ul class="list-group">
                                     <li class="list-group-item text-center list-group-item-action leste-bg-escuro text-white">Idioma | quantidade</li>
 
                                     {linguagens.map((info) => (
@@ -246,23 +200,18 @@ export default function Estatisticas(){
                                         
                                     ))}
 
-                                    </ul>
-                                </form>
+                                </ul>
+                            </form>
 
-                                    <button class="btn btn-danger btn-sm mt-2" type="button" data-toggle="collapse" 
-                                    data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" onClick={toogleMenu}>
-                                        Fechar <i class="fas fa-arrow-up"></i>
-                                    </button>
-                                    
-                               
-                           
-                            </div>
+                            <button class="btn btn-danger btn-sm mt-2" type="button" data-toggle="collapse" 
+                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
+                                Fechar <i class="fas fa-arrow-up"></i>
+                            </button>
 
                         </div>
+                    </div>
 
                 </div>
-
-        
             </div>
         </div>  
         

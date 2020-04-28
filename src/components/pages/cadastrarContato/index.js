@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './addContato.css';
+import './cadastrarContato.css';
 
 export default function AddContato() {
 
@@ -40,9 +40,13 @@ export default function AddContato() {
         let data = String(birthday).split(' ');
         let days = String(data[0]).split('-');
         let dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
+
+        let languageFormatada = language.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
+        { return a.toUpperCase(); });
         
         
         birthday = dataFormatada;
+        language = languageFormatada;
         
         newContact = {id, first_name, last_name, email, gender, language, avatar, birthday}
         
