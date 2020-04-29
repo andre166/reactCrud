@@ -86,7 +86,6 @@ export default function MostrarContatos({ contatos }){
         
                         <div className="card-body pb-2 p-0" id="card-info-usuario">
 
-                            <p class="card-title"><strong>Id: </strong>{info.id}</p>
                             <p class="card-title"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
                             <p class="card-text"><strong>Idade: </strong>{mascararIdade(info.birthday)}</p>
                             <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
