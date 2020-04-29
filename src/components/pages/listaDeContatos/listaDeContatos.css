@@ -2,14 +2,8 @@
     min-height: 90vh;
 }
 #img-card{
-    /* border-radius: 10px; */
-    /* margin-bottom: 4px; */
-    /* min-width: 260px !important; */
     height: 12rem;
-    /* border-right: 1px solid #a8a8a8;
-    border-left: 1px solid #a8a8a8; */
-    /* box-shadow: 0.3px 0.3px 1px #8f8f8f,
-    -0.3px -0.3px 1px #8f8f8f; */
+
 }
 
 #snackBar{
@@ -47,8 +41,8 @@
     /* box-shadow: 1px 1px 2px #d1d1d1; */
     background-color: #fff;
     margin: 20px 10px 40px 10px;
-    border-radius: 5px;
-    max-width: 250px;
+    /* border-radius: 5px; */
+    width: 250px !important;
     
 }
 
@@ -84,6 +78,7 @@
 #menu-card-header .fa-trash{
     color: #a51010;
     margin-right: 13px;
+    font-size: 13pt;
 }
 
 #menu-card-header .fa-edit{
@@ -94,8 +89,12 @@
 }
 .card-header{
     font-weight: bold;
-    /* padding: 8px; */
     font-size: 11pt;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+
+
 }
 .badge-pill:hover{
     color: #fff;
@@ -113,7 +112,7 @@
     #lista-body{
         display: flex;
         flex-direction: column;
-           
+        
     }
 
     .contato-h1{
@@ -126,12 +125,12 @@
     #cardUsuario{
         margin-top: 10px;
         margin-bottom: 10px;
-        max-width: 14rem;
+        width: 22rem !important;
     }
 
     #img-card{
-        max-width: 8rem;
-        height: 8rem;
+        /* max-width: 8rem; */
+        height: 17rem;
     }
 
     #numeroDoCard2{

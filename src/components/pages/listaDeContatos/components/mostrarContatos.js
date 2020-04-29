@@ -55,14 +55,14 @@ export default function MostrarContatos({ contatos }){
                 <div class='pb-0' key={info.id} id="cardUsuario" >
     
                     <div class="card">
-                        <div class="card-header ">
+                        <div class="card-header">
                             
-                            <div class="row">
-                                <div class="col-sm-10">
+                           
+                                <div class="">
                                     {info.first_name} {info.last_name}
                                 </div>
 
-                                <div id="menu-card-header" class="col-sm-2">
+                                <div id="menu-card-header" class="">
 
                                     <div class="btn-group dropleft">
 
@@ -90,7 +90,7 @@ export default function MostrarContatos({ contatos }){
                                 
                                 </div>
 
-                            </div>
+                           
                     </div>
 
                         <div>
@@ -99,8 +99,7 @@ export default function MostrarContatos({ contatos }){
                     <div class="card-body-container">
         
                         <div className="card-body pb-2 p-0" id="card-info-usuario">
-
-                            <p class="card-text"> <strong>Id: </strong>{info.id}</p>
+                            
                             <p class="card-text"><strong>Idade: </strong>{mascararIdade(info.birthday)}</p>
                             <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                             <p class="card-text"> <strong>Email: </strong>{info.email}</p>
