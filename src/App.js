@@ -44,6 +44,9 @@ import Routes from './routes';
 // https://i.ibb.co/cbpJPxx/bb4.jpg
 // https://i.ibb.co/KVBYG2V/bb1.jpg
 
+// ===================Evania ==============
+// https://i.ibb.co/zXb4X9c/ev.jpg
+
 import './App.css';
 
   export default function App() {
@@ -85,43 +88,36 @@ import './App.css';
           function formatAvatar(info){
 
             if(info.gender == "F"){
-                contFeminino++;
-                return arrayFeminino[contFeminino];
-            }if(info.gender == "M" && contMasculino == -1){
-                
-                (async function(info){
-                    info.first_name = "André";
-                    info.last_name = "Mesquita";
-                    info.email = "andremp1927@hotmail.com";
-                    info.language = "Portuguese";
-                    info.gender = "M";
-                    info.birthday = "25/11/1993";
-                    info.avatar = await "https://i.ibb.co/Rc9v5hx/eu.jpg";
-                    
-                    contMasculino ++;
-                })(info);
-                // return arrayMasculino[contMasculino];
-
-            }else{
-                contMasculino++;
-                return arrayMasculino[contMasculino];
-            }
-
+              contFeminino++;
+              return arrayFeminino[contFeminino];
+            }else {
+              contMasculino++;
+              return arrayMasculino[contMasculino];
+            }  
           }
-     
-          function formatData(data){
+            
+        
+        
+        function formatData(data){
 
-              data = String(data).split(' ');
-              var days = String(data[0]).split('-');
+            data = String(data).split(' ');
+            var days = String(data[0]).split('-');
 
-              var dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
-              
-              return dataFormatada;
-          }
+            var dataFormatada =  [days[2],"/", days[1],"/", days[0]].join('');
+            
+            return dataFormatada;
+        }
 
-          await localStorage.setItem("ListaDeContatos", JSON.stringify(contatos));
+
+        let andre = {id: 1, first_name: "André", last_name: "Mesquita", email: "andremp1927@hotmail.com", gender: "M", language:"Portuguese", avatar:"https://i.ibb.co/sPpjPbB/eu.jpg", birthday:"25/11/1993"};
+        let evania = {id: 2, first_name: "Evania", last_name: "Barbosa", email: "vania@hotmail.com", gender: "F", language:"Portuguese", avatar:"https://i.ibb.co/zXb4X9c/ev.jpg", birthday:"13/12/1995"};
+
+        contatos[0] = andre;
+        contatos[1] = evania;
+
+        await localStorage.setItem("ListaDeContatos", JSON.stringify(contatos));
+          
       
-
       };
 
       //Para não gerar erro com a api inicial do desafio 
@@ -141,7 +137,7 @@ import './App.css';
       }
         
 
-}, [localStorage.getItem("ListaDeContatos")]);
+  }, [localStorage.getItem("ListaDeContatos")]);
 
 
     return(
