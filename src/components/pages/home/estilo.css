@@ -16,7 +16,11 @@
 @media (max-width: 575.98px) { 
 
     ul li{
-        font-size: 12px;
+        font-size: 10pt !important;
+    }
+
+    .titulo h4{
+        font-size: 13pt !important;
     }
 
 }

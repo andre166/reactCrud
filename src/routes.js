@@ -10,9 +10,8 @@ import Erro from './components/pages/erro';
 import Header from './components/header';
 import Footer from './components/footer';
 
+export default function Routes(){
 
-const Routes = () =>{
-    
     return (
     <BrowserRouter>
         <Header/>
@@ -20,11 +19,10 @@ const Routes = () =>{
                 <Route exact path='/' component={Home}/>
 
                 <Route exact path='/ListaDeContatos/' component={ListaDeContatos}/>
-
                 <Route path='/EditarContatos/:id' component={EditarContatos}/>          
                 <Route path='/CadastrarContato' component={CadastrarContato}/>
                 <Route exact path='/Estatisticas' component={Estatisticas}/>
-                
+        
                 <Route path="*" component={Erro}/>
             </Switch>
         <Footer/>
@@ -32,5 +30,3 @@ const Routes = () =>{
 
     );
 }
-
-export default Routes;
