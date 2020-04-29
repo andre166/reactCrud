@@ -89,15 +89,17 @@ import './App.css';
                 return arrayFeminino[contFeminino];
             }if(info.gender == "M" && contMasculino == -1){
                 
-                info.first_name = "André";
-                info.last_name = "Mesquita";
-                info.email = "andremp1927@hotmail.com";
-                info.language = "Portuguese";
-                info.gender = "M";
-                info.birthday = "25/11/1993";
-                info.avatar = "https://i.ibb.co/Rc9v5hx/eu.jpg";
-                
-                contMasculino ++;
+                (async function(info){
+                    info.first_name = "André";
+                    info.last_name = "Mesquita";
+                    info.email = "andremp1927@hotmail.com";
+                    info.language = "Portuguese";
+                    info.gender = "M";
+                    info.birthday = "25/11/1993";
+                    info.avatar = await "https://i.ibb.co/Rc9v5hx/eu.jpg";
+                    
+                    contMasculino ++;
+                })(info);
                 // return arrayMasculino[contMasculino];
 
             }else{
