@@ -66,10 +66,10 @@ import './App.css';
     
         let arrayFeminino = [
             "https://i.ibb.co/2nHvFcZ/p1.png", "https://i.ibb.co/Cwrq8K8/p2.png", "https://i.ibb.co/vsSjhgS/p4.png",
-            "https://i.ibb.co/Gkh58by/m7.jpg", "https://i.ibb.co/qktq1vF/m4.png", "https://i.ibb.co/qktq1vF/m4.png",
+            "https://i.ibb.co/HVgfysX/cc4.jpg", "https://i.ibb.co/cbpJPxx/bb4.jpg", "https://i.ibb.co/KVBYG2V/bb1.jpg",
             "https://i.ibb.co/pXzxgbw/a3.png", "https://i.ibb.co/9TKJy0F/c4.jpg", "https://i.ibb.co/GTYX300/c5.jpg",
             "https://i.ibb.co/f4NjzNX/c6.jpg", "https://i.ibb.co/x6qQ8kN/cc6.jpg", "https://i.ibb.co/CVpzCLH/cc3.jpg",
-            "https://i.ibb.co/HVgfysX/cc4.jpg", "https://i.ibb.co/cbpJPxx/bb4.jpg", "https://i.ibb.co/KVBYG2V/bb1.jpg"
+            "https://i.ibb.co/Gkh58by/m7.jpg", "https://i.ibb.co/qktq1vF/m4.png"
         ];
       
           const response = await api.get();
