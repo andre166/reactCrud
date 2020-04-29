@@ -41,10 +41,9 @@ export default function MostrarContatos({ contatos }){
     
         let contato = ListaDeContatos.indexOf(ListaDeContatos.find(n => n.id == id));
     
-        ListaDeContatos.splice(contato, 1)
+        ListaDeContatos.splice(contato, 1);
     
         await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaDeContatos));
-
     
     }
     
@@ -55,38 +54,53 @@ export default function MostrarContatos({ contatos }){
 
                 <div class='pb-0' key={info.id} id="cardUsuario" >
     
-                    <div class="card-body p-2">
-                        <div class="d-flex justify-content-center">
-                            <img class="card-img-top img-thumbnail rounded-circle" src={info.avatar}  id="img-card"/>
-                        </div>
-    
-                        <div id="numeroDoCard">
-                            <Link to={{pathname: `/EditarContatos/${info.id}`}}><button type="button" class="btn badge badge-pill badge-info mx-4"><i class="fas fa-edit"></i>Editar</button></Link>
-                        </div>
+                    <div class="card">
+                        <div class="card-header ">
+                            
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    {info.first_name} {info.last_name}
+                                </div>
 
-                        <div id="btn-contato-container">
-                            <div class="btn-group dropup">
-                                <button type="button" class="btn badge badge-pill badge-danger dropdown-toggle btn-sm" data-toggle="dropdown">
-                                <i class="fas fa-trash">Excluir</i>
-                                </button>
-            
-                                <div class="dropdown-menu">
-                                <div className="card-body col-md-12 text-center">
-            
-                                    <p class="text-dark" >Deseja excluir?</p>
-                                    <hr class="my-2" />
-            
-                                    <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
-                                    <a href="#" class="btn btn-danger btn-sm ml-2">Não</a>
+                                <div id="menu-card-header" class="col-sm-2">
+
+                                    <div class="btn-group dropleft">
+
+                                        <a type="button" class="dropdown" data-toggle="dropdown">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                    
+                                        <div class="dropdown-menu">
+                                            <div className="card-body text-center" id="btn-contato-container">
+                        
+                                                <p class="text-dark" >Deseja excluir?</p>
+                                                <hr class="my-2" />
+                        
+                                                <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
+                                                <button class="btn btn-danger btn-sm ml-2">Não</button>
+                                            
+                                            </div>
+                                        </div>
+
+                                    </div>   
+
+                                     
+
+                                    <Link to={{pathname: `/EditarContatos/${info.id}`}}><i class="fas fa-edit fa-edit-customizado"></i></Link>
                                 
                                 </div>
-                                </div>
-                            </div>      
+
+                            </div>
+                    </div>
+
+                        <div>
+                            <img class="card-img-top" src={info.avatar}  id="img-card"/>
                         </div>
+                    <div class="card-body-container">
         
                         <div className="card-body pb-2 p-0" id="card-info-usuario">
 
-                            <p class="card-title"><strong>Nome: </strong>{info.first_name} {info.last_name}</p>
+                            <p class="card-text"> <strong>Id: </strong>{info.id}</p>
                             <p class="card-text"><strong>Idade: </strong>{mascararIdade(info.birthday)}</p>
                             <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                             <p class="card-text"> <strong>Email: </strong>{info.email}</p>
@@ -94,8 +108,10 @@ export default function MostrarContatos({ contatos }){
                             <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
                             
                         </div>
+                      
 
                     </div>
+    </div>
                 </div>
             ))} 
         </div>

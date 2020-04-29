@@ -2,11 +2,16 @@
     min-height: 90vh;
 }
 #img-card{
-    margin-bottom: 5px;
-    max-width: 9rem;
-    height: 8rem;
-    box-shadow: 2px 1px 2px #b8b8b8;
+    /* border-radius: 10px; */
+    /* margin-bottom: 4px; */
+    /* min-width: 260px !important; */
+    height: 12rem;
+    /* border-right: 1px solid #a8a8a8;
+    border-left: 1px solid #a8a8a8; */
+    /* box-shadow: 0.3px 0.3px 1px #8f8f8f,
+    -0.3px -0.3px 1px #8f8f8f; */
 }
+
 #snackBar{
     /* max-width: 400px; */
     display: flex;
@@ -38,28 +43,60 @@
     border-radius: 5px;
 }
 
-
-
 #cardUsuario{
+    /* box-shadow: 1px 1px 2px #d1d1d1; */
     background-color: #fff;
     margin: 20px 10px 40px 10px;
     border-radius: 5px;
-    padding: 0px;
-    box-shadow: 1px 1px 1px #b1b1b1,
-                1px 1px 4px #b1b1b1,
-                -1px -1px 1px #b1b1b1;
-    max-width: 230px;
+    max-width: 250px;
     
 }
+
+.card-body-container{
+    /* 1px 1px 4px #b1b1b1; */
+    padding: 0px 10px;
+    /* -1px -1px 1px #b1b1b1; */
+}
+
 #card-info-usuario{
     margin-top: 10px; 
 }
 
 #btn-contato-container{
-    margin-top: -25px;
-    margin-left: 110px;
+    width: 264px;
+}
+#menu-card-header{
+    /* margin-bottom: 65px; */
+    /* position: absolute; */
+    /* padding: 0px !important; */
+    /* border: 1px solid red; */
+    /* border-radius: 50%;*/
+    /* background-color: rgba(0,0,0,.03); */
+    margin-left: -5px;
+    /* background-color: #fff; */
+    /* margin-right: 10px; */
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
+#menu-card-header .fa-trash{
+    color: #a51010;
+    margin-right: 13px;
+}
+
+#menu-card-header .fa-edit{
+    font-size: 14pt;
+    color: #3d413d;
+    cursor: pointer;
+
+}
+.card-header{
+    font-weight: bold;
+    /* padding: 8px; */
+    font-size: 11pt;
+}
 .badge-pill:hover{
     color: #fff;
 }
@@ -67,7 +104,7 @@
 #card-info-usuario p{
     color: #000000;
     margin: 2px;
-    padding: 0px;
+    /* padding: 0px; */
     font-size: 10pt;
 }
 
@@ -113,12 +150,3 @@
     }
 
 }
-
-@media (min-width: 576px) and (max-width: 767.98px) { 
-
-    .LesteTel_h1{
-        letter-spacing: 10px;
-        font-size: 70px;
-    }
-
- }

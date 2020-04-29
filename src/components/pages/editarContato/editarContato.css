@@ -22,6 +22,11 @@
    color: #ff0000;
 }
 
+.imagem-editar{
+    max-height: 250px;
+    max-width: 300px;
+}
+
 @media (max-width: 575.98px) {
 
     .closeIcon{

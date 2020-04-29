@@ -129,11 +129,11 @@ export default function EditarContatos() {
 
                 <div className="row ">
 
-                    <div className="col-md-4 ">
-                        <div class="card " >
+                    <div className="col-md-4">
+                        <div class="card ">
 
                             <div className="text-center mt-2">
-                                <img class="card-img-top img-thumbnail rounded-circle" src={contatos.avatar} alt="Card image cap" style={{height: '12rem'}, {maxWidth: '14rem'}}/>
+                                <img class="card-img-top img-thumbnail rounded-circle imagem-editar" src={contatos.avatar} alt="Card image cap" />
                             </div>
 
                             <div className="text-center px-2 mb-2">
@@ -176,13 +176,13 @@ export default function EditarContatos() {
 
                                     <div class="form-group col-md-6 py-0 my-2">
                                         <label for="exampleInputEmail1">Primeiro Nome:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" 
+                                        <input type="text" class="form-control" id="exampleInputEmail1" maxLength="17"
                                         placeholder="Primeiro nome"  value={first_name} onChange={(e)=> setFirstName(e.target.value)}/>
                                     </div>
 
                                     <div class="form-group col-md-6 py-0 my-2">
                                         <label for="exampleInputEmail1">Ultimo Nome:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"  
+                                        <input type="text" class="form-control" id="exampleInputEmail1" maxLength="17"
                                         placeholder="Ultimo nome"  value={last_name} onChange={(e)=> setLastName(e.target.value)}/>
                                     </div>
 
