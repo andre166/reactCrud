@@ -56,7 +56,7 @@ import './App.css';
         let contFeminino = -1;
         
         let arrayMasculino = [
-            "https://i.ibb.co/Rc9v5hx/eu.jpg", "https://i.ibb.co/c2ShfD7/a1.jpg","https://i.ibb.co/MRq2BbP/m3.jpg",
+            "https://i.ibb.co/c2ShfD7/a1.jpg","https://i.ibb.co/MRq2BbP/m3.jpg",
             "https://i.ibb.co/fxLkSxD/m6.jpg","https://i.ibb.co/Rbd7JPP/p3.png", "https://i.ibb.co/R2kcnFV/s8.jpg", 
             "https://i.ibb.co/tYw50y6/c1.jpg", "https://i.ibb.co/Qjb1Rqt/c4.jpg","https://i.ibb.co/bHjW2g5/s4.jpg", 
             "https://i.ibb.co/ssMLbxJ/s6.jpg", "https://i.ibb.co/gm0VG9b/m5.png", "https://i.ibb.co/dpN0k1r/dd5.jpg",
@@ -75,9 +75,9 @@ import './App.css';
           const response = await api.get();
           let contatos = response.data;
 
-          let mesFiltrado = contatos.filter(n => n.birthday);
+        //   let mesFiltrado = contatos.filter(n => n.birthday);
           
-          mesFiltrado.map((info) => (
+          contatos.map((info) => (
               info.birthday = formatData(info.birthday),
               info.avatar = formatAvatar(info)
           ));
@@ -85,9 +85,21 @@ import './App.css';
           function formatAvatar(info){
 
             if(info.gender == "F"){
-
                 contFeminino++;
                 return arrayFeminino[contFeminino];
+            }if(info.gender == "M" && contMasculino == -1){
+                
+                info.first_name = "André";
+                info.last_name = "Mesquita";
+                info.email = "andremp1927@hotmail.com";
+                info.language = "Portuguese";
+                info.gender = "M";
+                info.birthday = "25/11/1993";
+                info.avatar = "https://i.ibb.co/Rc9v5hx/eu.jpg";
+                
+                contMasculino ++;
+                // return arrayMasculino[contMasculino];
+
             }else{
                 contMasculino++;
                 return arrayMasculino[contMasculino];
