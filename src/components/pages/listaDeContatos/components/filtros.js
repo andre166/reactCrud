@@ -4,16 +4,7 @@ export default function FiltrosDiv( { setContatos }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
-
-
-  useEffect(() => {
-
-    (function mostrarBloco(){
-
-    })();
-
-
-  }, [filtroLinguagem]);
+  let [ordeByParam, setOrdeByParam] = useState([]);
 
 
   function fecharFiltro(e){
@@ -168,6 +159,52 @@ export default function FiltrosDiv( { setContatos }) {
       setFiltroIdade('');
     }
   }
+
+  async function OrderByNome(e){
+
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+    let nomeOrdenado = [];
+
+    let nomeFiltrado = [];
+
+    let terceiroArray = [];
+
+      if(e == "A-Z"){
+          let i =0;
+
+          ListaDeContatos.map((info) => (
+            ordenar(info.first_name)
+          ));
+
+          console.log("nomeOrdenado antes", nomeOrdenado)
+
+          nomeOrdenado.sort();
+
+          console.log("nomeOrdenado depois do sort", nomeOrdenado)
+          
+          
+          nomeOrdenado.map((info) => (
+            
+            terceiroArray.push(ListaDeContatos.find(n => n.first_name == info))
+            
+          ));
+            
+            console.log("terceiroArray ===========>", terceiroArray)
+            setContatos(terceiroArray);
+
+
+  
+          function ordenar(nome){
+
+            nomeOrdenado.push(nome);
+
+
+          }
+  
+  }
+
         
   return(
     <div>
@@ -185,7 +222,8 @@ export default function FiltrosDiv( { setContatos }) {
           
       <div class="row">
           <div class="col-sm-12">
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
+{/* ===========================Adicionar collapse ================================ */}
+            <div class=" multi-collapse" id="multiCollapseExample1">
               <form className="card card-body filtro-container form-group">
 
                 <div class="form-group row ">
@@ -256,14 +294,101 @@ export default function FiltrosDiv( { setContatos }) {
                 </div>
 
                 <div className="row">
-
                   <div className="col">
-                    <button type="button" class="close" aria-label="Close"  data-toggle="collapse"  href="#multiCollapseExample1" role="button" style={{color: 'red'}}>
-                      <span aria-hidden="true">&times;</span>
-                    </button>
+
+                    <div className="text-center">
+                      <label>Ordenar por</label>
+                    </div>
+{/* ==================== INÍCIO DA ROW DE ORDENAÇÃO ================================= */}
+                  <div className="form-orderBy">
+
+                    <div class="text-center">
+                      <label>Nome:</label>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome" value="A-Z"
+                          onClick={(e)=> OrderByNome(e.target.value)} 
+                         />
+                        <label class="form-check-label" for="exampleRadios1">
+                          A-Z
+                        </label>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome2" value="Z-A" 
+                          onClick={(e)=> OrderByNome(e.target.value)}
+                        />
+                        <label class="form-check-label" for="exampleRadios2">
+                          Z-A
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* ============== */}
+
+                    <div>
+                      <label  class="text-center">Idade:</label>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  />
+                        <label class="form-check-label" for="exampleRadios1">
+                          Crescente
+                        </label>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                        <label class="form-check-label" for="exampleRadios2">
+                          Decrescente
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* ============== */}
+
+                    <div class="text-center">
+                      <label class="titulos-orderby">Mês:</label>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  />
+                        <label class="form-check-label" for="exampleRadios1">
+                        Jan-Dez
+                        </label>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                        <label class="form-check-label" for="exampleRadios2">
+                        Dez-Jan
+                        </label>
+                      </div>
+                    </div>
+
+                    {/* ============== */}
+
+                    <div class="text-center">
+                      <label class="titulos-orderby">Idioma:</label>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  />
+                        <label class="form-check-label" for="exampleRadios1">
+                        A-Z
+                        </label>
+                      </div>
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                        <label class="form-check-label" for="exampleRadios2">
+                        Z-A
+                        </label>
+                      </div>
+                    </div>
+                 
                   </div>
 
+                  </div>
                 </div>
+
               </form>
               
             </div>

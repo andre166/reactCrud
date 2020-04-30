@@ -131,12 +131,16 @@
 #card-info-usuario p{
     color: #000000;
     margin: 2px;
-    /* padding: 0px; */
     font-size: 10pt;
 }
-
+.form-orderBy{
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-around;
+}
 
 @media (max-width: 575.98px) { 
+    
     .socialIcon-card{
         display: none;
     }

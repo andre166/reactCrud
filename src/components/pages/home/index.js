@@ -20,8 +20,8 @@ export default function Home(){
 
                         <ul class="list-group">
                             <li class="list-group-item titulo"><h4>Descrição</h4></li>
-                            <li class="list-group-item">1 - Operações: Cadastra, Edita, exclui, lista e gera relatório com gráfico.</li>
-                            <li class="list-group-item">2 - Cadastro: Primeiro nome, Ultimo nome, Email, Gênero, Linguagem, Data de nascimento</li>
+                            <li class="list-group-item">Cadastra, Edita, exclui, lista e gera relatório com gráfico.</li>
+                            <li class="list-group-item">2 - Cadastro: cadasta um contato com os seguintes campos -> Primeiro nome, Ultimo nome, Email, Gênero, Linguagem, Data de nascimento</li>
                             <li class="list-group-item">3 - Filtros de pesquisa: por Gênero(F/M), por Idade, por Mês(todos de um determinado mês), por Idioma(todos de um determinado Idioma)</li>
                             <li class="list-group-item">4 - Estatísticas: Gráficos com o total de cadastros por Gênero e Quantidade de Usuários por Idioma </li>
                         </ul>
