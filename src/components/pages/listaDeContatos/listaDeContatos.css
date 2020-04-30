@@ -96,6 +96,34 @@
 
 
 }
+.socialIcon-card{
+    position: absolute;
+    margin-left: -35px;
+    margin-top: -205px;
+    display: flex;
+    flex-direction: column;
+}
+
+.socialIcon-card .fab{
+    width: 23px;
+    color: #fff;
+    background-color: #015d2a;
+    cursor: pointer;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 5px;
+    border-left: 1px solid #008000;
+    border-top: 1px solid #008000;
+    border-bottom: 1px solid #008000;
+    margin: 3px 0px;
+}
+
+.socialIcon-card .fab:hover{
+    color: #015d2a;
+    background-color: #fff;
+}
+
+
 .badge-pill:hover{
     color: #fff;
 }
@@ -109,6 +137,13 @@
 
 
 @media (max-width: 575.98px) { 
+    .socialIcon-card{
+        display: none;
+    }
+    
+    .socialIcon-card .fab{
+       display: none;
+    }
     .container-listaDeContatos{
         padding: 0px !important;
     }
@@ -133,8 +168,8 @@
     }
 
     #img-card{
-        /* max-width: 8rem; */
-        height: 17rem;
+        /* width: 21.5rem; */
+        height: 21rem;
     }
 
     #numeroDoCard2{

@@ -1,16 +1,28 @@
 #logo{
-    width: 80px;
-    height: 70px;
-    padding: 2px;
-    margin: 13px;
+    /* width: 100px;
+    height: 100px; */
+    /* padding: 10px; */
+    /* margin: 13px; */
+    /* border: 1px solid #fff; */
+    /* border-radius: 100%; */
+    /* border: 1px solid red; */
+    /* background-color: #fff; */
+    /* margin: 25px !important; */
 }
 
 #logo-container{
-    background-color: #fff;
-    border-radius: 50px;
-    width: 100px;
-    height: 100px;
+    border-radius: 100%;
+    width: 90px;
+    height: 90px;
+    display: flex;
     align-items: center;
+    justify-content:center;
+    background-color: #fff;
+    /* padding: 32px 1px; */
+    /* border: 0.5px solid #015d2a; */
+    /* cursor: pointer; */
+    box-shadow: inset -4px -4px 10px rgb(122, 122, 122),
+    inset -4px -4px 10px #3d3d3d;
 }
 
 .fa-bars{
@@ -19,7 +31,7 @@
 }
 
 .navbar-custom{
-    background-color: #00AD4F;
+    background-color: #00ad4f;
     padding: 5px 25px!important; 
 }
 ul li{
@@ -74,10 +86,11 @@ ul li{
     }
 
     #logo{
-        width: 55px;
-        height: 40px;
+        width: 135px;
+        height: 60px;
         padding: 3px;
-        margin: 11px 8px 8px 7px;
+        
+        margin: 11px 8px 8px 7px; 
     }
     
     #logo-container{

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../imagens/logo.png';
+import logo from '../../imagens/logo3.png';
 import './header.css';
 
 export default function Header() {
@@ -13,8 +13,10 @@ export default function Header() {
 
         <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
 
-            <Link to="/">
-                <div id="logo-container"> <img id="logo" src={logo} /> </div>
+            <Link to="/" id="logo-container">
+                {/* <div id=""> */}
+                    <img id="logo" src={logo} /> 
+                {/* </div> */}
             </Link>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

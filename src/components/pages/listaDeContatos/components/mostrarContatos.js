@@ -3,6 +3,33 @@ import { Link } from 'react-router-dom';
 // import contacts
 export default function MostrarContatos({ contatos }){
 
+    function socialIcon(posicaoNoArray, contato){
+        if(posicaoNoArray == 0 && contato.first_name =="André" && contato.id == 1){
+            return(
+                <div className="socialIcon-card">
+                    <a  href="https://www.facebook.com/andre.mesquitasd" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a  href="https://www.instagram.com/mesquitaandre/?hl=pt-br" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                    
+                                <a  href="https://www.linkedin.com/in/andr%C3%A9-mesquita-295974190/" target="_blank">
+                                    <i class="fab fa-invision"></i>
+                                </a>
+            
+                                <a href="https://api.whatsapp.com/send?phone=5521981235902" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+
+                                <a href="https://github.com/andre166" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                </div>
+            );
+        }
+    }
+
     function mascararIdade(data){
 
         let data2 = String(data).split(' ');
@@ -50,7 +77,7 @@ export default function MostrarContatos({ contatos }){
     return(
         <div class="card-group d-flex" id="lista-body">
 
-            {contatos.map((info) => ( 
+            {contatos.map((info, e) => ( 
 
                 <div class='pb-0' key={info.id} id="cardUsuario" >
     
@@ -100,7 +127,7 @@ export default function MostrarContatos({ contatos }){
         
                         <div className="card-body pb-2 p-0" id="card-info-usuario">
                             
-                            <p class="card-text"><strong>Idade: </strong>{mascararIdade(info.birthday)}</p>
+            <p class="card-text"><strong>Idade: </strong>{mascararIdade(info.birthday)}  {socialIcon(e, info)}</p>
                             <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                             <p class="card-text"> <strong>Email: </strong>{info.email}</p>
                             <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'}</p>

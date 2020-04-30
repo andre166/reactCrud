@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import api from './components/services/api';
 import Routes from './routes';
 
@@ -77,8 +77,6 @@ import './App.css';
       
           const response = await api.get();
           let contatos = response.data;
-
-        //   let mesFiltrado = contatos.filter(n => n.birthday);
           
           contatos.map((info) => (
               info.birthday = formatData(info.birthday),
@@ -110,10 +108,10 @@ import './App.css';
 
 
         let andre = {id: 1, first_name: "André", last_name: "Mesquita", email: "andremp1927@hotmail.com", gender: "M", language:"Portuguese", avatar:"https://i.ibb.co/sPpjPbB/eu.jpg", birthday:"25/11/1993"};
-        let evania = {id: 2, first_name: "Evania", last_name: "Barbosa", email: "vania@hotmail.com", gender: "F", language:"Portuguese", avatar:"https://i.ibb.co/zXb4X9c/ev.jpg", birthday:"13/12/1995"};
+        // let evania = {id: 2, first_name: "Evania", last_name: "Barbosa", email: "vania@hotmail.com", gender: "F", language:"Portuguese", avatar:"https://i.ibb.co/zXb4X9c/ev.jpg", birthday:"13/12/1995"};
 
         contatos[0] = andre;
-        contatos[1] = evania;
+        // contatos[1] = evania;
 
         await localStorage.setItem("ListaDeContatos", JSON.stringify(contatos));
           

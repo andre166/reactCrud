@@ -10,7 +10,7 @@ export default function Home(){
                 <div className="card card-body">
                         
                 <div class="jumbotron py-4  mb-2">
-                    <h1 class="display-4 text-center">Leste Contact</h1>
+                    <h1 class="display-4 text-center">ContactJS</h1>
                 </div>
 
                 <div className="row">
