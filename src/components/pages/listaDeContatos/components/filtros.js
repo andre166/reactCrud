@@ -247,7 +247,6 @@ export default function FiltrosDiv( { setContatos }) {
     let ListaDeContatos = JSON.parse(response);
 
     let idiomas = [];
-    let idiomasIndex = [];
     let idomasOrdenado = [];
 
     if(e == "A-Z"){
@@ -260,19 +259,12 @@ export default function FiltrosDiv( { setContatos }) {
         idiomas.push({id:id, language:idioma});
 
       }
-      console.log("Idiomas", idiomas)
-
-      // idiomas.push(ListaDeContatos.find(n => n.id == info.index))
-
-      // console.log("Idiomas Filter", idiomas)
-
 
       idiomas.sort(function(a, b){
 
         return (a.language > b.language) ? 1 : ((b.language > a.language) ? -1 : 0);
       });
 
-      console.log("Idiomas Sort", idiomas)
 
       idiomas.map((info) => (
 
@@ -280,10 +272,34 @@ export default function FiltrosDiv( { setContatos }) {
 
       ));
 
-      console.log("idomasOrdenado", idomasOrdenado)
-
       setContatos(idomasOrdenado);
      
+    }else if(e == "Z-A"){
+      
+      ListaDeContatos.map((info) => (
+        ordenar(info.language, info.id)
+      ));
+
+      function ordenar(idioma, id){
+        idiomas.push({id:id, language:idioma});
+
+      }
+
+      idiomas.sort(function(a, b){
+
+        return (a.language < b.language) ? 1 : ((b.language < a.language) ? -1 : 0);
+      });
+
+      console.log("idiomas Sort", idiomas)
+
+      idiomas.map((info) => (
+
+        idomasOrdenado.push(ListaDeContatos.find(n => n.id == info.id))
+
+      ));
+
+      setContatos(idomasOrdenado);
+
     }
 
   }
