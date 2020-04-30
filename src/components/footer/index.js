@@ -39,7 +39,7 @@ export default function Footer() {
 
                         <div class="col-sm-6">
                             <div class="text-center mt-2">
-                                <b>Lest Contact</b> <span class="text-footer">&copy; Todos os direitos reservados</span>
+                                <b>André Mesquita</b> <span class="text-footer">&copy; Todos os direitos reservados</span>
                             </div>
                         </div>
 
