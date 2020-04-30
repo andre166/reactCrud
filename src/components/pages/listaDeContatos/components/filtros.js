@@ -166,43 +166,126 @@ export default function FiltrosDiv( { setContatos }) {
     let ListaDeContatos = JSON.parse(response);
 
     let nomeOrdenado = [];
-
-    let nomeFiltrado = [];
-
     let terceiroArray = [];
 
       if(e == "A-Z"){
-          let i =0;
 
           ListaDeContatos.map((info) => (
             ordenar(info.first_name)
           ));
 
-          console.log("nomeOrdenado antes", nomeOrdenado)
+          function ordenar(nome){
+            nomeOrdenado.push(nome);
+          }
 
           nomeOrdenado.sort();
 
-          console.log("nomeOrdenado depois do sort", nomeOrdenado)
-          
-          
+      
           nomeOrdenado.map((info) => (
-            
             terceiroArray.push(ListaDeContatos.find(n => n.first_name == info))
-            
           ));
             
-            console.log("terceiroArray ===========>", terceiroArray)
+          setContatos(terceiroArray);
+          
+        }else if(e == "Z-A"){
+          
+          let arr = ListaDeContatos.map((info) => (
+            
+            ordenar(info.first_name)
+
+            ));
+            
+            nomeOrdenado.sort();
+            
+            function ordenar(nome){
+              return nome;
+            }
+
+            arr.sort();
+
+            let arr2 = ListaDeContatos.map((info, index) => (
+            
+              ordemDecrescente(index)
+  
+            ));
+
+            function ordemDecrescente(index){
+
+              return arr[arr.length - index - 1]; 
+              
+            }
+            
+            arr2.map((info) => (
+              terceiroArray.push(ListaDeContatos.find(n => n.first_name == info))
+            ));
+
             setContatos(terceiroArray);
 
-
-  
-          function ordenar(nome){
-
-            nomeOrdenado.push(nome);
-
-
           }
-  
+          
+
+  }
+
+  async function OrderIdade(e){
+
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+    console.log(e)
+  }
+
+  async function OrderMes(e){
+
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+  }
+
+  async function OrderIdioma(e){
+
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+    let idiomas = [];
+    let idiomasIndex = [];
+    let idomasOrdenado = [];
+
+    if(e == "A-Z"){
+
+      ListaDeContatos.map((info) => (
+        ordenar(info.language, info.id)
+      ));
+
+      function ordenar(idioma, id){
+        idiomas.push({id:id, language:idioma});
+
+      }
+      console.log("Idiomas", idiomas)
+
+      // idiomas.push(ListaDeContatos.find(n => n.id == info.index))
+
+      // console.log("Idiomas Filter", idiomas)
+
+
+      idiomas.sort(function(a, b){
+
+        return (a.language > b.language) ? 1 : ((b.language > a.language) ? -1 : 0);
+      });
+
+      console.log("Idiomas Sort", idiomas)
+
+      idiomas.map((info) => (
+
+        idomasOrdenado.push(ListaDeContatos.find(n => n.id == info.id))
+
+      ));
+
+      console.log("idomasOrdenado", idomasOrdenado)
+
+      setContatos(idomasOrdenado);
+     
+    }
+
   }
 
         
@@ -330,14 +413,14 @@ export default function FiltrosDiv( { setContatos }) {
                       <label  class="text-center">Idade:</label>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  />
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Crescente"  onClick={(e)=> OrderIdade(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios1">
                           Crescente
                         </label>
                       </div>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Decrescente" onClick={(e)=> OrderIdade(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios2">
                           Decrescente
                         </label>
@@ -350,14 +433,14 @@ export default function FiltrosDiv( { setContatos }) {
                       <label class="titulos-orderby">Mês:</label>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  />
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  onClick={(e)=> OrderMes(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios1">
                         Jan-Dez
                         </label>
                       </div>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={(e)=> OrderMes(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios2">
                         Dez-Jan
                         </label>
@@ -368,16 +451,16 @@ export default function FiltrosDiv( { setContatos }) {
 
                     <div class="text-center">
                       <label class="titulos-orderby">Idioma:</label>
-
+                      
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  />
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="A-Z"  onClick={(e)=> OrderIdioma(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios1">
                         A-Z
                         </label>
                       </div>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" />
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Z-A" onClick={(e)=> OrderIdioma(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios2">
                         Z-A
                         </label>
