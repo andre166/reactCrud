@@ -4,7 +4,6 @@ export default function FiltrosDiv( { setContatos }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
-  let [ordeByParam, setOrdeByParam] = useState([]);
 
 
   function fecharFiltro(e){
@@ -17,7 +16,7 @@ export default function FiltrosDiv( { setContatos }) {
     let data2 = String(data).split(' ');
     let days = String(data2[0]).split('/');
     let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
-    let dataFinal = dataFormatada[2]
+    let dataFinal = dataFormatada[2];
 
     if(idadeOuMes == 'mes'){
 
@@ -234,13 +233,6 @@ export default function FiltrosDiv( { setContatos }) {
     console.log(e)
   }
 
-  async function OrderMes(e){
-
-    const response = await localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = JSON.parse(response);
-
-  }
-
   async function OrderIdioma(e){
 
     const response = await localStorage.getItem("ListaDeContatos");
@@ -304,6 +296,79 @@ export default function FiltrosDiv( { setContatos }) {
 
   }
 
+
+
+  function mascararIdade(data, tipo){
+
+    if( tipo == "mes" ){
+      let data2 = String(data).split(' ');
+      let days = String(data2[0]).split('/');
+      let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
+      return dataFormatada[2];
+    }
+
+    // let calendario = new Date;
+
+    // let anoAtual = calendario.getFullYear();
+    // let mesAtual = calendario.getMonth() + 1;
+    // let diaAtual = calendario.getDate();
+
+    // let anoAniversario = dataFormatada[0];
+    // let mesAniversario = dataFormatada[2];
+    // let diaAniversario = dataFormatada[4];
+
+  
+    // let quantos_anos = anoAtual - anoAniversario;
+
+    // if (mesAtual < mesAniversario || mesAtual == mesAniversario && diaAtual < diaAniversario) {
+    //     quantos_anos--;
+    // }
+
+    // if(quantos_anos < 0){
+    //     quantos_anos = 0;
+    // }
+
+    // return quantos_anos;
+}
+
+async function OrderMes(e){
+
+  const response = await localStorage.getItem("ListaDeContatos");
+  let ListaDeContatos = JSON.parse(response);
+
+  let lista = [];
+  let listaOrdenada = [];
+
+  ListaDeContatos.map((info) => (
+    lista.push({birthday:mascararIdade(info.birthday, "mes"), id:info.id})
+  ));
+
+   
+  if(e == "Jan-Dez"){
+
+    lista.sort(function(a, b){
+  
+      return (a.birthday > b.birthday) ? 1 : ((b.birthday > a.birthday) ? -1 : 0);
+    });
+
+  }else if(e == "Dez-Jan"){
+    lista.sort(function(a, b){
+      return (a.birthday < b.birthday) ? 1 : ((b.birthday < a.birthday) ? -1 : 0);
+    });
+  }
+
+
+
+  lista.map((info) => (
+
+    listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
+
+  ));
+
+  setContatos(listaOrdenada);
+
+
+}
         
   return(
     <div>
@@ -449,14 +514,14 @@ export default function FiltrosDiv( { setContatos }) {
                       <label class="titulos-orderby">Mês:</label>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"  onClick={(e)=> OrderMes(e.target.value)}/>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Jan-Dez"  onClick={(e)=> OrderMes(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios1">
                         Jan-Dez
                         </label>
                       </div>
 
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" onClick={(e)=> OrderMes(e.target.value)}/>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Dez-Jan" onClick={(e)=> OrderMes(e.target.value)}/>
                         <label class="form-check-label" for="exampleRadios2">
                         Dez-Jan
                         </label>
