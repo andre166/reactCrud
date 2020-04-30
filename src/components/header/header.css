@@ -1,15 +1,3 @@
-#logo{
-    /* width: 100px;
-    height: 100px; */
-    /* padding: 10px; */
-    /* margin: 13px; */
-    /* border: 1px solid #fff; */
-    /* border-radius: 100%; */
-    /* border: 1px solid red; */
-    /* background-color: #fff; */
-    /* margin: 25px !important; */
-}
-
 #logo-container{
     border-radius: 100%;
     width: 90px;
@@ -21,8 +9,9 @@
     /* padding: 32px 1px; */
     /* border: 0.5px solid #015d2a; */
     /* cursor: pointer; */
-    box-shadow: inset -4px -4px 10px rgb(122, 122, 122),
+    box-shadow: inset -4px -4px 10px #7a7a7a,
     inset -4px -4px 10px #3d3d3d;
+   
 }
 
 .fa-bars{

@@ -192,7 +192,7 @@ export default function EditarContatos() {
                                     
                                     <div class="form-group  col-sm-6 py-0 my-2">
                                         <label for="exampleInputEmail1">Email:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1"  
+                                        <input type="text" class="form-control" id="exampleInputEmail1" maxLength="30"  
                                         placeholder="Email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
                                     </div>
 

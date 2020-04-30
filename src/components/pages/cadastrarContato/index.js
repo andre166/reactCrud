@@ -75,7 +75,7 @@ export default function AddContato() {
                             <div class="col-md-4 mb-3">
                                 <label>Primeiro Nome:</label>
                                 <input type="text" class="form-control" 
-                                value={first_name} 
+                                value={first_name} maxLength="17"
                                 onChange={(e)=> setFirstName(e.target.value)} placeholder="Digite o Primeiro Nome" required />
                                 
                             </div>
@@ -83,14 +83,14 @@ export default function AddContato() {
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Último Nome:</label>
                                 <input type="text" class="form-control" id="validationServer02" 
-                                value={last_name} required 
+                                value={last_name} required maxLength="17"
                                 onChange={(e)=> setLastName(e.target.value)} placeholder="Digite o Último nome" />
                             </div>
 
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer02">Email:</label>
                                 <input type="email" class="form-control" id="validationServer02" 
-                                value={email} required autoComplete="off" 
+                                value={email} required autoComplete="off" maxLength="30"
                                 onChange={(e)=> setEmail(e.target.value)} placeholder="Digite o Email" />
                             </div>
 
@@ -102,7 +102,7 @@ export default function AddContato() {
                                 <label for="validationServer02">Idioma:</label>
 
                                 <input type="text" class="form-control" id="validationServer02" 
-                                value={language} required 
+                                value={language} required maxLength="17"
                                 onChange={(e)=> setLanguage(e.target.value)} placeholder="Digite o idioma" />
                             </div>
 
