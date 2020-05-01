@@ -36,7 +36,6 @@ export default function Footer() {
                             </div>
                         </div>
 
-
                         <div class="col-sm-6">
                             <div class="text-center mt-2">
                                 <b>André Mesquita</b> <span class="text-footer">&copy; Todos os direitos reservados</span>

@@ -10,7 +10,10 @@ html, body{
 }
 
 .jumbotron{
-  background-color: #015d2a;
+  /* background-color: #015d2a; */
+  background-color: #246e46;
+  box-shadow: inset 3px 3px 6px #bebebebe,
+              inset -3px -3px 6px #013a1a;
 }
 
 .leste-bg-escuro{

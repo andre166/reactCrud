@@ -133,13 +133,89 @@
     margin: 2px;
     font-size: 10pt;
 }
-.form-orderBy{
+.form-orderBy-container{
+    
+    padding: 10px 0px;
     display: flex;
     flex-direction: row ;
     justify-content: space-around;
+    /* border-top: 2px solid #015d2a; */
+    /* box-shadow: inset 3px 3px 15px #015d2a36,
+                inset -1px -1px 5px #015d2a4b; */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+                
+}
+
+.form-orderBy{
+    margin-bottom: 5px;
+    font-size: 11pt;
+    letter-spacing: 1px;
+    color: #015d2a;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid #015d2a;
+    background-color: #015d2a2a;
+    
+}
+.h4-ordenar{
+    border-radius: 5px;
+    padding: 7px 0px 1px 0px;
+    color: #e6e6e6;
+    letter-spacing: 2px;
+    border: 2px solid #013a1a;
+    /* background-color: #015d2a; */
+    background-color: #013a1a;
+    box-shadow: inset 2px 2px 4px #bebebebe,
+              inset -2px -2px 4px #00180a;
+}
+/* .traco{
+    height: 2px !important;
+    width: 5px !important;
+    background-color: #007434;
+    border: 1px solid #007434;
+    padding: 0px 3px;
+    margin-right: 7px;
+    border-radius: 2px;
+} */
+.form-orderBy-container h6{
+    margin: 6px 0px;
+    color: #fff;
+    background-color: #015d2a;
+    border-radius: 2px;
+    padding: 3px 0px;
+    box-shadow: inset 1px 1px 3px #bebebebe,
+              inset -1px -1px 3px #013a1a;
+}
+
+.form-orderBy-container h4{
+    color: greenyellow;
+}
+.form-check i{
+    font-size: 16pt;
+}
+.form-orderBy .form-check{
+    margin: 10px 10px;
 }
 
 @media (max-width: 575.98px) { 
+    .form-orderBy{
+        display: flex;
+        flex-direction: row !important;
+    }
+
+    .form-orderBy-container{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .form-orderBy .form-check{
+        margin:  3px 0px !important;
+        
+    }
     
     .socialIcon-card{
         display: none;
@@ -191,4 +267,20 @@
         background-color: blue;
     }
 
+}
+
+@media  (max-width: 860px) {
+    .form-orderBy{
+        flex-direction: column;
+     
+    }
+
+    .form-orderBy .form-check{
+        /* width: 20rem; */
+        /* border: 1px solid yellow; */
+        /* padding: 5px !important; */
+        margin: 10px !important;
+    }
+
+   
 }

@@ -4,6 +4,7 @@ export default function FiltrosDiv( { setContatos }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
+  let [filtroNome, setFiltroNome] = useState([]);
 
 
   function fecharFiltro(e){
@@ -94,6 +95,24 @@ export default function FiltrosDiv( { setContatos }) {
   
   }
 
+  async function FiltrarPorNome(e){
+
+    if(e.length == 0){
+      return;
+    }
+
+    let letraFormatada = e.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
+    { return a.toUpperCase(); });
+
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+    let cidadao = ListaDeContatos.filter(n => n.first_name == letraFormatada);
+
+      setContatos(cidadao);
+      zerarFiltro("nome");
+  }
+
   async function filtrarLinguagem(e){
 
     if(e.length === 0 ){
@@ -134,28 +153,45 @@ export default function FiltrosDiv( { setContatos }) {
     const response = await localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = JSON.parse(response);
 
-    if(Filtro === "linguagem"){
+    if(Filtro === "nome"){
+
       setFiltroIdade('');
       document.querySelector('#inputGroupSelect01').value = 0;
+      setFiltroLinguagem('');
+      document.querySelector('#form-orderBy').reset();
+
+    }else if(Filtro === "linguagem"){
+      setFiltroIdade('');
+      document.querySelector('#inputGroupSelect01').value = 0;
+      setFiltroNome('');
+      document.querySelector('#form-orderBy').reset();
 
     }else if(Filtro === "genero"){
       document.querySelector('#inputGroupSelect01').value = 0;
       setFiltroLinguagem('');
       setFiltroIdade('');
+      setFiltroNome('');
+      document.querySelector('#form-orderBy').reset();
 
     }else if(Filtro === "idade"){
       document.querySelector('#inputGroupSelect01').value = 0;
       setFiltroLinguagem('');
+      setFiltroNome('');
+      document.querySelector('#form-orderBy').reset();
 
     }else if(Filtro === "mes"){
       setFiltroIdade('');
+      setFiltroNome('');
       setFiltroLinguagem('');
+      document.querySelector('#form-orderBy').reset();
 
     }else if(Filtro === "geral"){
       document.querySelector('#inputGroupSelect01').value = 0;
       setContatos(ListaDeContatos);
       setFiltroLinguagem('');
       setFiltroIdade('');
+      setFiltroNome('');
+      document.querySelector('#form-orderBy').reset();
     }
   }
 
@@ -225,14 +261,6 @@ export default function FiltrosDiv( { setContatos }) {
 
   }
 
-  async function OrderIdade(e){
-
-    const response = await localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = JSON.parse(response);
-
-    console.log(e)
-  }
-
   async function OrderIdioma(e){
 
     const response = await localStorage.getItem("ListaDeContatos");
@@ -300,75 +328,83 @@ export default function FiltrosDiv( { setContatos }) {
 
   function mascararIdade(data, tipo){
 
+    let data2 = String(data).split(' ');
+    let days = String(data2[0]).split('/');
+    let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
+
     if( tipo == "mes" ){
-      let data2 = String(data).split(' ');
-      let days = String(data2[0]).split('/');
-      let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
       return dataFormatada[2];
+    }else{
+      return dataFormatada[4];
     }
 
-    // let calendario = new Date;
-
-    // let anoAtual = calendario.getFullYear();
-    // let mesAtual = calendario.getMonth() + 1;
-    // let diaAtual = calendario.getDate();
-
-    // let anoAniversario = dataFormatada[0];
-    // let mesAniversario = dataFormatada[2];
-    // let diaAniversario = dataFormatada[4];
-
-  
-    // let quantos_anos = anoAtual - anoAniversario;
-
-    // if (mesAtual < mesAniversario || mesAtual == mesAniversario && diaAtual < diaAniversario) {
-    //     quantos_anos--;
-    // }
-
-    // if(quantos_anos < 0){
-    //     quantos_anos = 0;
-    // }
-
-    // return quantos_anos;
-}
-
-async function OrderMes(e){
-
-  const response = await localStorage.getItem("ListaDeContatos");
-  let ListaDeContatos = JSON.parse(response);
-
-  let lista = [];
-  let listaOrdenada = [];
-
-  ListaDeContatos.map((info) => (
-    lista.push({birthday:mascararIdade(info.birthday, "mes"), id:info.id})
-  ));
-
-   
-  if(e == "Jan-Dez"){
-
-    lista.sort(function(a, b){
-  
-      return (a.birthday > b.birthday) ? 1 : ((b.birthday > a.birthday) ? -1 : 0);
-    });
-
-  }else if(e == "Dez-Jan"){
-    lista.sort(function(a, b){
-      return (a.birthday < b.birthday) ? 1 : ((b.birthday < a.birthday) ? -1 : 0);
-    });
   }
 
+  async function OrderMes(e){
 
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
 
-  lista.map((info) => (
+    let lista = [];
+    let listaOrdenada = [];
 
-    listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
+    ListaDeContatos.map((info) => (
+      lista.push({birthday:mascararIdade(info.birthday, "mes"), id:info.id})
+    ));
 
-  ));
+    
+    if(e == "Jan-Dez"){
 
-  setContatos(listaOrdenada);
+      lista.sort(function(a, b){
+    
+        return (a.birthday > b.birthday) ? 1 : ((b.birthday > a.birthday) ? -1 : 0);
+      });
 
+    }else if(e == "Dez-Jan"){
+      lista.sort(function(a, b){
+        return (a.birthday < b.birthday) ? 1 : ((b.birthday < a.birthday) ? -1 : 0);
+      });
+    }
 
-}
+    lista.map((info) => (
+      listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
+    ));
+
+    setContatos(listaOrdenada);
+
+  }
+
+  async function OrderIdade(e){
+
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+    let lista = [];
+    let listaOrdenada = [];
+
+    ListaDeContatos.map((info) => (
+      lista.push({birthday:mascararIdade(info.birthday, "dia"), id:info.id})
+    ));
+
+    if(e == "Crescente"){
+      lista.sort(function(a, b){
+    
+        return (a.birthday > b.birthday) ? 1 : ((b.birthday > a.birthday) ? -1 : 0);
+      });
+
+    }else if(e == "Decrescente"){
+      lista.sort(function(a, b){
+        return (a.birthday < b.birthday) ? 1 : ((b.birthday < a.birthday) ? -1 : 0);
+      });
+    }
+
+    lista.map((info) => (
+      listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
+    ));
+
+    setContatos(listaOrdenada);
+    
+  }
         
   return(
     <div>
@@ -382,16 +418,20 @@ async function OrderMes(e){
             onClick={() => {fecharFiltro('fechar')}}>Limpar Filtro<i class="fas fa-filter"></i>
           </button>
       </div> 
-
-          
+ 
       <div class="row">
           <div class="col-sm-12">
+         
 {/* ===========================Adicionar collapse ================================ */}
             <div class=" multi-collapse" id="multiCollapseExample1">
               <form className="card card-body filtro-container form-group">
 
+              <div className="text-center h4-ordenar mb-4">
+              <h4>Filtrar por</h4>
+              </div>
+
                 <div class="form-group row ">
-                  <div className="col-md-3">
+                  <div className="col-md-2">
 
                     <div class="dropdown">
                       <button class="btn btn-leste dropdown-toggle mb-3" type="button" 
@@ -406,8 +446,22 @@ async function OrderMes(e){
 
                     </div>
                   </div>
+
+                  <div className="col-md-3">
+                    <div class="input-group mb-3">
+
+                      <input type="text" class="form-control input-leste" aria-label="Recipient's username" 
+                      aria-describedby="button-addon2" value={filtroNome} 
+                      onChange={(e)=> setFiltroNome(e.target.value)} placeholder="Nome"/>
+
+                      <div class="input-group-append">
+                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => FiltrarPorNome(filtroNome)}><i class="fas fa-search"></i></button>
+                      </div>
+
+                    </div>
+                  </div>
                 
-                  <div className="col-md-4">
+                  <div className="col-md-2">
                     <div class="input-group mb-3">
 
                       <input type="text" class="form-control input-leste" readonly aria-label="Recipient's username" 
@@ -424,7 +478,7 @@ async function OrderMes(e){
 
                   <div className="col-md-2">
                     <div class="input-group mb-3">
-                      <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => FiltrarPorMesOuIdade(e.target.value, 'mes')}>
+                      <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => FiltrarPorMesOuIdade(e.target.value)}>
                         <option value="0" selected>Mês</option>
                         <option value="01" >Janeiro</option>
                         <option value="02">Fevereiro</option>
@@ -442,7 +496,7 @@ async function OrderMes(e){
                     </div>
                   </div>
 
-                  <div className="col-md-3">
+                  <div className="col-md-2">
                     <div class="input-group mb-3">
 
                       <input type="number" class="form-control input-leste" aria-label="Recipient's username" 
@@ -450,7 +504,7 @@ async function OrderMes(e){
                       onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
 
                       <div class="input-group-append">
-                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => FiltrarPorMesOuIdade(filtroIdade, 'idade')}><i class="fas fa-search"></i></button>
+                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => FiltrarPorMesOuIdade(filtroIdade)}><i class="fas fa-search"></i></button>
                       </div>
 
                     </div>
@@ -460,93 +514,103 @@ async function OrderMes(e){
                 <div className="row">
                   <div className="col">
 
-                    <div className="text-center">
-                      <label>Ordenar por</label>
+                    <div className="text-center h4-ordenar">
+                      <h4>Ordenar por</h4>
                     </div>
 {/* ==================== INÍCIO DA ROW DE ORDENAÇÃO ================================= */}
-                  <div className="form-orderBy">
+                  <div >
+                  <form className="form-orderBy-container" id="form-orderBy">
+                    <div class="text-center aa">
+                      <h6>Nome</h6>
 
-                    <div class="text-center">
-                      <label>Nome:</label>
+                      <div class="form-orderBy">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome" value="A-Z"
+                            onClick={(e)=> OrderByNome(e.target.value)} 
+                          />
+                          <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-sort-alpha-down"></i>
+                          </label>
+                        </div>
 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome" value="A-Z"
-                          onClick={(e)=> OrderByNome(e.target.value)} 
-                         />
-                        <label class="form-check-label" for="exampleRadios1">
-                          A-Z
-                        </label>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome2" value="Z-A" 
+                            onClick={(e)=> OrderByNome(e.target.value)}
+                          />
+                          <label class="form-check-label" for="exampleRadios2">
+                          <i class="fas fa-sort-alpha-up"></i>
+                          </label>
+                        </div>
                       </div>
 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome2" value="Z-A" 
-                          onClick={(e)=> OrderByNome(e.target.value)}
-                        />
-                        <label class="form-check-label" for="exampleRadios2">
-                          Z-A
-                        </label>
-                      </div>
                     </div>
 
                     {/* ============== */}
 
-                    <div>
-                      <label  class="text-center">Idade:</label>
+                    <div className="text-center aa">
+                      <h6  class="text-center px-2">Dia do nascimento</h6>
+                      <div class="form-orderBy" id="coluna-idade">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Crescente"  onClick={(e)=> OrderIdade(e.target.value)}/>
+                          <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-sort-numeric-down"></i>
+                          </label>
+                        </div>
 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Crescente"  onClick={(e)=> OrderIdade(e.target.value)}/>
-                        <label class="form-check-label" for="exampleRadios1">
-                          Crescente
-                        </label>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Decrescente" onClick={(e)=> OrderIdade(e.target.value)}/>
+                          <label class="form-check-label" for="exampleRadios2">
+                          <i class="fas fa-sort-numeric-down-alt"></i>
+                          </label>
+                        </div>
                       </div>
 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Decrescente" onClick={(e)=> OrderIdade(e.target.value)}/>
-                        <label class="form-check-label" for="exampleRadios2">
-                          Decrescente
-                        </label>
-                      </div>
                     </div>
 
                     {/* ============== */}
 
-                    <div class="text-center">
-                      <label class="titulos-orderby">Mês:</label>
+                    <div class="text-center aa">
+                      <h6 class="titulos-orderby">Mês</h6>
+                      <div className="form-orderBy">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="Jan-Dez"  onClick={(e)=> OrderMes(e.target.value)}/>
+                          <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-arrow-down"></i>Jan-Dez
+                          </label>
+                        </div>
 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Jan-Dez"  onClick={(e)=> OrderMes(e.target.value)}/>
-                        <label class="form-check-label" for="exampleRadios1">
-                        Jan-Dez
-                        </label>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="Dez-Jan" onClick={(e)=> OrderMes(e.target.value)}/>
+                          <label class="form-check-label" for="exampleRadios2">
+                          <i class="fas fa-arrow-down"></i>Dez-Jan
+                          </label>
+                        </div>
                       </div>
 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Dez-Jan" onClick={(e)=> OrderMes(e.target.value)}/>
-                        <label class="form-check-label" for="exampleRadios2">
-                        Dez-Jan
-                        </label>
-                      </div>
                     </div>
 
                     {/* ============== */}
 
-                    <div class="text-center">
-                      <label class="titulos-orderby">Idioma:</label>
-                      
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="A-Z"  onClick={(e)=> OrderIdioma(e.target.value)}/>
-                        <label class="form-check-label" for="exampleRadios1">
-                        A-Z
-                        </label>
-                      </div>
+                    <div class="text-center aa">
+                      <h6 class="titulos-orderby">Idioma</h6>
+                      <div className="form-orderBy">
+                        <div class="form-check media-body">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="A-Z"  onClick={(e)=> OrderIdioma(e.target.value)}/>
+                          <label class="form-check-label" for="exampleRadios1">
+                          <i class="fas fa-sort-alpha-down"></i>
+                          </label>
+                        </div>
 
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Z-A" onClick={(e)=> OrderIdioma(e.target.value)}/>
-                        <label class="form-check-label" for="exampleRadios2">
-                        Z-A
-                        </label>
+                        <div class="form-check media-body">
+                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="Z-A" onClick={(e)=> OrderIdioma(e.target.value)}/>
+                          <label class="form-check-label" for="exampleRadios2">
+                          <i class="fas fa-sort-alpha-up"></i>
+                          </label>
+                        </div>
+
                       </div>
                     </div>
+                  </form>
                  
                   </div>
 
