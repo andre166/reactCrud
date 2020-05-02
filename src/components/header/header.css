@@ -1,17 +1,11 @@
 #logo-container{
     border-radius: 100%;
-    width: 90px;
+    width: 150px;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content:center;
-    background-color: #fff;
-    /* padding: 32px 1px; */
-    /* border: 0.5px solid #015d2a; */
-    /* cursor: pointer; */
-    box-shadow: inset -4px -4px 10px #7a7a7a,
-    inset -4px -4px 10px #3d3d3d;
-   
+    margin-left: 15px;
 }
 
 .fa-bars{
@@ -20,53 +14,35 @@
 }
 
 .navbar-custom{
-    background-color: #00ad4f;
+    background-color: #009242;
     padding: 5px 25px!important; 
-}
-ul li{
-    text-decoration: none;
-    position: relative;
-    color: #313131;
-    font-size: 10px;
-    font-weight: 600;
-    font-family: sans-serif;
-    display: block;
-    overflow: hidden;
-    transition: 0.7s all;
-    text-transform: uppercase;
-}
-
-#menu li:hover:before{
-    right: 0;
 }
 
 #menu li a{
     font-weight: 700;
-    color: #fff;
+    color: #e9e9e9;
     font-size: 20px;
     letter-spacing: 2px;
 }
 
-
-#menu li a:hover{
-   color: #fff !important; 
+#menu li {
+    padding: 2px 5px;
+    border-radius: 10px;
+    margin-right: 10px;
+    box-shadow: 3px 3px 3px #007434,
+    -2.8px -2.8px 2px #c0c0c081;
 }
+#menu li:hover{
+    box-shadow: inset 3px 3px 3px #007434,
+    inset -3px -3px 3px #c0c0c0a4;
+}
+
 
 
 /* ===================== */
 
 
 @media (max-width: 575.98px) {
-
-    #menu li:before{
-        content: '';
-        width: 0px;
-        position: absolute;
-        border-bottom: none;
-        bottom: 0;
-        right: 0px;
-        transition: 0.5s all;
-    }
 
     .fa-bars{
         font-size: 25pt;
@@ -75,15 +51,14 @@ ul li{
     }
 
     #logo{
-        width: 115px;
-        height: 50px;
+        width: 160px;
+        height: 70px;
         padding: 3px;
         margin: 11px 8px 8px 7px; 
     }
     
     #logo-container{
-        background-color: #fff;
-        border-radius: 50px;
+        
         width: 55px;
         height: 55px;
         align-items: center;
@@ -95,28 +70,6 @@ ul li{
     }
 
  }
-
- @media (max-width: 767.98px) { 
-
-   
-
-
-}
-
-
-
-@media screen and (min-width: 992px) {
-    #menu li:before{
-        content: '';
-        width: 100%;
-        position: absolute;
-        border-bottom: 3px solid #015d2a;
-        bottom: 0;
-        right: 350px;
-        transition: 0.5s all;
-    } 
-	
-}
 
 
 

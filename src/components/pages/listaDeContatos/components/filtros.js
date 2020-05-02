@@ -209,7 +209,7 @@ export default function FiltrosDiv( { setContatos }) {
           <div class="col-sm-12">
          
 {/* ===========================Adicionar ou remover collapse ================================ */}
-            <div class=" multi-collapse" id="multiCollapseExample1">
+            <div class="collapse multi-collapse" id="multiCollapseExample1">
               <form className="card card-body filtro-container form-group">
 
               <div className="text-center h4-ordenar mb-4">

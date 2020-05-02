@@ -13,20 +13,18 @@ import Footer from './components/footer';
 export default function Routes(){
 
     return (
-    <BrowserRouter>
-        <Header/>
-            <Switch>
-                <Route exact path='/' component={Home}/>
-
-                <Route exact path='/ListaDeContatos/' component={ListaDeContatos}/>
-                <Route path='/EditarContatos/:id' component={EditarContatos}/>          
-                <Route path='/CadastrarContato' component={CadastrarContato}/>
-                <Route exact path='/Estatisticas' component={Estatisticas}/>
-        
-                <Route path="*" component={Erro}/>
-            </Switch>
-        <Footer/>
-    </BrowserRouter>
-
+        <BrowserRouter>
+            <Header/>
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route exact path='/ListaDeContatos' component={ListaDeContatos}/>
+                    <Route path='/EditarContatos/:id' component={EditarContatos}/>          
+                    <Route exact path='/CadastrarContato' component={CadastrarContato}/>
+                    <Route exact path='/Estatisticas' component={Estatisticas}/>
+            
+                    <Route path="*" component={Erro}/>
+                </Switch>
+            <Footer/>
+        </BrowserRouter>
     );
 }

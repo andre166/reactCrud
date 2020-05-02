@@ -96,9 +96,6 @@ export default function EditarContatos() {
 
             await localStorage.setItem("MSG", "EditadoSuccess");
 
-        }else{
-            await localStorage.setItem("MSG", "ExcluidoSuccess");
-
         }
 
     }

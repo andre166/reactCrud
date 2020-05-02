@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-import api from '../../services/api';
+import React from 'react';
 import './estilo.css';
 
 export default function Home(){
@@ -19,23 +18,23 @@ export default function Home(){
                     <div class="col-md-6">
 
                         <ul class="list-group">
-                            <li class="list-group-item titulo"><h4>Descrição</h4></li>
-                            <li class="list-group-item">Cadastra, Edita, exclui, lista e gera relatório com gráfico.</li>
-                            <li class="list-group-item">2 - Cadastro: cadasta um contato com os seguintes campos -> Primeiro nome, Ultimo nome, Email, Gênero, Linguagem, Data de nascimento</li>
-                            <li class="list-group-item">3 - Filtros de pesquisa: por Gênero(F/M), por Idade, por Mês(todos de um determinado mês), por Idioma(todos de um determinado Idioma)</li>
-                            <li class="list-group-item">4 - Estatísticas: Gráficos com o total de cadastros por Gênero e Quantidade de Usuários por Idioma </li>
+                            <a class="list-group-item titulo"><h4>Descrição</h4></a>
+                            <li class="list-group-item">1 - Cadastra, Edita, exclui, lista e gera relatório com gráfico.</li>
+                            <li class="list-group-item">2 - Cadastro: Cadastro de pessoa Física.</li>
+                            <li class="list-group-item">3 - Filtros de pesquisa: por Gênero(F/M), por Idade, por Mês(todos de um determinado mês), por Idioma(todos de um determinado Idioma).</li>
+                            <li class="list-group-item">4 - Oderna por: Nome(A-Z e Z-A), dia/mês/ano do nascimento(crescente e decrescente), Idioma(A-Z e Z-A).</li>
+                            <li class="list-group-item">5 - Estatísticas: Gráficos com o total de cadastros por Gênero e Quantidade de Usuários por Idioma.</li>
                         </ul>
                         
                     </div>
                 </div>
 
-                    <div className="row">
-                        <div class="col-md-3"> </div>
-
+                <div className="row">
+                    <div class="col-md-3"> </div>
                         <div class="col-md-6">
 
                             <ul class="list-group text-center mt-2">
-                                <li class="list-group-item titulo"><h4>Tecnologias usadas</h4></li>
+                                <a class="list-group-item titulo"><h4>Tecnologias usadas</h4></a>
                                 <li class="list-group-item">Html5, Css3, BootsTrap4, Javascript</li>
                                 <li class="list-group-item">Node, Npm, Git, Git Kraken, GitHub</li>
                                 <li class="list-group-item">React JS, Persintência no LocalStorage</li>
@@ -44,8 +43,8 @@ export default function Home(){
 
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     );

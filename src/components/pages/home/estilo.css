@@ -8,9 +8,28 @@
 }
 
 .titulo{
-    background-color: #015d2a;
-    color: #fff;
     text-align: center;
+    background-color: #246e46;
+    box-shadow: inset 3px 3px 6px #bebebebe,
+              inset -3px -3px 6px #013a1a;
+}
+.titulo h4{
+    color: #fff;
+}
+
+
+.home-container ul li{
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    background-color: #b1b1b150;
+    box-shadow: inset 2px 2px 3px #013a1a26,
+    inset -2px -2px 3px #013a1a65;
+}
+.home-container ul li:hover{
+    background-color: #246e46;
+    box-shadow: inset 3px 3px 6px #bebebebe,
+              inset -3px -3px 6px #013a1a;
+    color: #fff;
 }
 
 @media (max-width: 575.98px) { 

@@ -171,6 +171,11 @@
     box-shadow: inset 2px 2px 4px #bebebebe,
               inset -2px -2px 4px #00180a;
 }
+.idade_e_id-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .form-orderBy-container h6{
     margin: 6px 0px;
