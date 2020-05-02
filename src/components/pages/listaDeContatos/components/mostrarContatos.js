@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import contacts
+
 export default function MostrarContatos({ contatos }){
 
     function socialIcon(posicaoNoArray, contato){

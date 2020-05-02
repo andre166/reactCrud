@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react"
+import React, {useState } from "react"
+import OrderBy from './orderBy';
 
 export default function FiltrosDiv( { setContatos }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
   let [filtroNome, setFiltroNome] = useState([]);
-
 
   function fecharFiltro(e){
     let x = document.querySelector('#btn-filtro').classList.add('collapsed');
@@ -43,10 +43,7 @@ export default function FiltrosDiv( { setContatos }) {
       let mesAniversario = dataFormatada[2];
       let diaAniversario = dataFormatada[4];
       
-      let quantos_anos = anoAtual - anoAniversario;
-      
-      console.log("quantos_anos =>", quantos_anos)
-      
+      let quantos_anos = anoAtual - anoAniversario;    
       
       if (mesAtual < mesAniversario || mesAtual == mesAniversario && diaAtual < diaAniversario) {
         quantos_anos--;
@@ -67,7 +64,7 @@ export default function FiltrosDiv( { setContatos }) {
   async function FiltrarPorMesOuIdade(e, idadeOuMes){
 
     if(e != 0){
-
+      
       let x = 0;
       let ArrayM = [];
       let ArrayX = [];
@@ -195,217 +192,6 @@ export default function FiltrosDiv( { setContatos }) {
     }
   }
 
-  async function OrderByNome(e){
-
-    const response = await localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = JSON.parse(response);
-
-    let nomeOrdenado = [];
-    let terceiroArray = [];
-
-      if(e == "A-Z"){
-
-          ListaDeContatos.map((info) => (
-            ordenar(info.first_name)
-          ));
-
-          function ordenar(nome){
-            nomeOrdenado.push(nome);
-          }
-
-          nomeOrdenado.sort();
-
-      
-          nomeOrdenado.map((info) => (
-            terceiroArray.push(ListaDeContatos.find(n => n.first_name == info))
-          ));
-            
-          setContatos(terceiroArray);
-          
-        }else if(e == "Z-A"){
-          
-          let arr = ListaDeContatos.map((info) => (
-            
-            ordenar(info.first_name)
-
-            ));
-            
-            nomeOrdenado.sort();
-            
-            function ordenar(nome){
-              return nome;
-            }
-
-            arr.sort();
-
-            let arr2 = ListaDeContatos.map((info, index) => (
-            
-              ordemDecrescente(index)
-  
-            ));
-
-            function ordemDecrescente(index){
-
-              return arr[arr.length - index - 1]; 
-              
-            }
-            
-            arr2.map((info) => (
-              terceiroArray.push(ListaDeContatos.find(n => n.first_name == info))
-            ));
-
-            setContatos(terceiroArray);
-
-          }
-          
-
-  }
-
-  async function OrderIdioma(e){
-
-    const response = await localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = JSON.parse(response);
-
-    let idiomas = [];
-    let idomasOrdenado = [];
-
-    if(e == "A-Z"){
-
-      ListaDeContatos.map((info) => (
-        ordenar(info.language, info.id)
-      ));
-
-      function ordenar(idioma, id){
-        idiomas.push({id:id, language:idioma});
-
-      }
-
-      idiomas.sort(function(a, b){
-
-        return (a.language > b.language) ? 1 : ((b.language > a.language) ? -1 : 0);
-      });
-
-
-      idiomas.map((info) => (
-
-        idomasOrdenado.push(ListaDeContatos.find(n => n.id == info.id))
-
-      ));
-
-      setContatos(idomasOrdenado);
-     
-    }else if(e == "Z-A"){
-      
-      ListaDeContatos.map((info) => (
-        ordenar(info.language, info.id)
-      ));
-
-      function ordenar(idioma, id){
-        idiomas.push({id:id, language:idioma});
-
-      }
-
-      idiomas.sort(function(a, b){
-
-        return (a.language < b.language) ? 1 : ((b.language < a.language) ? -1 : 0);
-      });
-
-      console.log("idiomas Sort", idiomas)
-
-      idiomas.map((info) => (
-
-        idomasOrdenado.push(ListaDeContatos.find(n => n.id == info.id))
-
-      ));
-
-      setContatos(idomasOrdenado);
-
-    }
-
-  }
-
-
-
-  function mascararIdade(data, tipo){
-
-    let data2 = String(data).split(' ');
-    let days = String(data2[0]).split('/');
-    let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
-
-    if( tipo == "mes" ){
-      return dataFormatada[2];
-    }else{
-      return dataFormatada[4];
-    }
-
-  }
-
-  async function OrderMes(e){
-
-    const response = await localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = JSON.parse(response);
-
-    let lista = [];
-    let listaOrdenada = [];
-
-    ListaDeContatos.map((info) => (
-      lista.push({birthday:mascararIdade(info.birthday, "mes"), id:info.id})
-    ));
-
-    
-    if(e == "Jan-Dez"){
-
-      lista.sort(function(a, b){
-    
-        return (a.birthday > b.birthday) ? 1 : ((b.birthday > a.birthday) ? -1 : 0);
-      });
-
-    }else if(e == "Dez-Jan"){
-      lista.sort(function(a, b){
-        return (a.birthday < b.birthday) ? 1 : ((b.birthday < a.birthday) ? -1 : 0);
-      });
-    }
-
-    lista.map((info) => (
-      listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
-    ));
-
-    setContatos(listaOrdenada);
-
-  }
-
-  async function OrderIdade(e){
-
-    const response = await localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = JSON.parse(response);
-
-    let lista = [];
-    let listaOrdenada = [];
-
-    ListaDeContatos.map((info) => (
-      lista.push({birthday:mascararIdade(info.birthday, "dia"), id:info.id})
-    ));
-
-    if(e == "Crescente"){
-      lista.sort(function(a, b){
-    
-        return (a.birthday > b.birthday) ? 1 : ((b.birthday > a.birthday) ? -1 : 0);
-      });
-
-    }else if(e == "Decrescente"){
-      lista.sort(function(a, b){
-        return (a.birthday < b.birthday) ? 1 : ((b.birthday < a.birthday) ? -1 : 0);
-      });
-    }
-
-    lista.map((info) => (
-      listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
-    ));
-
-    setContatos(listaOrdenada);
-    
-  }
-        
   return(
     <div>
       <div>
@@ -422,7 +208,7 @@ export default function FiltrosDiv( { setContatos }) {
       <div class="row">
           <div class="col-sm-12">
          
-{/* ===========================Adicionar collapse ================================ */}
+{/* ===========================Adicionar ou remover collapse ================================ */}
             <div class=" multi-collapse" id="multiCollapseExample1">
               <form className="card card-body filtro-container form-group">
 
@@ -478,7 +264,7 @@ export default function FiltrosDiv( { setContatos }) {
 
                   <div className="col-md-2">
                     <div class="input-group mb-3">
-                      <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => FiltrarPorMesOuIdade(e.target.value)}>
+                      <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => FiltrarPorMesOuIdade(e.target.value, "mes")}>
                         <option value="0" selected>Mês</option>
                         <option value="01" >Janeiro</option>
                         <option value="02">Fevereiro</option>
@@ -504,7 +290,7 @@ export default function FiltrosDiv( { setContatos }) {
                       onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
 
                       <div class="input-group-append">
-                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => FiltrarPorMesOuIdade(filtroIdade)}><i class="fas fa-search"></i></button>
+                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => FiltrarPorMesOuIdade(filtroIdade, "idade")}><i class="fas fa-search"></i></button>
                       </div>
 
                     </div>
@@ -517,102 +303,7 @@ export default function FiltrosDiv( { setContatos }) {
                     <div className="text-center h4-ordenar">
                       <h4>Ordenar por</h4>
                     </div>
-{/* ==================== INÍCIO DA ROW DE ORDENAÇÃO ================================= */}
-                  <div >
-                  <form className="form-orderBy-container" id="form-orderBy">
-                    <div class="text-center aa">
-                      <h6>Nome</h6>
-
-                      <div class="form-orderBy">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome" value="A-Z"
-                            onClick={(e)=> OrderByNome(e.target.value)} 
-                          />
-                          <label class="form-check-label" for="exampleRadios1">
-                          <i class="fas fa-sort-alpha-down"></i>
-                          </label>
-                        </div>
-
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="radioNome2" value="Z-A" 
-                            onClick={(e)=> OrderByNome(e.target.value)}
-                          />
-                          <label class="form-check-label" for="exampleRadios2">
-                          <i class="fas fa-sort-alpha-up"></i>
-                          </label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    {/* ============== */}
-
-                    <div className="text-center aa">
-                      <h6  class="text-center px-2">Dia do nascimento</h6>
-                      <div class="form-orderBy" id="coluna-idade">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="Crescente"  onClick={(e)=> OrderIdade(e.target.value)}/>
-                          <label class="form-check-label" for="exampleRadios1">
-                          <i class="fas fa-sort-numeric-down"></i>
-                          </label>
-                        </div>
-
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="Decrescente" onClick={(e)=> OrderIdade(e.target.value)}/>
-                          <label class="form-check-label" for="exampleRadios2">
-                          <i class="fas fa-sort-numeric-down-alt"></i>
-                          </label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    {/* ============== */}
-
-                    <div class="text-center aa">
-                      <h6 class="titulos-orderby">Mês</h6>
-                      <div className="form-orderBy">
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="Jan-Dez"  onClick={(e)=> OrderMes(e.target.value)}/>
-                          <label class="form-check-label" for="exampleRadios1">
-                          <i class="fas fa-arrow-down"></i>Jan-Dez
-                          </label>
-                        </div>
-
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="Dez-Jan" onClick={(e)=> OrderMes(e.target.value)}/>
-                          <label class="form-check-label" for="exampleRadios2">
-                          <i class="fas fa-arrow-down"></i>Dez-Jan
-                          </label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    {/* ============== */}
-
-                    <div class="text-center aa">
-                      <h6 class="titulos-orderby">Idioma</h6>
-                      <div className="form-orderBy">
-                        <div class="form-check media-body">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="A-Z"  onClick={(e)=> OrderIdioma(e.target.value)}/>
-                          <label class="form-check-label" for="exampleRadios1">
-                          <i class="fas fa-sort-alpha-down"></i>
-                          </label>
-                        </div>
-
-                        <div class="form-check media-body">
-                          <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="Z-A" onClick={(e)=> OrderIdioma(e.target.value)}/>
-                          <label class="form-check-label" for="exampleRadios2">
-                          <i class="fas fa-sort-alpha-up"></i>
-                          </label>
-                        </div>
-
-                      </div>
-                    </div>
-                  </form>
-                 
-                  </div>
+                    <OrderBy setContatos={ setContatos }></OrderBy>
 
                   </div>
                 </div>
