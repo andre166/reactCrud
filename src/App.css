@@ -10,7 +10,7 @@ html, body{
 }
 
 .jumbotron{
-  background-color: rgb(36, 112, 71);
+  background-color: #247047;
   box-shadow: inset 3px 3px 6px #bebebebe,
               inset -3px -3px 6px #013a1a;
 }
@@ -21,6 +21,13 @@ html, body{
 }
 .border-leste-escuro{
   border: 1px solid #015d2a;
+}
+
+.titulo{
+  text-align: center;
+  background-color: #246e46;
+  box-shadow: inset 3px 3px 6px #bebebebe,
+            inset -3px -3px 6px #013a1a;
 }
 
 .jumbotron h1{

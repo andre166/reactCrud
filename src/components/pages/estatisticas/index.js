@@ -189,13 +189,19 @@ export default function Estatisticas(){
 
                             <form class="form-row container lista-qtd-linguagem-container">
                                 <ul class="list-group">
-                                    <li class="list-group-item text-center list-group-item-action leste-bg-escuro text-white">Idioma | quantidade</li>
+
+                                    <a class="list-group-item titulo">
+                                        <h4>
+                                            <span>Idioma</span> 
+                                            <span>Quantidade</span> 
+                                        </h4>
+                                    </a>
 
                                     {linguagens.map((info) => (
                                 
                                         <li class="list-group-item d-flex justify-content-between align-items-center  lista-qtd-linguagem">
                                             <a>{info.lingua}</a>
-                                            <a class="badge leste-bg-escuro badge-pill text-white">{info.quantidade}</a>
+                                            <a class="badge badge-pill">{info.quantidade}</a>
                                         </li>
                                         
                                     ))}

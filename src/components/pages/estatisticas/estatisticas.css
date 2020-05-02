@@ -30,9 +30,24 @@
     min-width: 35px;
     height: 15px;
 }
+.lista-qtd-linguagem-container li{
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    background-color: #b1b1b150;
+    box-shadow: inset 2px 2px 3px #013a1a26,
+    inset -2px -2px 3px #013a1a65;
+}
+.lista-qtd-linguagem-container h4{
+    display: flex;
+    justify-content: space-between;
+}
 
 .lista-qtd-linguagem:hover{
-    background-color: #0058288d;
+
+    background-color: #246e46;
+    box-shadow: inset 3px 3px 6px #bebebebe,
+              inset -3px -3px 6px #013a1a;
+    color: #fff;
 }
 
 .lista-qtd-linguagem-container{

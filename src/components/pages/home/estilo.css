@@ -7,12 +7,6 @@
     font-size: 10pt;
 }
 
-.titulo{
-    text-align: center;
-    background-color: #246e46;
-    box-shadow: inset 3px 3px 6px #bebebebe,
-              inset -3px -3px 6px #013a1a;
-}
 .titulo h4{
     color: #fff;
 }

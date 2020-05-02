@@ -1,13 +1,16 @@
 #logo-container{
     border-radius: 100%;
-    width: 150px;
-    height: 90px;
+    width: 120px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content:center;
     margin-left: 15px;
 }
-
+#logo{
+    width: 160px;
+    height: 80px;
+}
 .fa-bars{
     color: #00000078;
     font-size: 30pt;
@@ -37,10 +40,7 @@
     inset -3px -3px 3px #c0c0c0a4;
 }
 
-
-
 /* ===================== */
-
 
 @media (max-width: 575.98px) {
 
@@ -51,10 +51,8 @@
     }
 
     #logo{
-        width: 160px;
-        height: 70px;
-        padding: 3px;
-        margin: 11px 8px 8px 7px; 
+        width: 115px;
+        height: 55px;
     }
     
     #logo-container{
