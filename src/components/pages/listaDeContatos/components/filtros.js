@@ -6,7 +6,6 @@ export default function FiltrosDiv( { setContatos }) {
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
   let [filtroNome, setFiltroNome] = useState([]);
-  let [teste, setTeste] = useState({});
 
 
   function formatData(contato, e, tipo){

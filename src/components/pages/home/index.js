@@ -6,12 +6,13 @@ import apiTeste from '../../services/apiTeste';
 
 export default function Home(){
 
-    async function chamarApi(){
-        apiTeste.get().then(res => {
-            console.log(res.data);
-          })
+    // async function chamarApi(){
+    //     apiTeste.get('http://localhost:8080/users').then(res => {
+    //         console.log(res.data);
+    //       })
+
     
-    }
+    // }
         
     return(
         <div class="home-container">
@@ -20,7 +21,7 @@ export default function Home(){
                         
                 <div class="jumbotron py-4  mb-2">
                     <h1 class="display-4 text-center">ContactJS</h1>
-                    <button  onClick={()=> chamarApi()}>Requisitar</button>
+                    {/* <button  onClick={()=> chamarApi()}>Requisitar</button> */}
                 </div>
 
                 <div className="row">
