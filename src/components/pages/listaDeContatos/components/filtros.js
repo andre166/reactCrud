@@ -6,30 +6,25 @@ export default function FiltrosDiv( { setContatos }) {
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
   let [filtroNome, setFiltroNome] = useState([]);
+  let [teste, setTeste] = useState({});
 
-  function fecharFiltro(e){
-    let x = document.querySelector('#btn-filtro').classList.add('collapsed');
-    zerarFiltro("geral");
-  }
 
-  function formatData(data, obj, e, idadeOuMes){
+  function formatData(contato, e, tipo){
 
-    let data2 = String(data).split(' ');
+    let data2 = String(contato.birthday).split(' ');
     let days = String(data2[0]).split('/');
-    let dataFormatada =  [days[2],"/", days[1],"/", days[0]];
-    let dataFinal = dataFormatada[2];
 
-    if(idadeOuMes == 'mes'){
+    if(tipo == 'mes'){
 
       zerarFiltro("mes");
 
-      if(dataFinal == e){
-        return obj;
+      if(days[1] == e){
+        return contato;
       }else{
         return '';
       }
 
-    }else if(idadeOuMes == 'idade'){
+    }else if(tipo == 'idade'){
 
       zerarFiltro("idade");
 
@@ -39,20 +34,18 @@ export default function FiltrosDiv( { setContatos }) {
       let mesAtual = calendario.getMonth() + 1;
       let diaAtual = calendario.getDate();
 
-      let anoAniversario = dataFormatada[0];
-      let mesAniversario = dataFormatada[2];
-      let diaAniversario = dataFormatada[4];
-      
-      let quantos_anos = anoAtual - anoAniversario;    
+      let diaAniversario = parseInt(days[0]);
+      let mesAniversario = parseInt(days[1]);
+      let anoAniversario = parseInt(days[2]);
+
+      let idadeAtual = anoAtual - anoAniversario;    
       
       if (mesAtual < mesAniversario || mesAtual == mesAniversario && diaAtual < diaAniversario) {
-        quantos_anos--;
+        idadeAtual--;
       }
-      
-      let idadeDoContato = quantos_anos;
 
-      if(idadeDoContato == e){
-        return obj;
+      if(idadeAtual == e){
+        return contato;
       }else{
         return '';
       }
@@ -61,38 +54,24 @@ export default function FiltrosDiv( { setContatos }) {
 
   }
 
-  async function FiltrarPorMesOuIdade(e, idadeOuMes){
+  async function filtrarPorMesOuIdade(e, tipo){
 
-    if(e != 0){
-      
-      let x = 0;
-      let ArrayM = [];
-      let ArrayX = [];
-      
-      const response = await localStorage.getItem("ListaDeContatos");
-      let ListaDeContatos = JSON.parse(response);
-
-      let mesFiltrado = ListaDeContatos.filter(n => n.birthday)
-
-      ArrayM = mesFiltrado.map((info) => (
-        formatData(info.birthday, info, e, idadeOuMes)
-      ))
-
-      for(let i = 0; i < ArrayM.length; i++){
-
-        if(ArrayM[i] != ''){
-          ArrayX[x] = ArrayM[i]
-          x++
-        }
-
-      }
-
-      setContatos(ArrayX);
+    if(e == 0){ 
+      return;
     }
+    
+    const response = await localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+    let contatosFiltrados = ListaDeContatos.filter((contato) => (
+      formatData(contato, e, tipo)
+    ))
   
+    setContatos(contatosFiltrados);
+    
   }
 
-  async function FiltrarPorNome(e){
+  async function filtrarPorNome(e){
 
     if(e.length == 0){
       return;
@@ -201,7 +180,7 @@ export default function FiltrosDiv( { setContatos }) {
           </a>
 
           <button  class="btn btn-sm btn-outline-danger ml-2" role="button" href="#multiCollapseExample1" data-toggle="hide"
-            onClick={() => {fecharFiltro('fechar')}}>Limpar Filtro<i class="fas fa-filter"></i>
+            onClick={() => {zerarFiltro('geral')}}>Limpar Filtro<i class="fas fa-filter"></i>
           </button>
       </div> 
  
@@ -241,7 +220,7 @@ export default function FiltrosDiv( { setContatos }) {
                       onChange={(e)=> setFiltroNome(e.target.value)} placeholder="Nome"/>
 
                       <div class="input-group-append">
-                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => FiltrarPorNome(filtroNome)}><i class="fas fa-search"></i></button>
+                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => filtrarPorNome(filtroNome)}><i class="fas fa-search"></i></button>
                       </div>
 
                     </div>
@@ -264,7 +243,7 @@ export default function FiltrosDiv( { setContatos }) {
 
                   <div className="col-md-2">
                     <div class="input-group mb-3">
-                      <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => FiltrarPorMesOuIdade(e.target.value, "mes")}>
+                      <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => filtrarPorMesOuIdade(e.target.value, "mes")}>
                         <option value="0" selected>Mês</option>
                         <option value="01" >Janeiro</option>
                         <option value="02">Fevereiro</option>
@@ -290,7 +269,7 @@ export default function FiltrosDiv( { setContatos }) {
                       onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
 
                       <div class="input-group-append">
-                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => FiltrarPorMesOuIdade(filtroIdade, "idade")}><i class="fas fa-search"></i></button>
+                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => filtrarPorMesOuIdade(filtroIdade, "idade")}><i class="fas fa-search"></i></button>
                       </div>
 
                     </div>

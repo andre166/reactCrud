@@ -7,35 +7,25 @@ export default function OrderBy( { setContatos } ){
         const response = await localStorage.getItem("ListaDeContatos");
         let ListaDeContatos = JSON.parse(response);
     
-        let nomeCrescente = [];
-        let nomeDecrescente = [];
         let terceiroArray = [];
      
         if(e == "nome-crescente"){
 
-            ListaDeContatos.map((info) => (
-                nomeCrescente.push({id:info.id, first_name:info.first_name})
-            ));
-
-            nomeCrescente.sort(function(a, b){
+            ListaDeContatos.sort(function(a, b){
                 return (a.first_name > b.first_name) ? 1 : ((b.first_name > a.first_name) ? -1 : 0);
             });
 
-            nomeCrescente.map((info) => (
+            ListaDeContatos.map((info) => (
                 terceiroArray.push(ListaDeContatos.find(n => n.id == info.id))
             ));
 
         }else if(e == "nome-decrescente"){
-
-            ListaDeContatos.map((info) => (
-                nomeDecrescente.push({id:info.id, first_name:info.first_name})
-            ));
             
-            nomeDecrescente.sort(function(a, b){
+            ListaDeContatos.sort(function(a, b){
                 return (a.first_name < b.first_name) ? 1 : ((b.first_name < a.first_name) ? -1 : 0);
             });
 
-            nomeDecrescente.map((info) => (
+            ListaDeContatos.map((info) => (
                 terceiroArray.push(ListaDeContatos.find(n => n.id == info.id))
             ));
 
@@ -50,31 +40,22 @@ export default function OrderBy( { setContatos } ){
         const response = await localStorage.getItem("ListaDeContatos");
         let ListaDeContatos = JSON.parse(response);
     
-        let idiomas = [];
         let idomasOrdenado = [];
-    
-        ListaDeContatos.map((info) => (
-            ordenar(info.language, info.id)
-        ));
-            
-        function ordenar(idioma, id){
-            idiomas.push({id:id, language:idioma});
-        }
             
         if(e == "A-Z"){
 
-            idiomas.sort(function(a, b){
+            ListaDeContatos.sort(function(a, b){
                 return (a.language > b.language) ? 1 : ((b.language > a.language) ? -1 : 0);
             });
 
         }else if(e == "Z-A"){
 
-            idiomas.sort(function(a, b){
+            ListaDeContatos.sort(function(a, b){
                 return (a.language < b.language) ? 1 : ((b.language < a.language) ? -1 : 0);
             });
         }
     
-        idiomas.map((info) => (
+        ListaDeContatos.map((info) => (
             idomasOrdenado.push(ListaDeContatos.find(n => n.id == info.id))
         ));
     

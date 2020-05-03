@@ -19,13 +19,9 @@ export default function AddContato() {
         
         let contactsArray = JSON.parse(response);
         
-        let ultimo = contactsArray[contactsArray.length - 1];
-    
-        ultimoId = ultimo.id + 1;
+        let ultimo = contactsArray[contactsArray.length - 1 ];
         
-        let id = parseInt(ultimoId);
-        
-        register(id);
+        register(++ultimo.id);
         
     }
     
