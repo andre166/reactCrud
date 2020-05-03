@@ -1,10 +1,13 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import api from './components/services/api';
 import Routes from './routes';
 
 import './App.css';
 
   export default function App() {
+
+  let [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         
@@ -78,7 +81,16 @@ import './App.css';
           loadApi();
       }
         
+      setLoading(false);
   }, [localStorage.getItem("ListaDeContatos")]);
+
+  if(loading){
+    return(
+      <div className="loading-conatainer">
+        Loading...
+      </div>
+    )
+  }
 
     return(
       <div>

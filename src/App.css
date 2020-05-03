@@ -14,7 +14,11 @@ html, body{
   box-shadow: inset 3px 3px 6px #bebebebe,
               inset -3px -3px 6px #013a1a;
 }
-
+.loading-conatainer{
+  height: 100vh;
+  background-color: #000000;
+  color: #fff;
+}
 .leste-bg-escuro{
   background-color: #015d2a !important;
   color: white;
