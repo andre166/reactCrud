@@ -108,7 +108,6 @@ export default function EditarContatos() {
 
         ListaContatos.splice(contato, 1);
 
-
         await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaContatos));
 
         return history.push("/ListaDeContatos");

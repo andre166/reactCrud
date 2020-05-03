@@ -32,8 +32,8 @@
     padding: 2px 5px;
     border-radius: 10px;
     margin-right: 10px;
-    box-shadow: 3px 3px 3px #007434,
-    -2.8px -2.8px 2px #c0c0c081;
+    /* box-shadow: 3px 3px 3px #007434,
+    -2.8px -2.8px 2px #c0c0c081; */
 }
 #menu li:hover{
     box-shadow: inset 3px 3px 3px #007434,

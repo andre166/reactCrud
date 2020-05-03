@@ -1,7 +1,17 @@
 import React from 'react';
+import axios from '../../../../node_modules/axios/dist/axios';
 import './estilo.css';
+import apiTeste from '../../services/apiTeste';
+
 
 export default function Home(){
+
+    async function chamarApi(){
+        apiTeste.get().then(res => {
+            console.log(res.data);
+          })
+    
+    }
         
     return(
         <div class="home-container">
@@ -10,6 +20,7 @@ export default function Home(){
                         
                 <div class="jumbotron py-4  mb-2">
                     <h1 class="display-4 text-center">ContactJS</h1>
+                    <button  onClick={()=> chamarApi()}>Requisitar</button>
                 </div>
 
                 <div className="row">

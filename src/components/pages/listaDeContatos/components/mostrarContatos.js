@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ReactTooltip from "react-tooltip";
 
 export default function MostrarContatos({ contatos }){
 
@@ -76,7 +77,7 @@ export default function MostrarContatos({ contatos }){
     
     return(
         <div class="card-group d-flex" id="lista-body">
-
+      
             {contatos.map((info, e) => ( 
 
                 <div class='pb-0' key={info.id} id="cardUsuario" >
@@ -86,7 +87,7 @@ export default function MostrarContatos({ contatos }){
                             <div class="">
                                 {info.first_name} {info.last_name}
                             </div>
-
+                            
                             <div id="menu-card-header" class="">
 
                                 <div class="btn-group dropleft">
@@ -125,7 +126,7 @@ export default function MostrarContatos({ contatos }){
                                     <p class="card-text">
                                         <strong>Idade: </strong>{mascararIdade(info.birthday)}  {socialIcon(e, info)} 
                                     </p>
-                                        <p><strong>id:</strong> {info.id}</p>
+                                        <p data-tip={info.id} class="btn-id">id</p>   <ReactTooltip />   
                                 </div>
                                 <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                                 <p class="card-text"> <strong>Email: </strong>{info.email}</p>
@@ -138,6 +139,7 @@ export default function MostrarContatos({ contatos }){
                     </div>
                 </div>
             ))} 
+            
         </div>
     );
 }

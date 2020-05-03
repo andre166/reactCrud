@@ -13,8 +13,6 @@ export default function AddContato() {
     
     async function gerarId(){
         
-        let ultimoId = 0;
-        
         const response = await localStorage.getItem("ListaDeContatos");
         
         let contactsArray = JSON.parse(response);
@@ -118,7 +116,6 @@ export default function AddContato() {
                         </div>
 
                         <div class="form-row">
-
 
                             <label class="ml-2 " for="validationServer02">Sexo: </label>
                             <div class="col-md-4 mb-3 form-check-inline">
