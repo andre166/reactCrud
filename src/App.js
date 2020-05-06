@@ -86,7 +86,7 @@ import './App.css';
 
   if(loading){
     return(
-      <div className="loading-conatainer">
+      <div className="loading-container">
         Loading...
       </div>
     )
