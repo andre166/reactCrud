@@ -191,9 +191,10 @@ export default function FiltrosDiv( { setContatos }) {
 
                 <div class="form-group row">
 
-                  <Col sm={2}>
+                  <Col md={2}>
                       <Dropdown>
-                        <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ marginLeft: '2rem' }}>
+
+                        <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ marginLeft: '2rem', marginBottom: '1rem' }}>
                         Gênero
                         </Dropdown.Toggle>
 

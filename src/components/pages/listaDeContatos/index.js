@@ -36,7 +36,7 @@ export default function ListaDeContatos() {
           <div class="row">
               <div class="col-sm-12">
 
-                <MostrarContatos contatos={contatos}></MostrarContatos>
+                <MostrarContatos contatos={contatos} setContatos={setContatos}></MostrarContatos>
 
                 <AlertaZeroContato contatos={contatos}></AlertaZeroContato>
 

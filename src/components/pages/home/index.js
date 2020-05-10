@@ -1,6 +1,6 @@
 import React from 'react';
 import './estilo.css';
-import {Container, Row, Card, Jumbotron, Col, ListGroup } from 'react-bootstrap';
+import {Container, Row, Card, Jumbotron, Col, ListGroup, Modal, Button } from 'react-bootstrap';
 
 
 export default function Home(){

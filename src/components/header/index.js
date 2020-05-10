@@ -14,7 +14,7 @@ export default function Header() {
         <nav class="navbar navbar-expand-lg sticky-top navbar-custom">
 
             <Link to="/" id="logo-container">
-                    <img id="logo" src={logo} /> 
+                    <img id="logo" src={logo} alt="Logo"/> 
             </Link>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

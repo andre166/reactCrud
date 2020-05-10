@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import { Label, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
+import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, Collapse, Modal, DropdownButton, ButtonGroup} from 'react-bootstrap';
+
 import './estatisticas.css';
 
 export default function Estatisticas(){
@@ -9,6 +11,7 @@ export default function Estatisticas(){
     const [totalGenero, setTotalGenero] = useState([])
 
     const [linguagens, setLinguagens] = useState([])
+    const [open, setOpen] = useState(false);
 
     function RenderPizzaChart() {
 
@@ -180,16 +183,18 @@ export default function Estatisticas(){
 
                 <div className="text-center mt-2">
 
-                    <button class="btn btn-leste-outline" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    <Button variant="info"
+                        onClick={() => setOpen(!open)}
+                        aria-controls="example-collapse-text"
+                        aria-expanded={open}
+                    >
                         Listar por idiomas <i class="fas fa-arrow-down"></i>
-                    </button>
+                    </Button>
+                    <Collapse in={open}>
+                        <Card body>
 
-                    <div class="collapse " id="collapseExample">
-                        <div class="card card-body align-items-center">
-
-                            <form class="form-row container lista-qtd-linguagem-container">
+                            <form class="form-row lista-qtd-linguagem-container">
                                 <ul class="list-group">
-
                                     <a class="list-group-item titulo">
                                         <h4>
                                             <span>Idioma</span> 
@@ -209,13 +214,19 @@ export default function Estatisticas(){
                                 </ul>
                             </form>
 
-                            <button class="btn btn-danger btn-sm mt-2" type="button" data-toggle="collapse" 
-                                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" >
-                                Fechar <i class="fas fa-arrow-up"></i>
-                            </button>
+                            <Button variant="danger" size="sm" className="mt-2"
+                                onClick={() => setOpen(!open)}
+                                aria-controls="example-collapse-text"
+                                aria-expanded={open}>
 
-                        </div>
-                    </div>
+                                Fechar <i class="fas fa-arrow-up"></i>
+
+                            </Button>
+
+
+                        </Card>
+                       
+                    </Collapse>
 
                 </div>
             </div>

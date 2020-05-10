@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory} from 'react-router-dom';
 import './editarContato.css';
+import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, Collapse, Modal, DropdownButton, ButtonGroup} from 'react-bootstrap';
+
 
 export default function EditarContatos() {
 
@@ -21,7 +23,7 @@ export default function EditarContatos() {
 
     let ContatoEditado = false;
     let history = useHistory();
-
+    const [openFotoDiv, setOpenFotoDiv] = useState(false);
 
     useEffect(() => {
       
@@ -134,11 +136,17 @@ export default function EditarContatos() {
 
                             <div className="text-center px-2 mb-2">
 
-                                <button class="btn btn-info btn-sm my-2 w-50" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                    Alterar foto
-                                </button>
+                            <Button variant="info"
+                                onClick={() => setOpenFotoDiv(!openFotoDiv)}
+                                aria-controls="example-collapse-text"
+                                aria-expanded={openFotoDiv}
+                            >
+                                Alterar foto
+                            </Button>
+                            
 
-                                <div class="collapse" id="collapseExample">
+                                <Collapse in={openFotoDiv}>
+                               
                                     <div class="card card-body p-0">
 
                                         <div class="col mb-4">
@@ -155,7 +163,8 @@ export default function EditarContatos() {
                                         </div>
                                 
                                     </div>
-                                </div>
+                                  
+                                </Collapse>
 
                             </div>
 

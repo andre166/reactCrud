@@ -1,10 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import ReactTooltip from "react-tooltip";
-import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, DropdownButton, ButtonGroup} from 'react-bootstrap';
+import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, Modal, DropdownButton, ButtonGroup} from 'react-bootstrap';
 
 
-export default function MostrarContatos({ contatos }){
+export default function MostrarContatos({ contatos, setContatos }){
+
+    const [modalShow, setModalShow] = React.useState(false);
+    const [idParaExclusao, setIdParaExclusao] = useState([]);
+
+    function MyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Deseja Excluir?
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Button onClick={()=>{deleteContact(idParaExclusao)}} variant="success">Sim</Button>
+                <Button onClick={props.onHide} variant="danger">Não</Button>
+            </Modal.Body>
+            
+          </Modal>
+        );
+      }
 
     function socialIcon(posicaoNoArray, contato){
         if(posicaoNoArray == 0 && contato.first_name =="André" && contato.id == 1){
@@ -62,23 +87,37 @@ export default function MostrarContatos({ contatos }){
         return quantos_anos;
     }
 
-    async function deleteContact(id) {
+    function preExclusao(id){
 
-        await localStorage.setItem("MSG", "ExcluidoSuccess");
+        setIdParaExclusao(id);
+        setModalShow(true);
+
+    }
+
+    function deleteContact(id) {
+
+        localStorage.setItem("MSG", "ExcluidoSuccess");
         
-        const response = await localStorage.getItem("ListaDeContatos");
+        const response = localStorage.getItem("ListaDeContatos");
         let ListaDeContatos = JSON.parse(response);
-    
+        
         let contato = ListaDeContatos.indexOf(ListaDeContatos.find(n => n.id == id));
-    
+        
         ListaDeContatos.splice(contato, 1);
-    
-        await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaDeContatos));
-    
+        
+        localStorage.setItem("ListaDeContatos", JSON.stringify(ListaDeContatos));
+        
+        setContatos(ListaDeContatos);
+        setModalShow(false)
     }
     
     return(
         <div class="card-group d-flex" id="lista-body">
+     
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
       
             {contatos.map((info, e) => ( 
 
@@ -95,6 +134,10 @@ export default function MostrarContatos({ contatos }){
                                 <div class="btn-group dropleft">
 
                                     <a type="button" class="dropdown" data-toggle="dropdown">
+                                      
+                                    </a>
+
+                                    <a type="button" variant="primary" onClick={()=>{preExclusao(info.id)}}>
                                         <i class="fas fa-trash"></i>
                                     </a>
                 
