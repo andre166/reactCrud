@@ -1,33 +1,23 @@
 import React from 'react';
-import axios from '../../../../node_modules/axios/dist/axios';
 import './estilo.css';
-import apiTeste from '../../services/apiTeste';
+import {Container, Row, Card, Jumbotron, Col, ListGroup } from 'react-bootstrap';
 
 
 export default function Home(){
-
-    // async function chamarApi(){
-    //     apiTeste.get('http://localhost:8080/users').then(res => {
-    //         console.log(res.data);
-    //       })
-
-    
-    // }
         
     return(
         <div class="home-container">
-            <div className="container">
-                <div className="card card-body">
+         
+            <Container>
+                <Card body>
+                    <Jumbotron>
+                        <h1 class="text-center">ContactJS</h1>
+                    </Jumbotron>
+              
+                <Row>
                         
-                <div class="jumbotron py-4  mb-2">
-                    <h1 class="display-4 text-center">ContactJS</h1>
-                    {/* <button  onClick={()=> chamarApi()}>Requisitar</button> */}
-                </div>
-
-                <div className="row">
-                    <div class="col-md-3"> </div>
-
-                    <div class="col-md-6">
+                    <Col sm={3}></Col>
+                    <Col sm={6}>
 
                         <ul class="list-group">
                             <a class="list-group-item titulo"><h4>Descrição</h4></a>
@@ -37,27 +27,27 @@ export default function Home(){
                             <li class="list-group-item">4 - Oderna por: Nome(A-Z e Z-A), dia/mês/ano do nascimento(crescente e decrescente), Idioma(A-Z e Z-A).</li>
                             <li class="list-group-item">5 - Estatísticas: Gráficos com o total de cadastros por Gênero e Quantidade de Usuários por Idioma.</li>
                         </ul>
-                        
-                    </div>
-                </div>
 
-                <div className="row">
-                    <div class="col-md-3"> </div>
-                        <div class="col-md-6">
+                    </Col>
 
-                            <ul class="list-group text-center mt-2">
-                                <a class="list-group-item titulo"><h4>Tecnologias usadas</h4></a>
-                                <li class="list-group-item">Html5, Css3, BootsTrap4, Javascript</li>
-                                <li class="list-group-item">Node, Npm, Git, Git Kraken, GitHub</li>
-                                <li class="list-group-item">React JS, Persintência no LocalStorage</li>
-                                <li class="list-group-item">Axios, Recharts</li>
-                            </ul>
+                </Row>
 
-                        </div>
-                    </div>
-                </div>
+                <Row>
+                    <Col sm={3}></Col>
+                    <Col sm={6}>
+                        <ListGroup as="ul">
+                            <a class="list-group-item titulo"><h4>Tecnologias usadas</h4></a>
+                            <ListGroup.Item as="li">Html5, Css3, BootsTrap4, Javascript</ListGroup.Item>
+                            <ListGroup.Item as="li">Node, Npm, Git, Git Kraken, GitHub</ListGroup.Item>
+                            <ListGroup.Item as="li">React JS, Persintência no LocalStorage</ListGroup.Item>
+                            <ListGroup.Item as="li">Axios, Recharts</ListGroup.Item>
+                        </ListGroup>
+                    </Col>
+                </Row>
 
-            </div>
+            </Card>
+        </Container>
+
         </div>
     );
     

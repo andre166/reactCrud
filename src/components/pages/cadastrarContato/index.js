@@ -43,7 +43,6 @@ export default function AddContato() {
         
         newContact = {id, first_name, last_name, email, gender, language, avatar, birthday}
         
-        // contactsArray.push(newContact);
         contactsArray.unshift(newContact);
         
         await localStorage.setItem("ListaDeContatos", JSON.stringify(contactsArray));

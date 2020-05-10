@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ReactTooltip from "react-tooltip";
+import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, DropdownButton, ButtonGroup} from 'react-bootstrap';
+
 
 export default function MostrarContatos({ contatos }){
 
@@ -116,7 +118,7 @@ export default function MostrarContatos({ contatos }){
                         </div>
 
                         <div>
-                            <img class="card-img-top" src={info.avatar}  id="img-card"/>
+                            <img class="card-img-top" src={info.avatar}  id="img-card" alt="imagem de pessoa"/>
                         </div>
 
                         <div class="card-body-container">

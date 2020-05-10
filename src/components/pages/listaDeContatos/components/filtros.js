@@ -1,5 +1,6 @@
 import React, {useState } from "react"
 import OrderBy from './orderBy';
+import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button} from 'react-bootstrap';
 
 export default function FiltrosDiv( { setContatos }) {
 
@@ -172,46 +173,39 @@ export default function FiltrosDiv( { setContatos }) {
 
   return(
     <div>
-      <div>
-          <a  id="btn-filtro" class="btn btn-sm btn-leste-outline" data-toggle="collapse" 
-            href="#multiCollapseExample1" role="button" aria-expanded="false" 
-            aria-controls="multiCollapseExample1">Filtro <i class="fas fa-filter"></i>
-          </a>
+      <Accordion defaultActiveKey="0">
+        <Card>
+          
+          <Card body>
+            <Accordion.Toggle  as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
+            <Button variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>{' '}
+          </Card>
 
-          <button  class="btn btn-sm btn-outline-danger ml-2" role="button" href="#multiCollapseExample1" data-toggle="hide"
-            onClick={() => {zerarFiltro('geral')}}>Limpar Filtro<i class="fas fa-filter"></i>
-          </button>
-      </div> 
- 
-      <div class="row">
-          <div class="col-sm-12">
-         
-{/* ===========================Adicionar ou remover collapse ================================ */}
-            <div class="collapse multi-collapse" id="multiCollapseExample1">
-              <form className="card card-body filtro-container form-group">
+          <Accordion.Collapse eventKey="1">
+            <Card>
+              <form className="filtro-container">
 
-              <div className="text-center h4-ordenar mb-4">
-              <h4>Filtrar por</h4>
-              </div>
+                <div className="text-center h4-ordenar mb-4">
+                  <h4>Filtrar por</h4>
+                </div>
 
-                <div class="form-group row ">
-                  <div className="col-md-2">
+                <div class="form-group row">
 
-                    <div class="dropdown">
-                      <button class="btn btn-leste dropdown-toggle mb-3" type="button" 
-                      id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <Col sm={2}>
+                      <Dropdown>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ marginLeft: '2rem' }}>
                         Gênero
-                      </button>
+                        </Dropdown.Toggle>
 
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={(e)=> filtrarGenero("F")}>Feminino</a>
-                          <a class="dropdown-item" href="#multiCollapseExample1" data-toggle="collapse" onClick={(e)=> filtrarGenero("M")}>Masculino</a>
-                      </div>
+                        <Dropdown.Menu as="ul">      
+                            <Dropdown.Item  onClick={(e)=> filtrarGenero("F")}>Feminino</Dropdown.Item>
+                            <Dropdown.Item  onClick={(e)=> filtrarGenero("M")}>Masculino</Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
+                  </Col>
 
-                    </div>
-                  </div>
 
-                  <div className="col-md-3">
+                  <Col sm={3}>
                     <div class="input-group mb-3">
 
                       <input type="text" class="form-control input-leste" aria-label="Recipient's username" 
@@ -223,9 +217,9 @@ export default function FiltrosDiv( { setContatos }) {
                       </div>
 
                     </div>
-                  </div>
-                
-                  <div className="col-md-2">
+                  </Col>
+          
+                  <Col sm={2}>
                     <div class="input-group mb-3">
 
                       <input type="text" class="form-control input-leste" readonly aria-label="Recipient's username" 
@@ -238,9 +232,11 @@ export default function FiltrosDiv( { setContatos }) {
                       </div>
 
                     </div>
-                  </div>
+                  </Col>
 
-                  <div className="col-md-2">
+
+                  <Col sm={2}>
+
                     <div class="input-group mb-3">
                       <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => filtrarPorMesOuIdade(e.target.value, "mes")}>
                         <option value="0" selected>Mês</option>
@@ -258,9 +254,10 @@ export default function FiltrosDiv( { setContatos }) {
                         <option value="12">Dezembro</option>
                       </select>
                     </div>
-                  </div>
+                  </Col>
 
-                  <div className="col-md-2">
+
+                  <Col sm={2}>
                     <div class="input-group mb-3">
 
                       <input type="number" class="form-control input-leste" aria-label="Recipient's username" 
@@ -272,25 +269,24 @@ export default function FiltrosDiv( { setContatos }) {
                       </div>
 
                     </div>
-                  </div>
+                  </Col>
+
                 </div>
 
-                <div className="row">
-                  <div className="col">
-
-                    <div className="text-center h4-ordenar">
-                      <h4>Ordenar por</h4>
-                    </div>
-                    <OrderBy setContatos={ setContatos }></OrderBy>
-
-                  </div>
-                </div>
-
+                  <Row>
+                    <Col>
+                      <div className="text-center h4-ordenar">
+                        <h4>Ordenar por</h4>
+                      </div>
+                      <OrderBy setContatos={ setContatos }></OrderBy>
+                    </Col>
+                  </Row>
+                  
               </form>
-              
-            </div>
-          </div>
-      </div>
+            </Card>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
     </div>
   );
 

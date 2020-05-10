@@ -23,7 +23,7 @@
 }
 .filtro-container{
     background-color: #015d2a38;
-    border: 1px solid #015d2a;
+    /* border: 1px solid #015d2a; */
 
 }
  
@@ -204,6 +204,15 @@
 
 .form-check i{
     font-size: 16pt;
+}
+
+.div-filtro-genero{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 .form-orderBy .form-check{
     margin: 10px 10px;
