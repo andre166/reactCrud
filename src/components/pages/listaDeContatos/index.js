@@ -4,6 +4,7 @@ import FiltrosDiv from './components/filtros';
 import AlertaZeroContato from './components/alertZeroContato';
 import MostrarContatos from './components/mostrarContatos';
 import SnackBar from "./components/snackBarAlert";
+import Paginacao from './components/paginacao';
 import {Container, Row, Card, Jumbotron, Col} from 'react-bootstrap';
 
 
@@ -11,6 +12,10 @@ export default function ListaDeContatos() {
 
   const [contatos, setContatos] = useState([]);
   const [tabelaDeContatos, setTabelaDeContatos] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [contatosPorPagina, setContatosPorPagina] = useState(20);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
 
@@ -24,6 +29,11 @@ export default function ListaDeContatos() {
   
   }, [localStorage.getItem("ListaDeContatos")]);
 
+
+  const indexLastContato = currentPage * contatosPorPagina;
+  const indexOfFirstPost = indexLastContato - contatosPorPagina;
+  const currentPosts = contatos.slice(indexOfFirstPost, indexLastContato)
+
   return (
     <Container fluid>
       <Card body className="my-2 container-listaDeContatos">
@@ -31,12 +41,12 @@ export default function ListaDeContatos() {
       <Jumbotron className="py-4 mb-2">
         <h1 class="text-center">Lista de Contatos</h1>
       </Jumbotron>
-      
-      <FiltrosDiv setContatos={setContatos} tabelaDeContatos={tabelaDeContatos} setTabelaDeContatos={setTabelaDeContatos}></FiltrosDiv>
+      <Paginacao contatosPorPagina={contatosPorPagina} contatos={contatos.length} paginate={paginate}></Paginacao>
+      <FiltrosDiv paginate={paginate} contatos={contatos} setContatos={setContatos} tabelaDeContatos={tabelaDeContatos} setTabelaDeContatos={setTabelaDeContatos}  contatosPorPagina={contatosPorPagina} setContatosPorPagina={setContatosPorPagina}></FiltrosDiv>
 
         <Row>
             <Col>
-              <MostrarContatos contatos={contatos} setContatos={setContatos} tabelaDeContatos={tabelaDeContatos}></MostrarContatos>
+              <MostrarContatos contatos={currentPosts} setContatos={setContatos} tabelaDeContatos={tabelaDeContatos}></MostrarContatos>
               <AlertaZeroContato contatos={contatos}></AlertaZeroContato>
             </Col>
         </Row>

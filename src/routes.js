@@ -17,7 +17,7 @@ export default function Routes(){
             <Header/>
                 <Switch>
                     <Route exact path='/' component={Home}/>
-                    <Route exact path='/ListaDeContatos' component={ListaDeContatos}/>
+                    <Route path='/ListaDeContatos' component={ListaDeContatos}/>
                     <Route path='/EditarContatos/:id' component={EditarContatos}/>          
                     <Route exact path='/CadastrarContato' component={CadastrarContato}/>
                     <Route exact path='/Estatisticas' component={Estatisticas}/>

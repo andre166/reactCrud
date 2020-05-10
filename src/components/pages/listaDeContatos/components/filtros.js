@@ -2,7 +2,7 @@ import React, {useState } from "react"
 import OrderBy from './orderBy';
 import {Container, Row, Card, Jumbotron, Col, Form, Dropdown, InputGroup, FormControl,  Accordion, Button} from 'react-bootstrap';
 
-export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDeContatos }) {
+export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, setTabelaDeContatos, contatosPorPagina, setContatosPorPagina, paginate }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
@@ -68,6 +68,7 @@ export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDe
     ))
   
     setContatos(contatosFiltrados);
+    paginate(1);
     
   }
 
@@ -86,6 +87,7 @@ export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDe
     let cidadao = ListaDeContatos.filter(n => n.first_name == letraFormatada);
 
       setContatos(cidadao);
+      paginate(1);
       zerarFiltro("nome");
   }
 
@@ -104,6 +106,7 @@ export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDe
     let linguagemFiltrada = ListaDeContatos.filter(n => n.language == letraFormatada)
 
     setContatos(linguagemFiltrada);
+    paginate(1);
     zerarFiltro("linguagem");
 
   }
@@ -120,12 +123,12 @@ export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDe
       const newLista = ListaDeContatos.filter(person => person.gender == 'M');
       setContatos(newLista);
     }
-
+    paginate(1);
     zerarFiltro("genero"); 
   }
         
   async function zerarFiltro(Filtro){
-
+    paginate(1);
     const response = await localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = JSON.parse(response);
 
@@ -171,6 +174,12 @@ export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDe
     }
   }
 
+  function setarPagina(e){
+    setContatosPorPagina(e)
+    paginate(1)
+
+  }
+
   return(
     <div>
       <Accordion defaultActiveKey="0">
@@ -178,9 +187,40 @@ export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDe
           
           <Card body>
             <Row>
-              <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
-              <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
-              <Form.Check type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela On' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
+              <Col md="2">
+                <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
+                <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
+               
+              </Col>
+
+              <Col md="2">
+                <Form.Check type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela On' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
+              </Col>
+
+              <Col md="3">
+                <Row>
+                <label>Quantidade de contatos por página:</label>
+                <InputGroup className="w-25">
+                      <Form.Control as="select" className="input-leste" onChange={(e) => setarPagina(e.target.value)}>
+                        <option value="5">5</option>
+                        <option value="10" >10</option>
+                        <option value="15">15</option>
+                        <option value="20"selected>20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                      </Form.Control>
+                    </InputGroup >
+
+                </Row>
+              </Col>
+
+              <Col md="2">
+                <label>Total de contatos: {contatos.length}</label>
+              </Col>
+
             </Row>
           </Card>
 
