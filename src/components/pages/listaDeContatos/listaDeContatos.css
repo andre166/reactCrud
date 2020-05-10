@@ -26,7 +26,18 @@
     /* border: 1px solid #015d2a; */
 
 }
- 
+.operacao-tabela{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+.tabela td, .tabela th{
+    vertical-align: middle !important;
+    text-align: center;
+
+}
+
 #lista-body{
     display: flex;
     flex-direction: row;

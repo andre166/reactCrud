@@ -1,4 +1,5 @@
 import React, { useEffect }from 'react';
+import { Row, Col, Alert} from 'react-bootstrap';
 
 export default function AlertaZeroContato({ contatos }){
 
@@ -19,12 +20,12 @@ export default function AlertaZeroContato({ contatos }){
   }, [contatos]);
   
   return(
-    <div className="row">
-      <div className="col-sm-12">
-        <div className="alert text-center" id="msgErro" style={{display: 'none'}}>
-          <h4 className="alert alert-danger py-4">Nenhum contato encontrado!</h4>
-        </div>
-      </div>
-    </div>
+    <Row>
+      <Col>
+        <Alert variant="danger" className="text-center" id="msgErro" style={{display: 'none'}}>
+          <h4 className="py-4">Nenhum contato encontrado!</h4>
+        </Alert>
+      </Col>
+    </Row>
   );
 }

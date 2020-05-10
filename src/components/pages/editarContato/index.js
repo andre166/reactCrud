@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory} from 'react-router-dom';
 import './editarContato.css';
-import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, Collapse, Modal, DropdownButton, ButtonGroup} from 'react-bootstrap';
+import {Container, Row, Card, Jumbotron, Col, Form, Button, Collapse } from 'react-bootstrap';
 
 
 export default function EditarContatos() {
@@ -118,17 +118,15 @@ export default function EditarContatos() {
 
  return (
     <div class="container-editarContato">
-        <div className="container ">
-            <div class="card card-body">
+        <Container>
+            <Card body>
+                <Jumbotron className="py-4 mb-2">
+                    <h1 class="text-center">Editar Contato</h1>
+                </Jumbotron>
 
-                <div class="jumbotron py-4  mb-2">
-                    <h1 class="display-4 text-center">Editar Contato</h1>
-                </div>
-
-                <div className="row ">
-
-                    <div className="col-md-4">
-                        <div class="card ">
+                <Row>
+                    <Col>
+                        <Card>
 
                             <div className="text-center mt-2">
                                 <img class="card-img-top img-thumbnail rounded-circle imagem-editar" src={contatos.avatar} alt="Card image cap" />
@@ -136,119 +134,119 @@ export default function EditarContatos() {
 
                             <div className="text-center px-2 mb-2">
 
-                            <Button variant="info"
-                                onClick={() => setOpenFotoDiv(!openFotoDiv)}
-                                aria-controls="example-collapse-text"
-                                aria-expanded={openFotoDiv}
-                            >
-                                Alterar foto
-                            </Button>
+                                <Button className="mt-2" variant="info" onClick={() => setOpenFotoDiv(!openFotoDiv)} aria-controls="example-collapse-text" aria-expanded={openFotoDiv} >
+                                    Alterar foto
+                                </Button>
                             
-
                                 <Collapse in={openFotoDiv}>
-                               
-                                    <div class="card card-body p-0">
-
-                                        <div class="col mb-4">
+                                    <Card body>
+                                        <Col>
                                             <label for="validationServer02">Digite a Url</label>
                                             <input type="url" class="form-control input-url" id="validationServer02" 
-                                            value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="Digite a url"/>
+                                                value={avatar}  onChange={(e)=> setAvatar(e.target.value)} placeholder="Digite a url"/>
 
-                                            <div className="col">
+                                            <Col>
                                                 <button type="button" class="close closeIcon" aria-label="Close"  data-toggle="collapse"  
                                                     href="#multiCollapseExample1" role="button" onClick={()=> setAvatar('')}>
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
-                                            </div>
-                                        </div>
-                                
-                                    </div>
-                                  
+                                            </Col>
+                                        </Col>
+                                    </Card>
                                 </Collapse>
 
                             </div>
 
-                        </div>
-                    </div>
+                        </Card>
+                    </Col>
                 
+                    <Col md={8}>
+                        <Card body>
 
-                    <div className="col-md-8">
-                        <div className="card card-body  py-2">
-
-                            <form onSubmit={editarContato} action={  `/ListaDeContatos`  }>
+                            <Form onSubmit={editarContato} action={  `/ListaDeContatos`  }>
                         
-                                <div className="row py-0">
+                                <Row>
+                                    <Col sm={6}>
+                                        <Form.Group>
+                                            <Form.Label >Primeiro Nome:</Form.Label>
+                                            <Form.Control type="text" id="exampleInputEmail1" maxLength="17"
+                                            placeholder="Primeiro nome"  value={first_name} onChange={(e)=> setFirstName(e.target.value)}/>
+                                        </Form.Group>
+                                    </Col>
 
-                                    <div class="form-group col-md-6 py-0 my-2">
-                                        <label for="exampleInputEmail1">Primeiro Nome:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" maxLength="17"
-                                        placeholder="Primeiro nome"  value={first_name} onChange={(e)=> setFirstName(e.target.value)}/>
-                                    </div>
+                                    <Col sm={6}>
+                                        <Form.Group>
+                                            <Form.Label >Ultimo Nome:</Form.Label>
+                                            <Form.Control type="text" class="form-control" id="exampleInputEmail1" maxLength="17"
+                                            placeholder="Ultimo nome"  value={last_name} onChange={(e)=> setLastName(e.target.value)}/>
+                                        </Form.Group>
+                                    </Col>
 
-                                    <div class="form-group col-md-6 py-0 my-2">
-                                        <label for="exampleInputEmail1">Ultimo Nome:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" maxLength="17"
-                                        placeholder="Ultimo nome"  value={last_name} onChange={(e)=> setLastName(e.target.value)}/>
-                                    </div>
-
-                                </div>
+                                </Row>
                             
-                                <div className="row">
+                                <Row>
                                     
-                                    <div class="form-group  col-sm-6 py-0 my-2">
-                                        <label for="exampleInputEmail1">Email:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" maxLength="30"  
-                                        placeholder="Email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
-                                    </div>
+                                    <Col sm={6}>
+                                        <Form.Group>
+                                            <Form.Label >Email:</Form.Label>
+                                            <Form.Control type="text" class="form-control" id="exampleInputEmail1" maxLength="30"  
+                                            placeholder="Email"  value={email} onChange={(e)=> setEmail(e.target.value)}/>
+                                        </Form.Group>
+                                    </Col>
 
-                                    <div class="col-sm-4 mb-3 ml-4">
 
-                                        <div class="form-check form-check-inline mt-4">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M"   onChange={e => setGender(e.target.value) } />
-                                            <label class="form-check-label" for="inlineRadio1">Masculino</label>
-                                        </div>
+                                    <Col sm={4}>
 
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F"   onChange={e => setGender(e.target.value)} />
-                                            <label class="form-check-label" for="inlineRadio2">Feminino</label>
+                                        <div className="mt-4">
+
+                                            <Form.Check inline label="Masculino" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="M"   onChange={e => setGender(e.target.value) } />
+
+                                            <Form.Check inline label="Feminino" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="F"   onChange={e => setGender(e.target.value)} />
+
                                         </div>
                                         
-                                    </div>
+                                    </Col>
                                 
-                                </div> 
+                                </Row>
 
-                                <div className="row">
+                                <Row>
                                     
-                                    <div class="form-group  col-md-6">
-                                        <label for="exampleInputEmail1">Linguagem:</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" 
-                                        placeholder="Enter email" value={language} 
-                                        onChange={(e)=> setLanguage(e.target.value)}/>
-                                    </div>
+                                    <Col sm={6}>
+                                        <Form.Group>
+                                            <Form.Label for="exampleInputEmail1">Linguagem:</Form.Label>
+                                            <Form.Control type="text" class="form-control" id="exampleInputEmail1" 
+                                            placeholder="Enter email" value={language} 
+                                            onChange={(e)=> setLanguage(e.target.value)}/>
+                                        </Form.Group>
+                                    </Col>
                                 
-                                    <div class="form-group col-md-6">
-                                        <label for="exampleInputPassword1">Data de nascimento:</label>
-                                        <input type="date" class="form-control" id="exampleInputPassword1" 
-                                        value={birthday} onChange={(e)=> setBirthday(e.target.value)}/>
-                                    </div>
-                                </div> 
+                                    <Col sm={6}>
+                                        <Form.Group>
+                                            <Form.Label for="exampleInputPassword1">Data de nascimento:</Form.Label>
+                                            <Form.Control type="date" class="form-control" id="exampleInputPassword1" 
+                                            value={birthday} onChange={(e)=> setBirthday(e.target.value)}/>
+                                        </Form.Group>
+                                    </Col>
+
+                                </Row> 
 
                                 <hr/>
 
-                                <div className="row">
-                                    <div className="col text-center">
+                                <Row>
+                                    <Col className="text-center">
                                         <button type="submit" class="btn btn-leste" onClick={()=>{ ContatoEditado = true}} >Confirmar</button>
                                         <button type="button" class="btn btn-danger ml-2" onClick={()=>{deleteContact(id)}}>Excluir</button>
-                                    </div>
-                                </div>
-                            
-                            </form>
+                                    </Col>
+                                </Row> 
 
-                        </div>
-                    </div>
-                </div>   
-            </div>   
-        </div>
+                            
+                            </Form>
+
+                        </Card>
+                    </Col>
+                </Row> 
+            </Card> 
+        </Container>
     </div>
  )
 }

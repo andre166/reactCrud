@@ -1,8 +1,8 @@
 import React, {useState } from "react"
 import OrderBy from './orderBy';
-import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button} from 'react-bootstrap';
+import {Container, Row, Card, Jumbotron, Col, Form, Dropdown, InputGroup, FormControl,  Accordion, Button} from 'react-bootstrap';
 
-export default function FiltrosDiv( { setContatos }) {
+export default function FiltrosDiv( { setContatos, tabelaDeContatos, setTabelaDeContatos }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
@@ -177,25 +177,28 @@ export default function FiltrosDiv( { setContatos }) {
         <Card>
           
           <Card body>
-            <Accordion.Toggle  as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
-            <Button variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>{' '}
+            <Row>
+              <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
+              <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
+              <Form.Check type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela On' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
+            </Row>
           </Card>
 
           <Accordion.Collapse eventKey="1">
             <Card>
-              <form className="filtro-container">
+              <Form className="filtro-container">
 
                 <div className="text-center h4-ordenar mb-4">
                   <h4>Filtrar por</h4>
                 </div>
 
-                <div class="form-group row">
+                <Row>
 
-                  <Col md={2}>
+                  <Col lg={2}>
                       <Dropdown>
 
                         <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ marginLeft: '2rem', marginBottom: '1rem' }}>
-                        Gênero
+                          Gênero
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu as="ul">      
@@ -206,40 +209,39 @@ export default function FiltrosDiv( { setContatos }) {
                   </Col>
 
 
-                  <Col sm={3}>
-                    <div class="input-group mb-3">
+                  <Col lg={3}>
+                    <InputGroup className="mb-2">
 
-                      <input type="text" class="form-control input-leste" aria-label="Recipient's username" 
-                      aria-describedby="button-addon2" value={filtroNome} 
-                      onChange={(e)=> setFiltroNome(e.target.value)} placeholder="Nome"/>
+                      <FormControl type="text" className="input-leste" aria-label="Nome a ser pesquisado" 
+                        aria-describedby="button-addon2" value={filtroNome} onChange={(e)=> setFiltroNome(e.target.value)} placeholder="Nome"/>
 
-                      <div class="input-group-append">
-                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => filtrarPorNome(filtroNome)}><i class="fas fa-search"></i></button>
-                      </div>
+                      <InputGroup.Append>
+                        <Button className="btn-leste-outline" id="button-addon2" onClick={(e) => filtrarPorNome(filtroNome)}><i class="fas fa-search"></i></Button>
+                      </InputGroup.Append>
 
-                    </div>
+                    </InputGroup >
                   </Col>
           
-                  <Col sm={2}>
-                    <div class="input-group mb-3">
+                  <Col lg={2}>
 
-                      <input type="text" class="form-control input-leste" readonly aria-label="Recipient's username" 
+                    <InputGroup className="mb-2">
+
+                      <FormControl type="text" className="input-leste" aria-label="Recipient's username" 
                       aria-describedby="button-addon2" value={filtroLinguagem} onChange={(e)=> setFiltroLinguagem(e.target.value)} placeholder="Idioma"/>
                         
-                      <div class="input-group-append">
-                        <button class="btn btn-leste-outline" type="button" id="button-addon2" 
-                        onClick={(e) =>  filtrarLinguagem(filtroLinguagem)}>
-                        <i class="fas fa-search"></i></button>
-                      </div>
+                      <InputGroup.Append>
+                        <Button className="btn-leste-outline" id="button-addon2" 
+                        onClick={(e) =>  filtrarLinguagem(filtroLinguagem)}> <i class="fas fa-search"></i></Button>
+                      </InputGroup.Append>
 
-                    </div>
+                      </InputGroup >
                   </Col>
 
 
-                  <Col sm={2}>
+                  <Col lg={2}>
 
-                    <div class="input-group mb-3">
-                      <select class="custom-select input-leste" id="inputGroupSelect01" onChange={(e) => filtrarPorMesOuIdade(e.target.value, "mes")}>
+                  <InputGroup className="mb-2">
+                      <Form.Control as="select" className="input-leste" id="inputGroupSelect01" onChange={(e) => filtrarPorMesOuIdade(e.target.value, "mes")}>
                         <option value="0" selected>Mês</option>
                         <option value="01" >Janeiro</option>
                         <option value="02">Fevereiro</option>
@@ -253,26 +255,25 @@ export default function FiltrosDiv( { setContatos }) {
                         <option value="10">Outubro</option>
                         <option value="11">Novembro</option>
                         <option value="12">Dezembro</option>
-                      </select>
-                    </div>
+                      </Form.Control>
+                    </InputGroup >
+
                   </Col>
 
 
-                  <Col sm={2}>
-                    <div class="input-group mb-3">
+                  <Col lg={2}>
+                    <InputGroup className="mb-2">
 
-                      <input type="number" class="form-control input-leste" aria-label="Recipient's username" 
-                      aria-describedby="button-addon2" value={filtroIdade} 
-                      onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
+                      <FormControl type="number" className="input-leste" aria-label="Recipient's username" 
+                      aria-describedby="button-addon2" value={filtroIdade} onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
 
-                      <div class="input-group-append">
-                        <button class="btn btn-leste-outline" type="button" id="button-addon2" onClick={(e) => filtrarPorMesOuIdade(filtroIdade, "idade")}><i class="fas fa-search"></i></button>
-                      </div>
+                      <InputGroup.Append>
+                        <Button className="btn-leste-outline" type="button" id="button-addon2" onClick={(e) => filtrarPorMesOuIdade(filtroIdade, "idade")}><i class="fas fa-search"></i></Button>
+                      </InputGroup.Append>
 
-                    </div>
+                    </InputGroup >
                   </Col>
-
-                </div>
+                </Row>
 
                   <Row>
                     <Col>
@@ -283,7 +284,7 @@ export default function FiltrosDiv( { setContatos }) {
                     </Col>
                   </Row>
                   
-              </form>
+              </Form>
             </Card>
           </Accordion.Collapse>
         </Card>

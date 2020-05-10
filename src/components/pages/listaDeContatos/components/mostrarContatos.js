@@ -1,29 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import ReactTooltip from "react-tooltip";
-import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, Modal, DropdownButton, ButtonGroup} from 'react-bootstrap';
+import { Card, Button, Modal, Table, Tooltip } from 'react-bootstrap';
 
 
-export default function MostrarContatos({ contatos, setContatos }){
+export default function MostrarContatos({ contatos, setContatos, tabelaDeContatos }){
 
     const [modalShow, setModalShow] = React.useState(false);
     const [idParaExclusao, setIdParaExclusao] = useState([]);
 
+    useEffect(() => {
+        if(tabelaDeContatos){
+            contatosEmCards();
+        }else{
+            contatosEmTabela();
+        }
+
+    }, [tabelaDeContatos]);
+
     function MyVerticallyCenteredModal(props) {
         return (
-          <Modal
+          <Modal className="text-center"
             {...props}
-            size="lg"
+            size="sm"
             aria-labelledby="contained-modal-title-vcenter"
             centered
           >
-            <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter">
-                Deseja Excluir?
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Button onClick={()=>{deleteContact(idParaExclusao)}} variant="success">Sim</Button>
+            <Modal.Body className="text-center">
+                <h4 className="mb-2">Deseja Excluir?</h4>
+                <hr/>
+                <Button className="mr-2" onClick={()=>{deleteContact(idParaExclusao)}} variant="success">Sim</Button>
                 <Button onClick={props.onHide} variant="danger">Não</Button>
             </Modal.Body>
             
@@ -31,32 +37,32 @@ export default function MostrarContatos({ contatos, setContatos }){
         );
       }
 
-    function socialIcon(posicaoNoArray, contato){
-        if(posicaoNoArray == 0 && contato.first_name =="André" && contato.id == 1){
-            return(
-                <div className="socialIcon-card">
-                    <a  href="https://www.facebook.com/andre.mesquitasd" target="_blank">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a  href="https://www.instagram.com/mesquitaandre/?hl=pt-br" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+    // function socialIcon(posicaoNoArray, contato){
+    //     if(posicaoNoArray == 0 && contato.first_name =="André" && contato.id == 1){
+    //         return(
+    //             <div className="socialIcon-card">
+    //                 <a  href="https://www.facebook.com/andre.mesquitasd" target="_blank">
+    //                     <i class="fab fa-facebook-f"></i>
+    //                 </a>
+    //                 <a  href="https://www.instagram.com/mesquitaandre/?hl=pt-br" target="_blank">
+    //                     <i class="fab fa-instagram"></i>
+    //                 </a>
                     
-                    <a  href="https://www.linkedin.com/in/andr%C3%A9-mesquita-295974190/" target="_blank">
-                        <i class="fab fa-invision"></i>
-                    </a>
+    //                 <a  href="https://www.linkedin.com/in/andr%C3%A9-mesquita-295974190/" target="_blank">
+    //                     <i class="fab fa-invision"></i>
+    //                 </a>
 
-                    <a href="https://api.whatsapp.com/send?phone=5521981235902" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
+    //                 <a href="https://api.whatsapp.com/send?phone=5521981235902" target="_blank">
+    //                     <i class="fab fa-whatsapp"></i>
+    //                 </a>
 
-                    <a href="https://github.com/andre166" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
-            );
-        }
-    }
+    //                 <a href="https://github.com/andre166" target="_blank">
+    //                     <i class="fab fa-github"></i>
+    //                 </a>
+    //             </div>
+    //         );
+    //     }
+    // }
 
     function mascararIdade(data){
 
@@ -110,55 +116,31 @@ export default function MostrarContatos({ contatos, setContatos }){
         setContatos(ListaDeContatos);
         setModalShow(false)
     }
-    
-    return(
-        <div class="card-group d-flex" id="lista-body">
-     
-            <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-            />
-      
+
+    function contatosEmCards(){
+
+        return(
+            <>
             {contatos.map((info, e) => ( 
 
                 <div class='pb-0' key={info.id} id="cardUsuario" >
-                    <div class="card">
-                        <div class="card-header">
-                            
-                            <div class="">
+ 
+                    <Card>
+                        <Card.Header>
+                            <div>
                                 {info.first_name} {info.last_name}
                             </div>
                             
-                            <div id="menu-card-header" class="">
+                            <div id="menu-card-header">
 
-                                <div class="btn-group dropleft">
-
-                                    <a type="button" class="dropdown" data-toggle="dropdown">
-                                      
-                                    </a>
-
-                                    <a type="button" variant="primary" onClick={()=>{preExclusao(info.id)}}>
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                
-                                    <div class="dropdown-menu">
-                                        <div className="card-body text-center" id="btn-contato-container">
-                    
-                                            <p class="text-dark" >Deseja excluir?</p>
-                                            <hr class="my-2" />
-                    
-                                            <a href="#" class="btn btn-success btn-sm mr-2 " onClick={()=>{deleteContact(info.id)}}>Sim</a>
-                                            <button class="btn btn-danger btn-sm ml-2">Não</button>
-                                        
-                                        </div>
-                                    </div>
-
-                                </div>   
+                                <a type="button" variant="primary" onClick={()=>{preExclusao(info.id)}}>
+                                    <i class="fas fa-trash"></i>
+                                </a>
 
                                 <Link to={{pathname: `/EditarContatos/${info.id}`}}><i class="fas fa-edit fa-edit-customizado"></i></Link>
                             
-                            </div> 
-                        </div>
+                            </div>
+                        </Card.Header>
 
                         <div>
                             <img class="card-img-top" src={info.avatar}  id="img-card" alt="imagem de pessoa"/>
@@ -168,11 +150,126 @@ export default function MostrarContatos({ contatos, setContatos }){
                             <div className="card-body pb-2 p-0" id="card-info-usuario">
                             
                                 <div className="idade_e_id-card">
-                                    <p class="card-text">
-                                        <strong>Idade: </strong>{mascararIdade(info.birthday)}  {socialIcon(e, info)} 
-                                    </p>
-                                        <p data-tip={info.id} class="btn-id">id</p>   <ReactTooltip />   
+                                    <p class="card-text"> <strong>Idade: </strong>{mascararIdade(info.birthday)} </p>
+                                    <p data-tip={info.id} class="btn-id">id</p>   <ReactTooltip />   
                                 </div>
+
+                                <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
+                                <p class="card-text"> <strong>Email: </strong>{info.email}</p>
+                                <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? 'Masculino' : 'Feminino'}</p>
+                                {/* <p class="card-text"><strong>Gênero: </strong>{info.gender}</p> */}
+                                <p class="card-text"><strong>Idioma: </strong>{info.language}</p>
+                            
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+          ))} 
+           </>
+        );
+    }
+
+    function contatosEmTabela(){
+
+        return(
+           
+            <Table responsive striped bordered size="sm">
+                <thead className="text-white titulo tabela">
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Último Nome</th>
+                    <th>Email</th>
+                    <th>Gênero</th>
+                    <th>Idade</th>
+                    <th>Data de nascimento</th>
+                    <th>Idioma</th>
+                    <th>Operação</th>
+                </thead>
+
+           
+                <tbody>
+                    {contatos.map((info) => ( 
+                        <tr key={info.id} className="tabela">
+                            <td style={{width: 110}}><img class="card-img-top" src={info.avatar}  id="img-card" alt="imagem de pessoa" style={{width: 100, height: 80}} /></td>
+                            <td>{info.first_name}</td>
+                            <td>{info.last_name}</td>
+                            <td style={{width: 50}}>{info.email}</td>
+                            <td style={{width: 60}}>{info.gender == 'M' ? 'Masculino' : 'Feminino'}</td>
+                            <td style={{width: 60}}>{mascararIdade(info.birthday)}</td>
+                            <td style={{width: 100}}>{info.birthday}</td>
+                            <td>{info.language}</td>
+
+                            <td style={{width: 100}}>
+                              <div className="operacao-tabela">
+                                <div>
+                                    <Button size="sm" variant="danger" onClick={()=>{preExclusao(info.id)}}> <i class="fas fa-trash"></i> </Button>
+                                </div>
+
+                                <div>
+                                    <Link to={{pathname: `/EditarContatos/${info.id}`}}><Button size="sm" variant="info"><i class="fas fa-edit fa-edit-customizado"></i></Button></Link>
+                                </div>
+
+                              </div>
+
+
+                            </td>
+                        </tr>
+                    ))} 
+                </tbody>
+                  
+              
+          
+              
+          </Table>
+          
+        );
+
+    }
+    
+    return(
+        <div class="card-group d-flex" id="lista-body">
+        {/* <div class=""> */}
+     
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+      
+            { tabelaDeContatos == false ? contatosEmCards() : contatosEmTabela()}
+
+            {/* {contatos.map((info, e) => ( 
+
+                <div class='pb-0' key={info.id} id="cardUsuario" >
+ 
+                    <Card>
+                        <Card.Header>
+                            <div>
+                                {info.first_name} {info.last_name}
+                            </div>
+                            
+                            <div id="menu-card-header">
+
+                                <a type="button" variant="primary" onClick={()=>{preExclusao(info.id)}}>
+                                    <i class="fas fa-trash"></i>
+                                </a>
+
+                                <Link to={{pathname: `/EditarContatos/${info.id}`}}><i class="fas fa-edit fa-edit-customizado"></i></Link>
+                            
+                            </div>
+                        </Card.Header>
+
+                        <div>
+                            <img class="card-img-top" src={info.avatar}  id="img-card" alt="imagem de pessoa"/>
+                        </div>
+
+                        <div class="card-body-container">
+                            <div className="card-body pb-2 p-0" id="card-info-usuario">
+                            
+                                <div className="idade_e_id-card">
+                                    <p class="card-text"> <strong>Idade: </strong>{mascararIdade(info.birthday)}  {socialIcon(e, info)} </p>
+                                    <p data-tip={info.id} class="btn-id">id</p>   <ReactTooltip />   
+                                </div>
+
                                 <p class="card-text"><strong>Data de nascimento: </strong>{info.birthday}</p>
                                 <p class="card-text"> <strong>Email: </strong>{info.email}</p>
                                 <p class="card-text"><strong>Gênero: </strong>{info.gender == 'M' ? info.gender = 'Masculino' : info.gender = 'Feminino'}</p>
@@ -180,10 +277,9 @@ export default function MostrarContatos({ contatos, setContatos }){
                             
                             </div>
                         </div>
-                        
-                    </div>
+                    </Card>
                 </div>
-            ))} 
+            ))}  */}
             
         </div>
     );

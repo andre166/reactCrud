@@ -63,11 +63,6 @@ import './App.css';
             return dataFormatada;
         }
 
-
-        let andre = {id: 1, first_name: "André", last_name: "Mesquita", email: "andremp1927@hotmail.com", gender: "M", language:"Portuguese", avatar:"https://i.ibb.co/sPpjPbB/eu.jpg", birthday:"25/11/1993"};
-
-        contatos[0] = andre;
-
         await localStorage.setItem("ListaDeContatos", JSON.stringify(contatos));
           
       
@@ -87,7 +82,7 @@ import './App.css';
   if(loading){
     return(
       <div className="loading-container">
-        Loading...
+        Carregando...
       </div>
     )
   }

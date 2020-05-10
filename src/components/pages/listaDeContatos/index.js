@@ -4,10 +4,13 @@ import FiltrosDiv from './components/filtros';
 import AlertaZeroContato from './components/alertZeroContato';
 import MostrarContatos from './components/mostrarContatos';
 import SnackBar from "./components/snackBarAlert";
+import {Container, Row, Card, Jumbotron, Col} from 'react-bootstrap';
+
 
 export default function ListaDeContatos() {
 
-  const [contatos, setContatos] = useState([])
+  const [contatos, setContatos] = useState([]);
+  const [tabelaDeContatos, setTabelaDeContatos] = useState(false);
 
   useEffect(() => {
 
@@ -22,32 +25,26 @@ export default function ListaDeContatos() {
   }, [localStorage.getItem("ListaDeContatos")]);
 
   return (
-    <div>
+    <Container fluid>
+      <Card body className="my-2 container-listaDeContatos">
 
-      <div className="container-fluid container-listaDeContatos">
-        <div className="card card-body my-2">
-
-          <div class="jumbotron py-4  mb-2">
-            <h1 class="display-4 text-center">Lista de Contatos</h1>
-          </div>
-
-          <FiltrosDiv setContatos={setContatos}></FiltrosDiv>
-            
-          <div class="row">
-              <div class="col-sm-12">
-
-                <MostrarContatos contatos={contatos} setContatos={setContatos}></MostrarContatos>
-
-                <AlertaZeroContato contatos={contatos}></AlertaZeroContato>
-
-              </div>
-          </div>
-
-        </div>
-      </div>
+      <Jumbotron className="py-4 mb-2">
+        <h1 class="text-center">Lista de Contatos</h1>
+      </Jumbotron>
       
+      <FiltrosDiv setContatos={setContatos} tabelaDeContatos={tabelaDeContatos} setTabelaDeContatos={setTabelaDeContatos}></FiltrosDiv>
+
+        <Row>
+            <Col>
+              <MostrarContatos contatos={contatos} setContatos={setContatos} tabelaDeContatos={tabelaDeContatos}></MostrarContatos>
+              <AlertaZeroContato contatos={contatos}></AlertaZeroContato>
+            </Col>
+        </Row>
+
+      </Card>
+
       <SnackBar/>
 
-    </div>
+    </Container>
   );
 }
