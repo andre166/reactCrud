@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function OrderBy( { setContatos } ){
+export default function OrderBy( { setContatos, paginate } ){
 
     async function OrderByNome(e){
 
@@ -30,7 +30,7 @@ export default function OrderBy( { setContatos } ){
             ));
 
         }
-                
+        paginate(1);       
         setContatos(terceiroArray);
     
       }
@@ -58,7 +58,8 @@ export default function OrderBy( { setContatos } ){
         ListaDeContatos.map((info) => (
             idomasOrdenado.push(ListaDeContatos.find(n => n.id == info.id))
         ));
-    
+
+        paginate(1); 
         setContatos(idomasOrdenado);
          
     }
@@ -101,7 +102,8 @@ export default function OrderBy( { setContatos } ){
         lista.map((info) => (
           listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
         ));
-    
+        
+        paginate(1); 
         setContatos(listaOrdenada);
         
     }

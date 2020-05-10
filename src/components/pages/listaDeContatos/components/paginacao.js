@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Card, Button, Modal, Table, Tooltip } from 'react-bootstrap';
-
+import React from 'react';
+import '../listaDeContatos.css';
 
 export default function paginacao({ contatos, contatosPorPagina, paginate }){
 
@@ -15,7 +14,7 @@ export default function paginacao({ contatos, contatosPorPagina, paginate }){
             <ul className="pagination">
                 {pageNumber.map(number => (
                     <li key={number} className="page-item">
-                        <a type="button" onClick={()=> paginate(number)}  className="page-link">
+                        <a type="button" onClick={()=> paginate(number)}  className="paginator">
                             {number}
                         </a>
                     </li>

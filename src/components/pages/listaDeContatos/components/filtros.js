@@ -1,8 +1,8 @@
 import React, {useState } from "react"
 import OrderBy from './orderBy';
-import {Container, Row, Card, Jumbotron, Col, Form, Dropdown, InputGroup, FormControl,  Accordion, Button} from 'react-bootstrap';
+import {Container, Row, Card, Col, Form, Dropdown, InputGroup, FormControl,  Accordion, Button} from 'react-bootstrap';
 
-export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, setTabelaDeContatos, contatosPorPagina, setContatosPorPagina, paginate }) {
+export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, setTabelaDeContatos, setContatosPorPagina, paginate }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
@@ -184,45 +184,51 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
     <div>
       <Accordion defaultActiveKey="0">
         <Card>
-          
-          <Card body>
-            <Row>
-              <Col md="2">
+          <Container fluid>
+            <Row className="justify-content-md-around">
+
+              <Col xs="auto" sm="auto" className="mb-2" style={{width: 250}}>
                 <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
                 <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
                
               </Col>
 
-              <Col md="2">
+              <Col xs="auto" sm="auto" style={{minWidth: 150}}>
                 <Form.Check type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela On' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
               </Col>
 
-              <Col md="3">
+              <Col xs="auto" sm="auto" style={{minWidth: 150}}>
                 <Row>
-                <label>Quantidade de contatos por página:</label>
-                <InputGroup className="w-25">
-                      <Form.Control as="select" className="input-leste" onChange={(e) => setarPagina(e.target.value)}>
-                        <option value="5">5</option>
-                        <option value="10" >10</option>
-                        <option value="15">15</option>
-                        <option value="20"selected>20</option>
-                        <option value="25">25</option>
-                        <option value="30">30</option>
-                        <option value="40">40</option>
-                        <option value="45">45</option>
-                        <option value="50">50</option>
-                      </Form.Control>
-                    </InputGroup >
-
+                  <label>Contatos por página:</label>
+                  <InputGroup style={{width: 70}}>
+                        <Form.Control as="select" className="input-leste" onChange={(e) => setarPagina(e.target.value)}>
+                          <option value="5">5</option>
+                          <option value="10" >10</option>
+                          <option value="15">15</option>
+                          <option value="20"selected>20</option>
+                          <option value="25">25</option>
+                          <option value="30">30</option>
+                          <option value="40">40</option>
+                          <option value="45">45</option>
+                          <option value="50">50</option>
+                        </Form.Control>
+                      </InputGroup >
                 </Row>
+
+               
               </Col>
 
-              <Col md="2">
-                <label>Total de contatos: {contatos.length}</label>
+              <Col xs="auto" sm={4}  className="mb-2" style={{minWidth: 200}}>
+                <p>Contatos: {contatos.length}</p>
+              </Col>
+
+              <Col  xs="auto" sm="auto" className="mb-2">
+                a
               </Col>
 
             </Row>
-          </Card>
+          </Container>
+      
 
           <Accordion.Collapse eventKey="1">
             <Card>
@@ -320,7 +326,7 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
                       <div className="text-center h4-ordenar">
                         <h4>Ordenar por</h4>
                       </div>
-                      <OrderBy setContatos={ setContatos }></OrderBy>
+                      <OrderBy setContatos={ setContatos } paginate={paginate}></OrderBy>
                     </Col>
                   </Row>
                   
