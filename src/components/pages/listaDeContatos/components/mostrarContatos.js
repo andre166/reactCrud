@@ -2,21 +2,21 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Button, Modal, Table } from 'react-bootstrap';
 
-export default function MostrarContatos({ contatos, setContatos, tabelaDeContatos }){
+export default function MostrarContatos({ contatos, setContatos, modoTabela }){
 
     const [modalShow, setModalShow] = React.useState(false);
-    const [idParaExclusao, setIdParaExclusao] = useState([]);
+    const [idParaExclusao, setIdParaExclusao] = useState([]); //recebe o ID para excluir contato do modal
 
-    useEffect(() => {
-        if(tabelaDeContatos){
-            contatosEmCards();
-        }else{
+    useEffect(() => { // verificação para mostrar os contatos em cards ou em tabela
+        if(modoTabela){
             contatosEmTabela();
+        }else{
+            contatosEmCards();
         }
 
-    }, [tabelaDeContatos]);
+    }, [modoTabela]);
 
-    function MyVerticallyCenteredModal(props) {
+    function MyVerticallyCenteredModal(props) { //modal para excluir contato na página de lista
         return (
           <Modal className="text-center" {...props} size="sm" aria-labelledby="contained-modal-title-vcenter" centered>
               
@@ -183,7 +183,7 @@ export default function MostrarContatos({ contatos, setContatos, tabelaDeContato
 
             <MyVerticallyCenteredModal show={modalShow} onHide={() => setModalShow(false)} />
       
-            { tabelaDeContatos == false ? contatosEmCards() : contatosEmTabela() }
+            { modoTabela == false ? contatosEmCards() : contatosEmTabela() }
             
         </div>
     );

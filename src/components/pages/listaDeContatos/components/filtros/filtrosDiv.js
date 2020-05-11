@@ -3,14 +3,30 @@ import OrderBy from './orderBy';
 import {Container, Row, Card, Col, Form, Dropdown, InputGroup, FormControl,  Accordion, Button} from 'react-bootstrap';
 import './filtros.css';
 
-export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, setTabelaDeContatos, setContatosPorPagina, paginate, setZerarPaginacao, zerarPaginacao }) {
+export default function FiltrosDiv( { contatos, setContatos, modoTabela, setModoTabela, setContatosPorPagina, paginar, setZerarPaginacao, zerarPaginacao }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
   let [filtroNome, setFiltroNome] = useState([]);
 
+  function filtrarPorMesOuIdade(e, tipo){
 
-  function formatData(contato, e, tipo){
+    if(e == 0){ 
+      return;
+    }
+    
+    const response = localStorage.getItem("ListaDeContatos");
+    let ListaDeContatos = JSON.parse(response);
+
+    let contatosFiltrados = ListaDeContatos.filter((contato) => (
+      formatData(contato, e, tipo)
+    ))
+  
+    setContatos(contatosFiltrados);
+    paginar(1);
+  }
+
+  function formatData(contato, e, tipo){ //recebe um contato, uma data e um tipo "dia/mês ou ano"
 
     let data2 = String(contato.birthday).split(' ');
     let days = String(data2[0]).split('/');
@@ -55,24 +71,6 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
 
   }
 
-  async function filtrarPorMesOuIdade(e, tipo){
-
-    if(e == 0){ 
-      return;
-    }
-    
-    const response = await localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = JSON.parse(response);
-
-    let contatosFiltrados = ListaDeContatos.filter((contato) => (
-      formatData(contato, e, tipo)
-    ))
-  
-    setContatos(contatosFiltrados);
-    paginate(1);
-    
-  }
-
   async function filtrarPorNome(e){
 
     if(e.length == 0){
@@ -88,11 +86,11 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
     let cidadao = ListaDeContatos.filter(n => n.first_name == letraFormatada);
 
       setContatos(cidadao);
-      paginate(1);
+      paginar(1);
       zerarFiltro("nome");
   }
 
-  async function filtrarLinguagem(e){
+  function filtrarLinguagem(e){
 
     if(e.length === 0 ){
       return;
@@ -102,18 +100,19 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
     { return a.toUpperCase(); });
 
     const response = localStorage.getItem("ListaDeContatos");
-    let ListaDeContatos = await JSON.parse(response);
+    let ListaDeContatos = JSON.parse(response);
 
     let linguagemFiltrada = ListaDeContatos.filter(n => n.language == letraFormatada)
 
     setContatos(linguagemFiltrada);
-    paginate(1);
+    paginar(1);
     zerarFiltro("linguagem");
 
   }
-  async function filtrarGenero(genero){
 
-    const response = await localStorage.getItem("ListaDeContatos");
+  function filtrarGenero(genero){
+
+    const response = localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = JSON.parse(response);
 
     if(genero === "F"){
@@ -124,15 +123,16 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
       const newLista = ListaDeContatos.filter(person => person.gender == 'M');
       setContatos(newLista);
     }
-    paginate(1);
+    paginar(1);
     zerarFiltro("genero"); 
   }
         
-  async function zerarFiltro(Filtro){
+  function zerarFiltro(Filtro){
 
-    paginate(1);
-    setZerarPaginacao(!zerarPaginacao)
-    const response = await localStorage.getItem("ListaDeContatos");
+    paginar(1);
+    setZerarPaginacao(!zerarPaginacao);// volta a pagina para a primeira
+
+    const response = localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = JSON.parse(response);
 
     if(Filtro === "nome"){
@@ -179,7 +179,7 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
 
   function setarPagina(e){
     setContatosPorPagina(e)
-    paginate(1)
+    paginar(1)
 
   }
 
@@ -196,7 +196,7 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
 
                   <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
                   <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
-                  <Form.Check className="mt-1" type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela on' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
+                  <Form.Check className="mt-1" type="switch" id="custom-switch" label={modoTabela == true ? 'Tabela on' : 'Tabela off'} onClick={() => {setModoTabela(!modoTabela)}} />
 
                 </Row>
 
@@ -324,7 +324,7 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
                       <div className="text-center h4-ordenar bg-softGreen-escuro">
                         <h4>Ordenar por</h4>
                       </div>
-                        <OrderBy zerarPaginacao={zerarPaginacao} setZerarPaginacao={setZerarPaginacao} setContatos={ setContatos } paginate={paginate}></OrderBy>
+                        <OrderBy zerarPaginacao={zerarPaginacao} setZerarPaginacao={setZerarPaginacao} setContatos={ setContatos } paginar={paginar}></OrderBy>
                     </Col>
                   </Row>
                   

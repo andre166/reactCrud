@@ -6,94 +6,64 @@ export default function Footer() {
 
     const [alertaMsg, setAlertaMsg] = useState([]);
 
-    let alertaEditadoSuccess = false;
-    let alertaCadastradoSuccess = false;
-    let alertaExcluidoSuccess = false;
+    // let alertaEditadoSuccess = false;
+    // let alertaCadastradoSuccess = false;
+    // let alertaExcluidoSuccess = false;
 
-  useEffect(() => {
+  useEffect(() => { //Vigia o localStorage para gerar menssagem de Editado, cadastrado ou excluído
 
-    
-    (async function verificarAlerta() {
+    (function verificarAlerta() {
       
-      const  MenssagemEditadoouCadastrado =  await localStorage.getItem("MSG");
+      const  MenssagemEditadoOuCadastrado =  localStorage.getItem("MSG");
 
-      if(MenssagemEditadoouCadastrado == "ExcluidoSuccess"){
+      if(MenssagemEditadoOuCadastrado == "ExcluidoSuccess"){ //Vigia o localStorage e gera o alerta de acordo com o valor
 
-        alertaExcluidoSuccess = true;
-        await gerarAlerta();
-      }else if(MenssagemEditadoouCadastrado == "EditadoSuccess"){
+        let idSnackBar = document.querySelector('#snackBarContent');
+        let idAlerta = document.querySelector('#msg-alert');
+        idAlerta.classList.add('alerta-msg-danger');
 
-        alertaEditadoSuccess = true;
-        gerarAlerta();
+        setAlertaMsg('Excluído'); //Menssagem que será vista na snackBar
+        showDivAlerta(idSnackBar);
 
-      }else if(MenssagemEditadoouCadastrado == "CadastradoSuccess"){
+      }else if(MenssagemEditadoOuCadastrado == "EditadoSuccess"){
+        let idSnackBar = document.querySelector('#snackBarContent');
+        let idAlerta = document.querySelector('#msg-alert');
+        idAlerta.classList.add('alerta-msg-info');
 
-        alertaCadastradoSuccess = true;
-        gerarAlerta();
+        setAlertaMsg('Editado');
+        showDivAlerta(idSnackBar);
+
+      }else if(MenssagemEditadoOuCadastrado == "CadastradoSuccess"){
+
+        let idSnackBar = document.querySelector('#snackBarContent');
+        let idAlerta = document.querySelector('#msg-alert');
+        idAlerta.classList.add('alerta-msg-success');
+
+        setAlertaMsg('Cadastrado');
+        showDivAlerta(idSnackBar);
 
       }
 
     })();
 
     }, [localStorage.getItem("MSG")]);
-
-  async function gerarAlerta() {
-
-    if(alertaExcluidoSuccess){
-
-      setAlertaMsg('Excluído');
-
-      let x = document.querySelector('#snackBarContent');
-      let y = document.querySelector('#msg-alert');
-      y.classList.add('alerta-msg-danger');
-
-      showDivAlerta(x);
-      alertaExcluidoSuccess = false;
-  
-    }
-
-    if(alertaEditadoSuccess){
-
-    setAlertaMsg('Editado');
     
-    let x = document.querySelector('#snackBarContent');
-    let y = document.querySelector('#msg-alert');
-    y.classList.add('alerta-msg-info');
+  function showDivAlerta(idSnackBar){ //show, fade e display none na snackbar após a menssagem de editado, excluídoou cadastrado
 
-    showDivAlerta(x);
-    alertaEditadoSuccess = false;
-
-    }else if(alertaCadastradoSuccess){
-
-      setAlertaMsg('Cadastrado');
-
-      let x = document.querySelector('#snackBarContent');
-      let y = document.querySelector('#msg-alert');
-      y.classList.add('alerta-msg-success');
-
-      showDivAlerta(x);
-      alertaCadastradoSuccess = false;
-
-    }
-    
-  }
-    
-  function showDivAlerta(x){
-
-    x.style.opacity = 1;
-    x.style.display = "block"; 
+    idSnackBar.style.opacity = 1;
+    idSnackBar.style.display = "block"; 
 
     setInterval(function () {
 
       let fadeEffect2 = setInterval(function () {
-        if (!x.style.opacity) {
-            x.style.opacity = 1;
+        if (!idSnackBar.style.opacity) {
+          idSnackBar.style.opacity = 1;
         }
-        if (x.style.opacity > 0) {
-          x.style.opacity -= 0.1;
+        if (idSnackBar.style.opacity > 0) {
+          idSnackBar.style.opacity -= 0.1;
         } else {
             clearInterval(fadeEffect2);
-            x.style.display = "none";
+            idSnackBar.style.display = "none";
           }
 
       }, 200);

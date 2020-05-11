@@ -2,12 +2,12 @@ import React from 'react';
 
 export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zerarPaginacao } ){
 
-    async function OrderByNome(e){
+    function OrderByNome(e){
 
-        const response = await localStorage.getItem("ListaDeContatos");
+        const response = localStorage.getItem("ListaDeContatos");
         let ListaDeContatos = JSON.parse(response);
     
-        let terceiroArray = [];
+        let nomesOrdenados= [];
      
         if(e == "nome-crescente"){
 
@@ -16,7 +16,7 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
             });
 
             ListaDeContatos.map((info) => (
-                terceiroArray.push(ListaDeContatos.find(n => n.id == info.id))
+                nomesOrdenados.push(ListaDeContatos.find(n => n.id == info.id))
             ));
 
         }else if(e == "nome-decrescente"){
@@ -26,13 +26,13 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
             });
 
             ListaDeContatos.map((info) => (
-                terceiroArray.push(ListaDeContatos.find(n => n.id == info.id))
+                nomesOrdenados.push(ListaDeContatos.find(n => n.id == info.id))
             ));
 
         }
         paginate(1);  
         setZerarPaginacao(!zerarPaginacao);    
-        setContatos(terceiroArray);
+        setContatos(nomesOrdenados);
     
       }
 
@@ -41,7 +41,7 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
         const response = await localStorage.getItem("ListaDeContatos");
         let ListaDeContatos = JSON.parse(response);
     
-        let idomasOrdenado = [];
+        let idomasOrdenados = [];
             
         if(e == "A-Z"){
 
@@ -57,12 +57,12 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
         }
     
         ListaDeContatos.map((info) => (
-            idomasOrdenado.push(ListaDeContatos.find(n => n.id == info.id))
+            idomasOrdenados.push(ListaDeContatos.find(n => n.id == info.id))
         ));
 
         paginate(1); 
         setZerarPaginacao(!zerarPaginacao);    
-        setContatos(idomasOrdenado);
+        setContatos(idomasOrdenados);
          
     }
 
@@ -74,7 +74,7 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
         let lista = [];
         let listaOrdenada = [];
 
-        if(e == "dia-crescente" || e == "dia-decrescente"){
+        if(e == "dia-crescente" || e == "dia-decrescente"){ //cria um objeto {birthday: "dia, mês ou ano" , id: "id do contato"} e coloca no array Lista
             ListaDeContatos.map((info) => (
                 lista.push({birthday:mascararIdade(info.birthday, "dia"), id:info.id})
             ));
@@ -88,7 +88,7 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
             ));
         }
     
-        if(e == "dia-crescente" || e == "mes-crescente" || e == "ano-crescente" ){
+        if(e == "dia-crescente" || e == "mes-crescente" || e == "ano-crescente" ){ // Ordena o array Lista de acordo com o tipo "idade, mês ou ano" 
 
             lista.sort(function(a, b){
                 return (a.birthday > b.birthday) ? 1 : ((b.birthday > a.birthday) ? -1 : 0);
@@ -101,7 +101,7 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
             });
         }
     
-        lista.map((info) => (
+        lista.map((info) => ( //popula o array listaOrdenada com o objeto completo de cada contato na ordem crescente ou decrescente por dia, mês ou ano
           listaOrdenada.push(ListaDeContatos.find(n => n.id == info.id))
         ));
         
@@ -111,7 +111,7 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
         
     }
 
-    function mascararIdade(data, tipo){
+    function mascararIdade(data, tipo){ //retorna dia, mês ou ano formatado para ordenação
 
         let data2 = String(data).split(' ');
         let days = String(data2[0]).split('/');

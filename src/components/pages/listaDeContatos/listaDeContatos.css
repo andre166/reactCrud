@@ -1,9 +1,9 @@
 .container-listaDeContatos{
     min-height: 90vh;
 }
+
 #img-card{
     height: 12rem;
-
 }
 
 .paginator, .paginator span{
@@ -102,15 +102,14 @@
     font-size: 14pt;
     color: #3d413d;
     cursor: pointer;
-
 }
+
 .card-header{
     font-weight: bold;
     font-size: 11pt;
     display: flex;
     flex-direction: row;
     justify-content:space-between;
-
 }
 
 #card-info-usuario p{

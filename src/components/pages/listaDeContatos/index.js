@@ -11,32 +11,30 @@ import {Container, Row, Card, Jumbotron, Col} from 'react-bootstrap';
 export default function ListaDeContatos() {
 
   const [contatos, setContatos] = useState([]);
-  const [tabelaDeContatos, setTabelaDeContatos] = useState(false); // Muda os cards para tabela
+  const [modoTabela, setModoTabela] = useState(false); // Muda os cards para tabela e vice versa
   
   //States para paginação
-  const [currentPage, setCurrentPage] = useState(1); //Define a primeira página e fica sendo observado pelo UseEffect para mudar o css da paginação 
+  const [paginaAtual, setPaginaAtual] = useState(1); //Define a primeira página e fica sendo observado pelo UseEffect para mudar o css da paginação 
   const [contatosPorPagina, setContatosPorPagina] = useState(5); //Define a quantidade de contatos por página
-  const indexLastContato = currentPage * contatosPorPagina;
-  const indexOfFirstPost = indexLastContato - contatosPorPagina;
-  const currentPosts = contatos.slice(indexOfFirstPost, indexLastContato)
-  const [zerarPaginacao, setZerarPaginacao] = useState(false); // Volta para a página 1
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber); //Define a quantidade de páginas a serem paginadas
+  const indexLastContato = paginaAtual * contatosPorPagina;
+  const indexOfFirstPost = indexLastContato - contatosPorPagina;
+  const quantidadeDeContatos = contatos.slice(indexOfFirstPost, indexLastContato);
+
+  const [zerarPaginacao, setZerarPaginacao] = useState(false); // Volta para a página 1 ao mudar filtros ou ordenar - independente de true ou false - a cada mudança de estado é chamado um useffect
+  const paginar = (pageNumber) => setPaginaAtual(pageNumber); //Define a quantidade de páginas a serem paginadas
 
   useEffect(() => {
 
-    (async function pegarContatos() {
+    (function pegarContatos() {
 
-      const response = await localStorage.getItem("ListaDeContatos");
+      const response = localStorage.getItem("ListaDeContatos");
       let ListaDeContatos = JSON.parse(response);
       setContatos(ListaDeContatos);
 
     })();
   
   }, [localStorage.getItem("ListaDeContatos")]);
-
-
-  
 
   return (
     <Container fluid className="container-listaDeContatos my-2">
@@ -47,13 +45,14 @@ export default function ListaDeContatos() {
         </Jumbotron>
      
         <FiltrosDiv zerarPaginacao={zerarPaginacao} setZerarPaginacao={setZerarPaginacao} contatos={contatos} setContatos={setContatos}
-            tabelaDeContatos={tabelaDeContatos} setTabelaDeContatos={setTabelaDeContatos}  paginate={paginate} 
+            modoTabela={modoTabela} setModoTabela={setModoTabela}  paginar={paginar} 
             contatosPorPagina={contatosPorPagina} setContatosPorPagina={setContatosPorPagina}> 
         </FiltrosDiv>
 
         <Row>
             <Col>
-              <MostrarContatos contatos={currentPosts} setContatos={setContatos} tabelaDeContatos={tabelaDeContatos}></MostrarContatos>
+              <MostrarContatos contatos={quantidadeDeContatos} setContatos={setContatos} modoTabela={modoTabela}></MostrarContatos>
+
               <AlertaZeroContato contatos={contatos}></AlertaZeroContato>
             </Col>
         </Row>
@@ -61,7 +60,7 @@ export default function ListaDeContatos() {
         <hr className="bg-softGreen-claro"/>
         
         <Row className="paginacao-container">
-          <Paginacao contatosPorPagina={contatosPorPagina} contatos={contatos.length} paginate={paginate} zerarPaginacao={zerarPaginacao}></Paginacao>
+          <Paginacao contatosPorPagina={contatosPorPagina} contatos={contatos.length} paginar={paginar} zerarPaginacao={zerarPaginacao}></Paginacao>
         </Row>
 
       </Card>

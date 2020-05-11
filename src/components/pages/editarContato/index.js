@@ -3,7 +3,6 @@ import { useParams, useHistory} from 'react-router-dom';
 import './editarContato.css';
 import {Container, Row, Card, Jumbotron, Col, Form, Collapse } from 'react-bootstrap';
 
-
 export default function EditarContatos() {
 
     let idParams = useParams()

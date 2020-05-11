@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 import '../listaDeContatos.css';
 
-export default function Paginacao({ contatos, contatosPorPagina, paginate, zerarPaginacao }){
+export default function Paginacao({ contatos, contatosPorPagina, paginar, zerarPaginacao }){
 
-    useEffect(() => {
+    useEffect(() => { //Vigia contatos, contatosPorPagina, zerarPaginacao para mudar o Foco:"efeito do Css" para a página 1
         foco(1);
     }, [contatos, contatosPorPagina, zerarPaginacao]);
 
@@ -14,7 +14,6 @@ export default function Paginacao({ contatos, contatosPorPagina, paginate, zerar
         pageNumber.push(i);
     }
 
-    
     function foco(number){
 
         pageNumber.map((info, index) => (
@@ -32,7 +31,7 @@ export default function Paginacao({ contatos, contatosPorPagina, paginate, zerar
                 }    
             }
 
-        paginate(number);
+            paginar(number);
     }
         
     return(

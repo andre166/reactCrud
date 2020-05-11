@@ -5,7 +5,7 @@ export default function AlertaZeroContato({ contatos }){
 
   useEffect(() => {
     
-    (async function alertaNenhumContato(){
+    (async function alertaNenhumContato(){ //alerta caso não tenha nenhum contato no Estate contatos
       
       let x = document.querySelector('#msgErro');
     
