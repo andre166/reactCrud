@@ -2,7 +2,7 @@ import React, {useState } from "react"
 import OrderBy from './orderBy';
 import {Container, Row, Card, Col, Form, Dropdown, InputGroup, FormControl,  Accordion, Button} from 'react-bootstrap';
 
-export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, setTabelaDeContatos, setContatosPorPagina, paginate }) {
+export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, setTabelaDeContatos, setContatosPorPagina, paginate, setZerarPaginacao, zerarPaginacao }) {
 
   let [filtroLinguagem, setFiltroLinguagem] = useState([]);
   let [filtroIdade, setFiltroIdade] = useState([]);
@@ -128,7 +128,9 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
   }
         
   async function zerarFiltro(Filtro){
+
     paginate(1);
+    setZerarPaginacao(!zerarPaginacao)
     const response = await localStorage.getItem("ListaDeContatos");
     let ListaDeContatos = JSON.parse(response);
 
@@ -326,7 +328,7 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
                       <div className="text-center h4-ordenar">
                         <h4>Ordenar por</h4>
                       </div>
-                      <OrderBy setContatos={ setContatos } paginate={paginate}></OrderBy>
+                        <OrderBy zerarPaginacao={zerarPaginacao} setZerarPaginacao={setZerarPaginacao} setContatos={ setContatos } paginate={paginate}></OrderBy>
                     </Col>
                   </Row>
                   

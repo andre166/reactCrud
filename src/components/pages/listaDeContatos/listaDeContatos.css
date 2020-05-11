@@ -7,7 +7,6 @@
 }
 
 #snackBar{
-    /* max-width: 400px; */
     display: flex;
     align-items: center;
 }
@@ -21,6 +20,11 @@
     width: 30px;
     margin: 3px;
     color: #fff !important;
+}
+
+.ativo-paginacao{
+    background-color: #fff;
+    color: #013a1a !important;
 }
 
 .paginator:hover{

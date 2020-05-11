@@ -33,6 +33,7 @@ export default function ListaDeContatos() {
   const indexLastContato = currentPage * contatosPorPagina;
   const indexOfFirstPost = indexLastContato - contatosPorPagina;
   const currentPosts = contatos.slice(indexOfFirstPost, indexLastContato)
+  const [zerarPaginacao, setZerarPaginacao] = useState(false);
 
   return (
     <Container fluid className="container-listaDeContatos my-2">
@@ -42,7 +43,7 @@ export default function ListaDeContatos() {
         <h1 class="text-center">Lista de Contatos</h1>
       </Jumbotron>
      
-      <FiltrosDiv paginate={paginate} contatos={contatos} setContatos={setContatos} tabelaDeContatos={tabelaDeContatos} setTabelaDeContatos={setTabelaDeContatos}  contatosPorPagina={contatosPorPagina} setContatosPorPagina={setContatosPorPagina}></FiltrosDiv>
+      <FiltrosDiv zerarPaginacao={zerarPaginacao} setZerarPaginacao={setZerarPaginacao} paginate={paginate} contatos={contatos} setContatos={setContatos} tabelaDeContatos={tabelaDeContatos} setTabelaDeContatos={setTabelaDeContatos}  contatosPorPagina={contatosPorPagina} setContatosPorPagina={setContatosPorPagina}></FiltrosDiv>
 
         <Row>
             <Col>
@@ -54,7 +55,7 @@ export default function ListaDeContatos() {
         <hr/>
         
         <Row className="paginacao-container">
-          <Paginacao contatosPorPagina={contatosPorPagina} contatos={contatos.length} paginate={paginate}></Paginacao>
+          <Paginacao contatosPorPagina={contatosPorPagina} contatos={contatos.length} paginate={paginate} zerarPaginacao={zerarPaginacao}></Paginacao>
         </Row>
 
       </Card>

@@ -6,8 +6,16 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 export default function Header() {
 
-  let [menuFoco, setMenuFoco] = useState(["menu-1", "menu-2", "menu-3", "logo"]);
+  let [menuFoco] = useState(["menu-1", "menu-2", "menu-3", "logo"]);
   let [menuItem, setMenuItem] = useState(-1);
+
+
+    useEffect(() => {
+
+
+
+    }, []);
+  
 
   useEffect(() => {
 

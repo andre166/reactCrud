@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function OrderBy( { setContatos, paginate } ){
+export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zerarPaginacao } ){
 
     async function OrderByNome(e){
 
@@ -30,7 +30,8 @@ export default function OrderBy( { setContatos, paginate } ){
             ));
 
         }
-        paginate(1);       
+        paginate(1);  
+        setZerarPaginacao(!zerarPaginacao);    
         setContatos(terceiroArray);
     
       }
@@ -60,6 +61,7 @@ export default function OrderBy( { setContatos, paginate } ){
         ));
 
         paginate(1); 
+        setZerarPaginacao(!zerarPaginacao);    
         setContatos(idomasOrdenado);
          
     }
@@ -104,6 +106,7 @@ export default function OrderBy( { setContatos, paginate } ){
         ));
         
         paginate(1); 
+        setZerarPaginacao(!zerarPaginacao);    
         setContatos(listaOrdenada);
         
     }
