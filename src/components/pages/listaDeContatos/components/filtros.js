@@ -186,28 +186,27 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
     <div>
       <Accordion defaultActiveKey="0">
         <Card>
-          <Container fluid>
-            <Row className="justify-content-md-around">
-
-              <Col xs="auto" sm="auto" className="mb-2" style={{width: 250}}>
+          <Container fluid >
+            <Row className="justify-content-md-around accordion-filtros">
+              <Col xs="auto" sm="auto" className="mb-2" style={{minWidth: 200}}>
+              <Row>
                 <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
                 <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
-               
+                <Form.Check className="mt-1" type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela on' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
+                </Row>
+
               </Col>
 
-              <Col xs="auto" sm="auto" style={{minWidth: 150}}>
-                <Form.Check type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela On' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
-              </Col>
 
-              <Col xs="auto" sm="auto" style={{minWidth: 150}}>
+              <Col xs="auto" sm="auto" style={{minWidth: 150}} className="contatoPorPag-container">
                 <Row>
-                  <label>Contatos por página:</label>
-                  <InputGroup style={{width: 70}}>
+                  <label className="mt-1"><strong>Contatos por página:</strong></label>
+                  <InputGroup style={{width: 65}}>
                         <Form.Control as="select" className="input-leste" onChange={(e) => setarPagina(e.target.value)}>
-                          <option value="5">5</option>
+                          <option value="5" selected>5</option>
                           <option value="10" >10</option>
                           <option value="15">15</option>
-                          <option value="20"selected>20</option>
+                          <option value="20">20</option>
                           <option value="25">25</option>
                           <option value="30">30</option>
                           <option value="40">40</option>
@@ -220,14 +219,9 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
                
               </Col>
 
-              <Col xs="auto" sm={4}  className="mb-2" style={{minWidth: 200}}>
-                <p>Contatos: {contatos.length}</p>
+              <Col xs="auto" sm="auto" style={{minWidth: 150}}>
+                <span className="ContatdorDeContatos-container" >Contatos: {contatos.length}</span>  
               </Col>
-
-              <Col  xs="auto" sm="auto" className="mb-2">
-                a
-              </Col>
-
             </Row>
           </Container>
       

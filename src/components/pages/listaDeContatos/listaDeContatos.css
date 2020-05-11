@@ -10,6 +10,20 @@
     display: flex;
     align-items: center;
 }
+.accordion-filtros{
+    padding: 10px;
+}
+.ContatdorDeContatos-container{
+    letter-spacing: 1.5px;
+    padding: 6px 7px;
+    border-radius: 5px;
+    border: 2px solid #013a1a;
+    background-color: #013a1a;
+    box-shadow: inset 2px 2px 4px #bebebebe,
+              inset -2px -2px 4px #00180a;
+              color: #fff;
+  
+}
 .paginator{
     text-align: center;
     border: 2px solid #013a1a;
@@ -20,6 +34,7 @@
     width: 30px;
     margin: 3px;
     color: #fff !important;
+
 }
 
 .ativo-paginacao{
@@ -254,7 +269,13 @@
     margin: 10px 10px;
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 650px) { 
+    .contatoPorPag-container{
+        margin-top: 15px;
+    }
+    .ContatdorDeContatos-container{
+        display: none;
+    }
     .form-orderBy{
         display: flex;
         flex-direction: row !important;
