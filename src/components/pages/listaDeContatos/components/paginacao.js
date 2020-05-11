@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import '../listaDeContatos.css';
 
@@ -23,9 +23,6 @@ export default function Paginacao({ contatos, contatosPorPagina, paginate, zerar
             
             function focar(info, index){
                 
-                console.log("info", info)
-                console.log("index", index)
-                
                 if(number == info){
                     let x = document.querySelector(`#pag-${index}`);
                     x.classList.add('ativo-paginacao');
@@ -43,8 +40,8 @@ export default function Paginacao({ contatos, contatosPorPagina, paginate, zerar
             <ul className="pagination">
                 {pageNumber.map((number, index) => (
                     <li key={number} className="page-item">
-                        <a type="button" onClick={()=> foco(number)} id={"pag-"+index} className="paginator">
-                            {number}
+                        <a type="button" onClick={()=> foco(number)} id={"pag-"+index} className="paginator bg-softGreen-escuro">
+                            <span>{number}</span>
                         </a>
                     </li>
                 ))}
@@ -54,19 +51,3 @@ export default function Paginacao({ contatos, contatosPorPagina, paginate, zerar
     );
 
 }
-
-
-// return(
-//     <nav>
-//         <ul className="pagination">
-//             {pageNumber.map((number, index) => (
-//                 <li key={number} className="page-item">
-//                     <a type="button" onClick={()=> paginate(number)} id={"pag-"+index} className="paginator">
-//                         {number}
-//                     </a>
-//                 </li>
-//             ))}
-//         </ul>
-
-//     </nav>
-// );

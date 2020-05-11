@@ -6,7 +6,6 @@ html, body{
   margin: 0px;
   height: 100%;
   width: 100%;
-  /* background-color: #015d2a; */
   background-image: linear-gradient(135deg, rgba(234, 234, 234,0.06) 0%, rgba(234, 234, 234,0.06) 50%,rgba(169, 169, 169,0.06) 50%, rgba(169, 169, 169,0.06) 100%),linear-gradient(90deg, rgb(20,20,20),rgb(20,20,20)); background-size: 72px 72px;
 }
 
@@ -15,27 +14,6 @@ html, body{
   box-shadow: inset 3px 3px 6px #bebebebe,
               inset -3px -3px 6px #013a1a;
 }
-.loading-container{
-  height: 100vh;
-  background-color: #000000;
-  color: #fff;
-  font-size: 30pt;
-}
-.leste-bg-escuro{
-  background-color: #015d2a !important;
-  color: white;
-}
-.border-leste-escuro{
-  border: 1px solid #015d2a;
-}
-
-.titulo{
-  text-align: center;
-  background-color: #246e46;
-  box-shadow: inset 3px 3px 6px #bebebebe,
-            inset -3px -3px 6px #013a1a;
-}
-
 .jumbotron h1{
   font-weight: 600;
   letter-spacing: 4px;
@@ -43,18 +21,72 @@ html, body{
   color: #fff;
 }
 
+.loading-container{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #000000;
+  color: #fff;
+  font-size: 30pt;
+}
+
+.bg-softGreen-claro{
+  color: #fff !important;
+  text-align: center;
+  background-color: #246e46;
+  box-shadow: inset 3px 3px 6px #bebebebe,
+              inset -3px -3px 6px #013a1a;
+  border: 1px solid #013a1a;
+
+}
+
+.bg-softGreen-escuro{
+  border: 2px solid #013a1a;
+  background-color: #013a1a;
+  box-shadow: inset 2px 2px 4px #bebebebe,
+              inset -2px -2px 4px #00180a;
+}
+
+.btn-softGreen-escuro{
+  border: 1.5px solid #013a1a;
+  background-color: #013a1a;
+  box-shadow: inset 2px 2px 4px #bebebebe,
+              inset -2px -2px 4px #00180a;
+              color: #fff;
+}
+
+.btn-softGreen-escuro:hover{
+  background-color: #00180a;
+  color: #fff;
+}
+.btn-softDanger{
+  border: 1.5px solid #a51010;
+  text-align: center;
+  color: #fff !important;
+  background-color: #a51010;
+  box-shadow: inset 2px 2px 5px #bebebebe,
+            inset -3px -3px 6px #500101;
+}
+
+.btn-softDanger:hover{
+  background-color: #500101;
+}
+
+.btn-softInfo{
+  border: 1.5px solid #004094;
+  color: #fff !important;
+  text-align: center;
+  background-color: #004094;
+  box-shadow: inset 2px 2px 5px #bebebebe,
+            inset -3px -3px 6px #001e46;
+}
+.btn-softInfo:hover{
+  background-color: #001e46;
+
+}
+
 .input-leste{
   border: 1px solid #015d2a;
-}
-
-.btn-leste{
-  background-color: #015d2a;
-  color: #fff;
-}
-
-.btn-leste:hover{
-  color: #fff;
-  background-color: #00AD4F;
 }
 
 .btn-leste-outline{

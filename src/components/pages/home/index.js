@@ -20,7 +20,7 @@ export default function Home(){
                         <Col sm={6}>
 
                         <ListGroup as="ul">
-                            <ListGroup.Item as="a" className="titulo"><h4>Descrição</h4></ListGroup.Item>
+                            <ListGroup.Item as="a" className="bg-softGreen-claro"><h4>Descrição</h4></ListGroup.Item>
                             <ListGroup.Item as="li">1 - Cadastra, Edita, exclui, lista e gera relatório com gráfico.</ListGroup.Item>
                             <ListGroup.Item as="li">2 - Cadastro: Cadastro de pessoa Física.</ListGroup.Item>
                             <ListGroup.Item as="li">3 - Filtros de pesquisa: por Gênero(F/M), por Idade, por Mês(todos de um determinado mês), por Idioma(todos de um determinado Idioma).</ListGroup.Item>
@@ -37,7 +37,7 @@ export default function Home(){
                         <Col sm={3}></Col>
                         <Col sm={6}>
                             <ListGroup as="ul">
-                                <ListGroup.Item as="a" className="titulo"><h4>Tecnologias usadas</h4></ListGroup.Item>
+                                <ListGroup.Item as="a" className="bg-softGreen-claro"><h4>Tecnologias usadas</h4></ListGroup.Item>
                                 <ListGroup.Item as="li">Html5, Css3, BootsTrap4, Javascript</ListGroup.Item>
                                 <ListGroup.Item as="li">Node, Npm, Git, Git Kraken, GitHub</ListGroup.Item>
                                 <ListGroup.Item as="li">React JS, Persintência no LocalStorage</ListGroup.Item>

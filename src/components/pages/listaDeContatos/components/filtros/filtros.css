@@ -1,0 +1,106 @@
+.accordion-filtros{
+    padding: 10px;
+}
+.ContatdorDeContatos-container{
+    border: 1px solid #b0b300 !important;
+    background-color: #e5e76c;
+    letter-spacing: 1.5px;
+    padding: 6px 7px;
+    border-radius: 5px;
+    color: #616204;
+}
+
+.filtro-container{
+    background-color: #015d2a38;
+}
+
+.form-orderBy-container{
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: row ;
+    justify-content: space-around;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;           
+}
+
+.form-orderBy{
+    margin-bottom: 5px;
+    font-size: 11pt;
+    letter-spacing: 1px;
+    color: #015d2a;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border-bottom: 1px solid #015d2a;
+    background-color: #015d2a2a;
+}
+
+.h4-ordenar{
+    border-radius: 5px;
+    padding: 7px 0px 1px 0px;
+    color: #e6e6e6;
+    letter-spacing: 2px;
+}
+
+.form-orderBy-container h6{
+    margin: 6px 0px;
+    color: #fff;
+    background-color: #015d2a;
+    border-radius: 2px;
+    padding: 3px 0px;
+    box-shadow: inset 1px 1px 3px #bebebebe,
+              inset -1px -1px 3px #013a1a;
+}
+
+.form-check i{
+    font-size: 16pt;
+}
+
+.div-filtro-genero{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.form-orderBy .form-check{
+    margin: 10px 10px;
+}
+
+@media (max-width: 650px) { 
+    .ContatdorDeContatos-container{
+        display: none;
+    }
+    .form-orderBy{
+        display: flex;
+        flex-direction: row !important;
+    }
+
+    .form-orderBy-container{
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    .form-orderBy .form-check{
+        margin:  3px 0px !important;
+        
+    }
+    .container-listaDeContatos{
+        padding: 0px !important;
+    }
+}
+
+@media  (max-width: 860px) {
+    .form-orderBy{
+        flex-direction: column;
+    }
+
+    .form-orderBy .form-check{
+        margin: 10px !important;
+    }
+
+   
+}

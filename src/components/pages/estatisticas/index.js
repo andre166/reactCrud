@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, LabelList, Legend } from 'recharts';
-import {Container, Row, Card, Jumbotron, Col, ListGroup, Dropdown, Accordion, Button, Collapse, Modal, DropdownButton, ButtonGroup} from 'react-bootstrap';
+import { ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
+import { Card, Collapse} from 'react-bootstrap';
 
 import './estatisticas.css';
 
@@ -183,19 +183,19 @@ export default function Estatisticas(){
 
                 <div className="text-center mt-2">
 
-                    <Button variant="info"
+                    <button className="btn btn-softGreen-escuro"
                         onClick={() => setOpen(!open)}
                         aria-controls="example-collapse-text"
                         aria-expanded={open}
                     >
                         Listar por idiomas <i class="fas fa-arrow-down"></i>
-                    </Button>
+                    </button>
                     <Collapse in={open}>
                         <Card body>
 
                             <form class="form-row lista-qtd-linguagem-container">
                                 <ul class="list-group">
-                                    <a class="list-group-item titulo">
+                                    <a class="list-group-item bg-softGreen-claro">
                                         <h4>
                                             <span>Idioma</span> 
                                             <span>Quantidade</span> 
@@ -214,14 +214,14 @@ export default function Estatisticas(){
                                 </ul>
                             </form>
 
-                            <Button variant="danger" size="sm" className="mt-2"
+                            <button size="sm" className="mt-2 btn btn-softDanger"
                                 onClick={() => setOpen(!open)}
                                 aria-controls="example-collapse-text"
                                 aria-expanded={open}>
 
                                 Fechar <i class="fas fa-arrow-up"></i>
 
-                            </Button>
+                            </button>
 
 
                         </Card>

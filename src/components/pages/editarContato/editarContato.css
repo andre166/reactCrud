@@ -9,11 +9,13 @@
 }
 
 .input-url{
-    padding-right: 30px;
+    padding-right: 30px !important;
 }
 
 .closeIcon{
-    color: #ff0000;
+    border-left: 1.2px solid rgb(107, 107, 107) !important;
+    padding-left: 2px !important;
+    color: #ff0000 !important;
     margin-top: -30px;
     margin-right: -5px;
 }
@@ -33,11 +35,6 @@
         margin-right: -16px !important;
     }
     
-    /* .card-img-top{
-        width: 8rem;
-        height: 7rem;
-    } */
-
     .card-text{
         font-size: 10pt;
         margin: 3px 0px 3px 0px;

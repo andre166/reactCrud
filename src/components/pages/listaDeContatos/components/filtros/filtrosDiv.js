@@ -1,6 +1,7 @@
 import React, {useState } from "react"
 import OrderBy from './orderBy';
 import {Container, Row, Card, Col, Form, Dropdown, InputGroup, FormControl,  Accordion, Button} from 'react-bootstrap';
+import './filtros.css';
 
 export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, setTabelaDeContatos, setContatosPorPagina, paginate, setZerarPaginacao, zerarPaginacao }) {
 
@@ -186,51 +187,53 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
     <div>
       <Accordion defaultActiveKey="0">
         <Card>
+
           <Container fluid >
             <Row className="justify-content-md-around accordion-filtros">
+
               <Col xs="auto" sm="auto" className="mb-2" style={{minWidth: 200}}>
-              <Row>
-                <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
-                <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
-                <Form.Check className="mt-1" type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela on' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
+                <Row>
+
+                  <Accordion.Toggle as={Button} variant="outline-success" eventKey="1" size="sm"> Filtro<i class="fas fa-filter"></i></Accordion.Toggle>
+                  <Button className="mx-2" variant="outline-danger" onClick={() => {zerarFiltro('geral')}} size="sm">Limpar filtro <i class="fas fa-filter"></i></Button>
+                  <Form.Check className="mt-1" type="switch" id="custom-switch" label={tabelaDeContatos == true ? 'Tabela on' : 'Tabela off'} onClick={() => {setTabelaDeContatos(!tabelaDeContatos)}} />
+
                 </Row>
 
               </Col>
-
 
               <Col xs="auto" sm="auto" style={{minWidth: 150}} className="contatoPorPag-container">
                 <Row>
+
                   <label className="mt-1"><strong>Contatos por página:</strong></label>
                   <InputGroup style={{width: 65}}>
-                        <Form.Control as="select" className="input-leste" onChange={(e) => setarPagina(e.target.value)}>
-                          <option value="5" selected>5</option>
-                          <option value="10" >10</option>
-                          <option value="15">15</option>
-                          <option value="20">20</option>
-                          <option value="25">25</option>
-                          <option value="30">30</option>
-                          <option value="40">40</option>
-                          <option value="45">45</option>
-                          <option value="50">50</option>
-                        </Form.Control>
-                      </InputGroup >
-                </Row>
+                      <Form.Control as="select" className="input-leste" onChange={(e) => setarPagina(e.target.value)}>
+                        <option value="5" selected>5</option>
+                        <option value="10" >10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                      </Form.Control>
+                    </InputGroup >
 
-               
+                </Row>
               </Col>
 
               <Col xs="auto" sm="auto" style={{minWidth: 150}}>
-                <span className="ContatdorDeContatos-container" >Contatos: {contatos.length}</span>  
+                <span className="ContatdorDeContatos-container" >Contatos: <strong>{contatos.length}</strong></span>  
               </Col>
             </Row>
           </Container>
       
-
           <Accordion.Collapse eventKey="1">
             <Card>
               <Form className="filtro-container">
 
-                <div className="text-center h4-ordenar mb-4">
+                <div className="text-center h4-ordenar mb-4 bg-softGreen-escuro">
                   <h4>Filtrar por</h4>
                 </div>
 
@@ -239,7 +242,7 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
                   <Col lg={2}>
                       <Dropdown>
 
-                        <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ marginLeft: '2rem', marginBottom: '1rem' }}>
+                        <Dropdown.Toggle variant="" className="bg-softGreen-escuro text-white" id="dropdown-basic" style={{ marginLeft: '2rem', marginBottom: '1rem' }}>
                           Gênero
                         </Dropdown.Toggle>
 
@@ -269,20 +272,20 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
                     <InputGroup className="mb-2">
 
                       <FormControl type="text" className="input-leste" aria-label="Recipient's username" 
-                      aria-describedby="button-addon2" value={filtroLinguagem} onChange={(e)=> setFiltroLinguagem(e.target.value)} placeholder="Idioma"/>
+                        aria-describedby="button-addon2" value={filtroLinguagem} onChange={(e)=> setFiltroLinguagem(e.target.value)} placeholder="Idioma"/>
                         
                       <InputGroup.Append>
                         <Button className="btn-leste-outline" id="button-addon2" 
                         onClick={(e) =>  filtrarLinguagem(filtroLinguagem)}> <i class="fas fa-search"></i></Button>
                       </InputGroup.Append>
 
-                      </InputGroup >
+                    </InputGroup >
                   </Col>
 
 
                   <Col lg={2}>
 
-                  <InputGroup className="mb-2">
+                    <InputGroup className="mb-2">
                       <Form.Control as="select" className="input-leste" id="inputGroupSelect01" onChange={(e) => filtrarPorMesOuIdade(e.target.value, "mes")}>
                         <option value="0" selected>Mês</option>
                         <option value="01" >Janeiro</option>
@@ -302,12 +305,11 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
 
                   </Col>
 
-
                   <Col lg={2}>
                     <InputGroup className="mb-2">
 
                       <FormControl type="number" className="input-leste" aria-label="Recipient's username" 
-                      aria-describedby="button-addon2" value={filtroIdade} onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
+                        aria-describedby="button-addon2" value={filtroIdade} onChange={(e)=> setFiltroIdade(e.target.value)} placeholder="Idade" min="0"/>
 
                       <InputGroup.Append>
                         <Button className="btn-leste-outline" type="button" id="button-addon2" onClick={(e) => filtrarPorMesOuIdade(filtroIdade, "idade")}><i class="fas fa-search"></i></Button>
@@ -319,7 +321,7 @@ export default function FiltrosDiv( { contatos, setContatos, tabelaDeContatos, s
 
                   <Row>
                     <Col>
-                      <div className="text-center h4-ordenar">
+                      <div className="text-center h4-ordenar bg-softGreen-escuro">
                         <h4>Ordenar por</h4>
                       </div>
                         <OrderBy zerarPaginacao={zerarPaginacao} setZerarPaginacao={setZerarPaginacao} setContatos={ setContatos } paginate={paginate}></OrderBy>

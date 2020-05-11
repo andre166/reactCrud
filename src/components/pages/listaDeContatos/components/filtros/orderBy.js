@@ -240,8 +240,8 @@ export default function OrderBy( { setContatos, paginate, setZerarPaginacao, zer
 
                     </div>
                 </div>
+                
             </form>
-                 
         </div>
     )
 }

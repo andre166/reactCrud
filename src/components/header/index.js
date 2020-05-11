@@ -9,26 +9,19 @@ export default function Header() {
   let [menuFoco] = useState(["menu-1", "menu-2", "menu-3", "logo"]);
   let [menuItem, setMenuItem] = useState(-1);
 
-
-    useEffect(() => {
-
-
-
-    }, []);
-  
-
   useEffect(() => {
 
-    if(menuItem == 3){
+    if(menuItem == 3){ // Remove a classe Ativo dos menus ao clicar na logo
         menuFoco.map((info) => (
             removeAtivo(info)
         ));
         return;
     }
 
-    function foco(menuItem){
+    // Coloca classe ativo no LI do menu e remove dos outros LI'S
+    function foco(menuItem){  
         
-        menuFoco.map((info, index) => (
+        menuFoco.map((info, index) => ( //recebe um valor dos LIS do menu e adiciona a classe ATIVO no elemento com o ID igual ao elemento do array[MenuFoco] e remove os demais
             focar(info, index)
         ));
 
@@ -46,7 +39,7 @@ export default function Header() {
 
     foco(menuItem);
 
-    function removeAtivo(info){
+    function removeAtivo(info){ // função para remover todos os ativos
 
         let x = document.querySelector(`#${info}`);
         x.classList.remove('ativo');

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory} from 'react-router-dom';
 import './editarContato.css';
-import {Container, Row, Card, Jumbotron, Col, Form, Button, Collapse } from 'react-bootstrap';
+import {Container, Row, Card, Jumbotron, Col, Form, Collapse } from 'react-bootstrap';
 
 
 export default function EditarContatos() {
@@ -21,19 +21,20 @@ export default function EditarContatos() {
     let [avatar, setAvatar] = useState("")
     let [birthday, setBirthday] = useState("")
 
-    let ContatoEditado = false;
-    let history = useHistory();
-    const [openFotoDiv, setOpenFotoDiv] = useState(false);
+    let ContatoEditado = false; // para gerar a msg de editado caso true ou excluído caso false
+    let history = useHistory(); // para redirecionar caso delete o contato
+    
+    const [openFotoDiv, setOpenFotoDiv] = useState(false); //Abre e fecha a Div para alterar a Foto
 
     useEffect(() => {
       
-        (async function pegarContato(idParams) {
+        (function pegarContato(idParams) { //Pega o parametro ID passado pela Url e procura na ListaDeContatos o contato com o mesmo ID
 
             let idConvertido = parseInt(idParams.id);
 
-            setId(idConvertido)
+            setId(idConvertido);
 
-            const response = await localStorage.getItem("ListaDeContatos");
+            const response = localStorage.getItem("ListaDeContatos");
             let ListaDeContatos = JSON.parse(response);
             setListaContatos(ListaDeContatos);
 
@@ -61,14 +62,14 @@ export default function EditarContatos() {
       
     }, []);
 
-    async function editarContato(){
+    function editarContato(){
 
         let newContact = [];
         let data = [];
         let days = [];
         let dataFormatada = [];
         
-        if(birthday.indexOf("-") > -1){
+        if(birthday.indexOf("-") > -1){ // Verifica se a data é 00-00-000 para aplicar a máscara correta pois se "confirmar a edição" sem editar a data é uma mascara caso edite é outra
 
             data = String(birthday).split(' ');
             days = String(data[0]).split('-');
@@ -83,7 +84,7 @@ export default function EditarContatos() {
         }
 
         let languageFormatada = language.toLowerCase().replace(/(?:^|\s)\S/g, function(a) 
-        { return a.toUpperCase(); });
+        { return a.toUpperCase(); }); // Linguagem com a primeira letra maiúscula
 
         birthday = dataFormatada;
         language = languageFormatada;
@@ -92,25 +93,23 @@ export default function EditarContatos() {
         
         ListaContatos[posicaoDocontato] =  newContact;
 
-        await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaContatos));
+        localStorage.setItem("ListaDeContatos", JSON.stringify(ListaContatos));
 
         if(ContatoEditado){
-
-            await localStorage.setItem("MSG", "EditadoSuccess");
-
+            localStorage.setItem("MSG", "EditadoSuccess");
         }
 
     }
 
-    async function deleteContact(id) {
+    function deleteContact(id) {
         
-        await localStorage.setItem("MSG", "ExcluidoSuccess");
+        localStorage.setItem("MSG", "ExcluidoSuccess");
         
         let contato = ListaContatos.indexOf(ListaContatos.find(n => n.id == id));
 
         ListaContatos.splice(contato, 1);
 
-        await localStorage.setItem("ListaDeContatos", JSON.stringify(ListaContatos));
+        localStorage.setItem("ListaDeContatos", JSON.stringify(ListaContatos));
 
         return history.push("/ListaDeContatos");
     }
@@ -134,9 +133,9 @@ export default function EditarContatos() {
 
                             <div className="text-center px-2 mb-2">
 
-                                <Button className="mt-2" variant="info" onClick={() => setOpenFotoDiv(!openFotoDiv)} aria-controls="example-collapse-text" aria-expanded={openFotoDiv} >
+                                <button className="mt-2 btn btn-softInfo" variant="info" onClick={() => setOpenFotoDiv(!openFotoDiv)} aria-controls="example-collapse-text" aria-expanded={openFotoDiv} >
                                     Alterar foto
-                                </Button>
+                                </button>
                             
                                 <Collapse in={openFotoDiv}>
                                     <Card body>
@@ -234,8 +233,8 @@ export default function EditarContatos() {
 
                                 <Row>
                                     <Col className="text-center">
-                                        <button type="submit" class="btn btn-leste" onClick={()=>{ ContatoEditado = true}} >Confirmar</button>
-                                        <button type="button" class="btn btn-danger ml-2" onClick={()=>{deleteContact(id)}}>Excluir</button>
+                                        <button type="submit" class="btn  btn-softGreen-escuro" onClick={()=>{ ContatoEditado = true}} >Confirmar</button>
+                                        <button type="button" class="btn  btn-softDanger ml-2" onClick={()=>{deleteContact(id)}}>Excluir</button>
                                     </Col>
                                 </Row> 
 

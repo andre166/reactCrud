@@ -6,45 +6,28 @@
 
 }
 
-#snackBar{
-    display: flex;
-    align-items: center;
-}
-.accordion-filtros{
-    padding: 10px;
-}
-.ContatdorDeContatos-container{
-    letter-spacing: 1.5px;
-    padding: 6px 7px;
-    border-radius: 5px;
-    border: 2px solid #013a1a;
-    background-color: #013a1a;
-    box-shadow: inset 2px 2px 4px #bebebebe,
-              inset -2px -2px 4px #00180a;
-              color: #fff;
-  
-}
-.paginator{
+.paginator, .paginator span{
     text-align: center;
-    border: 2px solid #013a1a;
-    background-color: #013a1a;
-    box-shadow: inset 2px 2px 4px #bebebebe,
-              inset -2px -2px 4px #00180a;
     border-radius: 5px;
     width: 30px;
     margin: 3px;
-    color: #fff !important;
-
+    color: #fff;
 }
 
 .ativo-paginacao{
-    background-color: #fff;
-    color: #013a1a !important;
+    background-color: #fff !important;
+}
+
+.ativo-paginacao span{
+    color: #013a1a;
 }
 
 .paginator:hover{
     box-shadow: none;
     background-color: #fff;
+    color: #013a1a !important;
+}
+.paginator:hover span{
     color: #013a1a !important;
 }
 
@@ -61,17 +44,13 @@
     display: flex;
     align-items: center;
 }
-.filtro-container{
-    background-color: #015d2a38;
-    /* border: 1px solid #015d2a; */
 
-}
 .operacao-tabela{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    
 }
+
 .tabela td, .tabela th{
     vertical-align: middle !important;
     text-align: center;
@@ -89,18 +68,13 @@
 }
 
 #cardUsuario{
-    /* box-shadow: 1px 1px 2px #d1d1d1; */
     background-color: #fff;
     margin: 20px 10px 40px 10px;
-    /* border-radius: 5px; */
-    width: 250px !important;
-    
+    width: 250px !important;   
 }
 
 .card-body-container{
-    /* 1px 1px 4px #b1b1b1; */
     padding: 0px 10px;
-    /* -1px -1px 1px #b1b1b1; */
 }
 
 #card-info-usuario{
@@ -110,17 +84,9 @@
 #btn-contato-container{
     width: 264px;
 }
-#menu-card-header{
-    /* margin-bottom: 65px; */
-    /* position: absolute; */
-    /* padding: 0px !important; */
-    /* border: 1px solid red; */
-    /* border-radius: 50%;*/
-    /* background-color: rgba(0,0,0,.03); */
-    margin-left: -5px;
-    /* background-color: #fff; */
-    /* margin-right: 10px; */
 
+#menu-card-header{
+    margin-left: -5px;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -145,38 +111,6 @@
     flex-direction: row;
     justify-content:space-between;
 
-
-}
-.socialIcon-card{
-    position: absolute;
-    margin-left: -35px;
-    margin-top: -205px;
-    display: flex;
-    flex-direction: column;
-}
-
-.socialIcon-card .fab{
-    width: 23px;
-    color: #fff;
-    background-color: #015d2a;
-    cursor: pointer;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-    padding: 5px;
-    border-left: 1px solid #008000;
-    border-top: 1px solid #008000;
-    border-bottom: 1px solid #008000;
-    margin: 3px 0px;
-}
-
-.socialIcon-card .fab:hover{
-    color: #015d2a;
-    background-color: #fff;
-}
-
-
-.badge-pill:hover{
-    color: #fff;
 }
 
 #card-info-usuario p{
@@ -184,136 +118,21 @@
     margin: 2px;
     font-size: 10pt;
 }
-.form-orderBy-container{
-    
-    padding: 10px 0px;
-    display: flex;
-    flex-direction: row ;
-    justify-content: space-around;
-    /* border-top: 2px solid #015d2a; */
-    /* box-shadow: inset 3px 3px 15px #015d2a36,
-                inset -1px -1px 5px #015d2a4b; */
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-                
-}
-
-.form-orderBy{
-    margin-bottom: 5px;
-    font-size: 11pt;
-    letter-spacing: 1px;
-    color: #015d2a;
-    font-weight: bold;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border-bottom: 1px solid #015d2a;
-    background-color: #015d2a2a;
-    
-}
-.h4-ordenar{
-    border-radius: 5px;
-    padding: 7px 0px 1px 0px;
-    color: #e6e6e6;
-    letter-spacing: 2px;
-    border: 2px solid #013a1a;
-    /* background-color: #015d2a; */
-    background-color: #013a1a;
-    box-shadow: inset 2px 2px 4px #bebebebe,
-              inset -2px -2px 4px #00180a;
-}
-.idade_e_id-card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.btn-id{
-    cursor: pointer;
-    margin-top: 0px !important;
-    padding: 0px 4px;
-    border-radius: 50%;
-    background-color: #013a1a;
-    color: #fff !important;
-    border: 1px solid #013a1a;
-}
-
-.btn-id:hover{
-    background-color: #fff;
-    color: #013a1a !important;
-}
-
-.form-orderBy-container h6{
-    margin: 6px 0px;
-    color: #fff;
-    background-color: #015d2a;
-    border-radius: 2px;
-    padding: 3px 0px;
-    box-shadow: inset 1px 1px 3px #bebebebe,
-              inset -1px -1px 3px #013a1a;
-}
-
-.form-check i{
-    font-size: 16pt;
-}
-
-.div-filtro-genero{
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-}
-.form-orderBy .form-check{
-    margin: 10px 10px;
-}
 
 @media (max-width: 650px) { 
     .contatoPorPag-container{
         margin-top: 15px;
     }
-    .ContatdorDeContatos-container{
-        display: none;
-    }
-    .form-orderBy{
-        display: flex;
-        flex-direction: row !important;
-    }
-
-    .form-orderBy-container{
-        display: flex;
-        flex-direction: column;
-        
-    }
-
-    .form-orderBy .form-check{
-        margin:  3px 0px !important;
-        
-    }
-    
-    .socialIcon-card{
-        display: none;
-    }
-    
-    .socialIcon-card .fab{
-       display: none;
-    }
-    .container-listaDeContatos{
-        padding: 0px !important;
-    }
 
     #lista-body{
         display: flex;
         flex-direction: column;
-        
     }
 
     .contato-h1{
         font-weight: 200;
         letter-spacing: 2px;
         font-size: 40px;
-    
     }
 
     #cardUsuario{
@@ -323,39 +142,14 @@
     }
 
     #img-card{
-        /* width: 21.5rem; */
         height: 21rem;
     }
 
     #numeroDoCard2{
-       
         margin-top: -25px;
         margin-left: 110px;
     }
 
-    .femCor{
-        background-color: pink;
-
-    }
-
-    .mascCor{
-        background-color: blue;
-    }
-
 }
 
-@media  (max-width: 860px) {
-    .form-orderBy{
-        flex-direction: column;
-     
-    }
 
-    .form-orderBy .form-check{
-        /* width: 20rem; */
-        /* border: 1px solid yellow; */
-        /* padding: 5px !important; */
-        margin: 10px !important;
-    }
-
-   
-}

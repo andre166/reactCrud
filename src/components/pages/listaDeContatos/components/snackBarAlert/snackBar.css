@@ -13,7 +13,10 @@
     margin-right: auto;
     padding: 0px 20px;
 }
-
+#snackBar{
+    display: flex;
+    align-items: center;
+}
 .snackBar-Custom{
     color: #fff;
     background-color: #000000;
