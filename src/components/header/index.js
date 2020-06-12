@@ -6,7 +6,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 export default function Header() {
 
-  let [menuFoco] = useState(["menu-1", "menu-2", "menu-3", "logo"]);
+  let [menuFoco] = useState(["menu-1", "menu-2", "menu-3", "menu-4", "logo"]);
   let [menuItem, setMenuItem] = useState(-1);
 
   useEffect(() => {
@@ -61,6 +61,7 @@ export default function Header() {
                     <Nav.Link as="li" id="menu-1" onClick={()=> setMenuItem(0)}><Link to="/ListaDeContatos" class="nav-link"><a ><i class="fas fa-list-alt"></i> Lista de Contatos</a></Link></Nav.Link>
                     <Nav.Link as="li" id="menu-2" onClick={()=> setMenuItem(1)}><Link to="/CadastrarContato" class="nav-link"><a><i class="fas fa-user-plus"></i> Cadastrar Contatos</a></Link></Nav.Link>
                     <Nav.Link as="li" id="menu-3" onClick={()=> setMenuItem(2)}><Link to="/Estatisticas" class="nav-link"><a><i class="fas fa-chart-pie"></i> Estatisticas</a></Link></Nav.Link>
+                    <Nav.Link as="li" id="menu-4" onClick={()=> setMenuItem(3)}><Link to="/Teste" class="nav-link"><a> Teste</a></Link></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
 

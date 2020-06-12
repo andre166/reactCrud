@@ -4,6 +4,8 @@ import Routes from './routes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import SideNav from './components/sidenav';
+
   export default function App() {
 
   let [loading, setLoading] = useState(true);
@@ -98,7 +100,9 @@ import './App.css';
 
     return(
       <div>
-        <Routes />
+        <SideNav routes={Routes}>
+          {/* <Routes /> */}
+        </SideNav>
       </div>
     );
 
